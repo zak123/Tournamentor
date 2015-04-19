@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00FC5213E1A805957D9175E9 /* libPods-tournamentor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D846CB6E7A421D73DF0BFD /* libPods-tournamentor.a */; };
+		B60086851AE19A8C00517501 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60086841AE19A8C00517501 /* Security.framework */; };
+		B600868A1AE1BEAF00517501 /* DataHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = B60086891AE1BEAF00517501 /* DataHolder.m */; };
 		B63356471AE1792500D3170B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356461AE1792500D3170B /* main.m */; };
 		B633564A1AE1792500D3170B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356491AE1792500D3170B /* AppDelegate.m */; };
-		B633564D1AE1792500D3170B /* tournamentor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B633564B1AE1792500D3170B /* tournamentor.xcdatamodeld */; };
 		B63356501AE1792500D3170B /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B633564F1AE1792500D3170B /* MasterViewController.m */; };
 		B63356531AE1792500D3170B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356521AE1792500D3170B /* DetailViewController.m */; };
 		B63356561AE1792500D3170B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63356541AE1792500D3170B /* Main.storyboard */; };
 		B63356581AE1792500D3170B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63356571AE1792500D3170B /* Images.xcassets */; };
 		B633565B1AE1792500D3170B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B63356591AE1792500D3170B /* LaunchScreen.xib */; };
 		B63356671AE1792500D3170B /* tournamentorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356661AE1792500D3170B /* tournamentorTests.m */; };
+		B63356761AE179B900D3170B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356751AE179B900D3170B /* User.m */; };
+		B633567A1AE17F0C00D3170B /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356791AE17F0C00D3170B /* WebViewController.m */; };
+		B6ECE48B1AE3165B00310D84 /* TournamentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE48A1AE3165B00310D84 /* TournamentListTableViewController.m */; };
+		B6ECE48F1AE3199200310D84 /* ChallongeCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE48E1AE3199200310D84 /* ChallongeCommunicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,12 +35,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		258FB0BAD571B07D04F7E17A /* Pods-tournamentor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tournamentor.release.xcconfig"; path = "Pods/Target Support Files/Pods-tournamentor/Pods-tournamentor.release.xcconfig"; sourceTree = "<group>"; };
+		9AD5D6DDBBED5DE213E80723 /* Pods-tournamentor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tournamentor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tournamentor/Pods-tournamentor.debug.xcconfig"; sourceTree = "<group>"; };
+		B60086841AE19A8C00517501 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B60086881AE1BEAF00517501 /* DataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHolder.h; sourceTree = "<group>"; };
+		B60086891AE1BEAF00517501 /* DataHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHolder.m; sourceTree = "<group>"; };
 		B63356411AE1792500D3170B /* tournamentor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tournamentor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63356451AE1792500D3170B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B63356461AE1792500D3170B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B63356481AE1792500D3170B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B63356491AE1792500D3170B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B633564C1AE1792500D3170B /* tournamentor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tournamentor.xcdatamodel; sourceTree = "<group>"; };
 		B633564E1AE1792500D3170B /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		B633564F1AE1792500D3170B /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		B63356511AE1792500D3170B /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -45,6 +55,15 @@
 		B63356601AE1792500D3170B /* tournamentorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tournamentorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63356651AE1792500D3170B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B63356661AE1792500D3170B /* tournamentorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tournamentorTests.m; sourceTree = "<group>"; };
+		B63356741AE179B900D3170B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		B63356751AE179B900D3170B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B63356781AE17F0C00D3170B /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		B63356791AE17F0C00D3170B /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		B6ECE4891AE3165B00310D84 /* TournamentListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TournamentListTableViewController.h; sourceTree = "<group>"; };
+		B6ECE48A1AE3165B00310D84 /* TournamentListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TournamentListTableViewController.m; sourceTree = "<group>"; };
+		B6ECE48D1AE3199200310D84 /* ChallongeCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallongeCommunicator.h; sourceTree = "<group>"; };
+		B6ECE48E1AE3199200310D84 /* ChallongeCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallongeCommunicator.m; sourceTree = "<group>"; };
+		F4D846CB6E7A421D73DF0BFD /* libPods-tournamentor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tournamentor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60086851AE19A8C00517501 /* Security.framework in Frameworks */,
+				00FC5213E1A805957D9175E9 /* libPods-tournamentor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,12 +86,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05E1A7C3AC3F75BC0EB624AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B60086841AE19A8C00517501 /* Security.framework */,
+				F4D846CB6E7A421D73DF0BFD /* libPods-tournamentor.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4D51B4F48454A68D982A17D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9AD5D6DDBBED5DE213E80723 /* Pods-tournamentor.debug.xcconfig */,
+				258FB0BAD571B07D04F7E17A /* Pods-tournamentor.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B60086861AE1BE4100517501 /* Boilerplate */ = {
+			isa = PBXGroup;
+			children = (
+				B633564E1AE1792500D3170B /* MasterViewController.h */,
+				B633564F1AE1792500D3170B /* MasterViewController.m */,
+				B63356511AE1792500D3170B /* DetailViewController.h */,
+				B63356521AE1792500D3170B /* DetailViewController.m */,
+			);
+			name = Boilerplate;
+			sourceTree = "<group>";
+		};
+		B60086871AE1BE4A00517501 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B63356781AE17F0C00D3170B /* WebViewController.h */,
+				B63356791AE17F0C00D3170B /* WebViewController.m */,
+				B6ECE4891AE3165B00310D84 /* TournamentListTableViewController.h */,
+				B6ECE48A1AE3165B00310D84 /* TournamentListTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B600868B1AE1BEB700517501 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B60086881AE1BEAF00517501 /* DataHolder.h */,
+				B60086891AE1BEAF00517501 /* DataHolder.m */,
+				B6ECE48D1AE3199200310D84 /* ChallongeCommunicator.h */,
+				B6ECE48E1AE3199200310D84 /* ChallongeCommunicator.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		B63356381AE1792500D3170B = {
 			isa = PBXGroup;
 			children = (
 				B63356431AE1792500D3170B /* tournamentor */,
 				B63356631AE1792500D3170B /* tournamentorTests */,
 				B63356421AE1792500D3170B /* Products */,
+				B4D51B4F48454A68D982A17D /* Pods */,
+				05E1A7C3AC3F75BC0EB624AF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,16 +160,16 @@
 		B63356431AE1792500D3170B /* tournamentor */ = {
 			isa = PBXGroup;
 			children = (
+				B6ECE48C1AE318EA00310D84 /* Model */,
+				B600868B1AE1BEB700517501 /* Helpers */,
+				B63356771AE179BD00D3170B /* Model */,
 				B63356481AE1792500D3170B /* AppDelegate.h */,
 				B63356491AE1792500D3170B /* AppDelegate.m */,
-				B633564E1AE1792500D3170B /* MasterViewController.h */,
-				B633564F1AE1792500D3170B /* MasterViewController.m */,
-				B63356511AE1792500D3170B /* DetailViewController.h */,
-				B63356521AE1792500D3170B /* DetailViewController.m */,
+				B60086861AE1BE4100517501 /* Boilerplate */,
+				B60086871AE1BE4A00517501 /* Controllers */,
 				B63356541AE1792500D3170B /* Main.storyboard */,
 				B63356571AE1792500D3170B /* Images.xcassets */,
 				B63356591AE1792500D3170B /* LaunchScreen.xib */,
-				B633564B1AE1792500D3170B /* tournamentor.xcdatamodeld */,
 				B63356441AE1792500D3170B /* Supporting Files */,
 			);
 			path = tournamentor;
@@ -127,6 +201,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B63356771AE179BD00D3170B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B63356741AE179B900D3170B /* User.h */,
+				B63356751AE179B900D3170B /* User.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B6ECE48C1AE318EA00310D84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +224,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B633566A1AE1792500D3170B /* Build configuration list for PBXNativeTarget "tournamentor" */;
 			buildPhases = (
+				F6DEFBD989E5B27CA68073A4 /* Check Pods Manifest.lock */,
 				B633563D1AE1792500D3170B /* Sources */,
 				B633563E1AE1792500D3170B /* Frameworks */,
 				B633563F1AE1792500D3170B /* Resources */,
+				B8ECDF58BDF91A76A0A69717 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,15 +314,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B8ECDF58BDF91A76A0A69717 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tournamentor/Pods-tournamentor-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6DEFBD989E5B27CA68073A4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B633563D1AE1792500D3170B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B63356761AE179B900D3170B /* User.m in Sources */,
+				B600868A1AE1BEAF00517501 /* DataHolder.m in Sources */,
 				B63356531AE1792500D3170B /* DetailViewController.m in Sources */,
+				B633567A1AE17F0C00D3170B /* WebViewController.m in Sources */,
+				B6ECE48F1AE3199200310D84 /* ChallongeCommunicator.m in Sources */,
 				B63356501AE1792500D3170B /* MasterViewController.m in Sources */,
-				B633564D1AE1792500D3170B /* tournamentor.xcdatamodeld in Sources */,
 				B633564A1AE1792500D3170B /* AppDelegate.m in Sources */,
+				B6ECE48B1AE3165B00310D84 /* TournamentListTableViewController.m in Sources */,
 				B63356471AE1792500D3170B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +486,7 @@
 		};
 		B633566B1AE1792500D3170B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AD5D6DDBBED5DE213E80723 /* Pods-tournamentor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = tournamentor/Info.plist;
@@ -367,6 +497,7 @@
 		};
 		B633566C1AE1792500D3170B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 258FB0BAD571B07D04F7E17A /* Pods-tournamentor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = tournamentor/Info.plist;
@@ -428,6 +559,7 @@
 				B633566C1AE1792500D3170B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B633566D1AE1792500D3170B /* Build configuration list for PBXNativeTarget "tournamentorTests" */ = {
 			isa = XCConfigurationList;
@@ -436,21 +568,9 @@
 				B633566F1AE1792500D3170B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		B633564B1AE1792500D3170B /* tournamentor.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				B633564C1AE1792500D3170B /* tournamentor.xcdatamodel */,
-			);
-			currentVersion = B633564C1AE1792500D3170B /* tournamentor.xcdatamodel */;
-			path = tournamentor.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = B63356391AE1792500D3170B /* Project object */;
 }

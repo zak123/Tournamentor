@@ -1,0 +1,435 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		34783385F355A755EDA58EE4 /* Pods-tournamentor-MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCB0260B24BF9D9B74ABFE6 /* Pods-tournamentor-MBProgressHUD-dummy.m */; };
+		48C9AD22D6BA84D68F4AECA6 /* Pods-tournamentor-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4652A36A27017600171493D3 /* Pods-tournamentor-dummy.m */; };
+		797A0817B1E71ED8DEB540D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BA121FA9C82BEF68248138 /* Foundation.framework */; };
+		AD7F42BB9FD56F6C565037B2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4AE628772CC8A0DD96144B /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B1E2064C34CF538FB96724C6 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = D3FCA6558E663D283EDA8E6B /* MBProgressHUD.h */; };
+		D38F82645EBD618900BDEB1B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3304E7C642A090ADF1E8CE4 /* CoreGraphics.framework */; };
+		D8E763CAD170A150819BFEDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BA121FA9C82BEF68248138 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFC8E47957ACB9369FA1331B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE3498398303BA6CCD6B9C4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB35ECCA8820FBC559AC6CC5;
+			remoteInfo = "Pods-tournamentor-MBProgressHUD";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1CCB0260B24BF9D9B74ABFE6 /* Pods-tournamentor-MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-tournamentor-MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		2A4DCF868D7EAC296B2C22DD /* Pods-tournamentor-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-tournamentor-acknowledgements.plist"; sourceTree = "<group>"; };
+		342307FFC6214EA684043B8E /* Pods-tournamentor-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-tournamentor-environment.h"; sourceTree = "<group>"; };
+		398A8ACC9DD45497C63355CE /* libPods-tournamentor-MBProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tournamentor-MBProgressHUD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4652A36A27017600171493D3 /* Pods-tournamentor-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-tournamentor-dummy.m"; sourceTree = "<group>"; };
+		73DA723CD965DD977A76C48E /* libPods-tournamentor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tournamentor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83AC597B00DE24AE4A00F38E /* Pods-tournamentor-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-tournamentor-resources.sh"; sourceTree = "<group>"; };
+		8EF2A44FDB1E05BA4C883E8F /* Pods-tournamentor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-tournamentor.release.xcconfig"; sourceTree = "<group>"; };
+		9CC3F0E8EACE8F30AEEFEF1F /* Pods-tournamentor-MBProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-tournamentor-MBProgressHUD-prefix.pch"; sourceTree = "<group>"; };
+		BF4AE628772CC8A0DD96144B /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		C3304E7C642A090ADF1E8CE4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		C9A4C84AF72D5C356ECA877D /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D1BA121FA9C82BEF68248138 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D3FCA6558E663D283EDA8E6B /* MBProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		D492AFD4A4102A9E07E005C3 /* Pods-tournamentor-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-tournamentor-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E430445CA0F4811DAC902B61 /* Pods-tournamentor-MBProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-tournamentor-MBProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
+		EF2169FB6B80EB4EBBE3F52D /* Pods-tournamentor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-tournamentor.debug.xcconfig"; sourceTree = "<group>"; };
+		FA4E3624EF793ADAECC7D703 /* Pods-tournamentor-MBProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-tournamentor-MBProgressHUD.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4AB5FC1B2585558B9C9B2D8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D38F82645EBD618900BDEB1B /* CoreGraphics.framework in Frameworks */,
+				797A0817B1E71ED8DEB540D9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77726583BF2BE01277C7D1AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8E763CAD170A150819BFEDD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A683536312A468D44701866 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2F88D3EE680AC3EE7AEB856 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0B9EE37850D961FE756B6E35 = {
+			isa = PBXGroup;
+			children = (
+				C9A4C84AF72D5C356ECA877D /* Podfile */,
+				0A683536312A468D44701866 /* Frameworks */,
+				6460109771585F1BB83A8B39 /* Pods */,
+				820F8845345CF030FD1316B6 /* Products */,
+				86AC4E30EE2A9907F0C0159A /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		2A1B13C01BBDFAF5078AB2E0 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				D3FCA6558E663D283EDA8E6B /* MBProgressHUD.h */,
+				BF4AE628772CC8A0DD96144B /* MBProgressHUD.m */,
+				410041B236AFDB3303D52F32 /* Support Files */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		410041B236AFDB3303D52F32 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA4E3624EF793ADAECC7D703 /* Pods-tournamentor-MBProgressHUD.xcconfig */,
+				E430445CA0F4811DAC902B61 /* Pods-tournamentor-MBProgressHUD-Private.xcconfig */,
+				1CCB0260B24BF9D9B74ABFE6 /* Pods-tournamentor-MBProgressHUD-dummy.m */,
+				9CC3F0E8EACE8F30AEEFEF1F /* Pods-tournamentor-MBProgressHUD-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-tournamentor-MBProgressHUD";
+			sourceTree = "<group>";
+		};
+		6460109771585F1BB83A8B39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2A1B13C01BBDFAF5078AB2E0 /* MBProgressHUD */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7AE9A9D2BF5744C841B97F65 /* Pods-tournamentor */ = {
+			isa = PBXGroup;
+			children = (
+				D492AFD4A4102A9E07E005C3 /* Pods-tournamentor-acknowledgements.markdown */,
+				2A4DCF868D7EAC296B2C22DD /* Pods-tournamentor-acknowledgements.plist */,
+				4652A36A27017600171493D3 /* Pods-tournamentor-dummy.m */,
+				342307FFC6214EA684043B8E /* Pods-tournamentor-environment.h */,
+				83AC597B00DE24AE4A00F38E /* Pods-tournamentor-resources.sh */,
+				EF2169FB6B80EB4EBBE3F52D /* Pods-tournamentor.debug.xcconfig */,
+				8EF2A44FDB1E05BA4C883E8F /* Pods-tournamentor.release.xcconfig */,
+			);
+			name = "Pods-tournamentor";
+			path = "Target Support Files/Pods-tournamentor";
+			sourceTree = "<group>";
+		};
+		820F8845345CF030FD1316B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73DA723CD965DD977A76C48E /* libPods-tournamentor.a */,
+				398A8ACC9DD45497C63355CE /* libPods-tournamentor-MBProgressHUD.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		86AC4E30EE2A9907F0C0159A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7AE9A9D2BF5744C841B97F65 /* Pods-tournamentor */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		D2F88D3EE680AC3EE7AEB856 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C3304E7C642A090ADF1E8CE4 /* CoreGraphics.framework */,
+				D1BA121FA9C82BEF68248138 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8D785FD5B78882C6840DBF03 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1E2064C34CF538FB96724C6 /* MBProgressHUD.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7A8ABC8EB283B60247E88F3A /* Pods-tournamentor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A95B15F155A6CC9BDBBCF40 /* Build configuration list for PBXNativeTarget "Pods-tournamentor" */;
+			buildPhases = (
+				BC58B18A7FA96965919F2719 /* Sources */,
+				77726583BF2BE01277C7D1AE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B252996FDCA6ABAA1ADA9A52 /* PBXTargetDependency */,
+			);
+			name = "Pods-tournamentor";
+			productName = "Pods-tournamentor";
+			productReference = 73DA723CD965DD977A76C48E /* libPods-tournamentor.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DB35ECCA8820FBC559AC6CC5 /* Pods-tournamentor-MBProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 722C680B72AE551AF718FF4D /* Build configuration list for PBXNativeTarget "Pods-tournamentor-MBProgressHUD" */;
+			buildPhases = (
+				1B3F1DE7AA739D9CD099B3CE /* Sources */,
+				4AB5FC1B2585558B9C9B2D8E /* Frameworks */,
+				8D785FD5B78882C6840DBF03 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-tournamentor-MBProgressHUD";
+			productName = "Pods-tournamentor-MBProgressHUD";
+			productReference = 398A8ACC9DD45497C63355CE /* libPods-tournamentor-MBProgressHUD.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FE3498398303BA6CCD6B9C4B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = C91451B887D5BF5508A7157A /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0B9EE37850D961FE756B6E35;
+			productRefGroup = 820F8845345CF030FD1316B6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7A8ABC8EB283B60247E88F3A /* Pods-tournamentor */,
+				DB35ECCA8820FBC559AC6CC5 /* Pods-tournamentor-MBProgressHUD */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1B3F1DE7AA739D9CD099B3CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD7F42BB9FD56F6C565037B2 /* MBProgressHUD.m in Sources */,
+				34783385F355A755EDA58EE4 /* Pods-tournamentor-MBProgressHUD-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC58B18A7FA96965919F2719 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48C9AD22D6BA84D68F4AECA6 /* Pods-tournamentor-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B252996FDCA6ABAA1ADA9A52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-tournamentor-MBProgressHUD";
+			target = DB35ECCA8820FBC559AC6CC5 /* Pods-tournamentor-MBProgressHUD */;
+			targetProxy = AFC8E47957ACB9369FA1331B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2CB565AA64AA8339D9C8B434 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF2169FB6B80EB4EBBE3F52D /* Pods-tournamentor.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3E6F0C51E519BDAF7CC5B99C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E430445CA0F4811DAC902B61 /* Pods-tournamentor-MBProgressHUD-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-tournamentor-MBProgressHUD/Pods-tournamentor-MBProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		64DD5A256276C81DB514D2D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		7BA2B8A307CCED7F78B9A1F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E430445CA0F4811DAC902B61 /* Pods-tournamentor-MBProgressHUD-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-tournamentor-MBProgressHUD/Pods-tournamentor-MBProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		85F97C8DA269CAC8FE512ED2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EF2A44FDB1E05BA4C883E8F /* Pods-tournamentor.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A2BEE2A661F27886446C8658 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A95B15F155A6CC9BDBBCF40 /* Build configuration list for PBXNativeTarget "Pods-tournamentor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CB565AA64AA8339D9C8B434 /* Debug */,
+				85F97C8DA269CAC8FE512ED2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		722C680B72AE551AF718FF4D /* Build configuration list for PBXNativeTarget "Pods-tournamentor-MBProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E6F0C51E519BDAF7CC5B99C /* Debug */,
+				7BA2B8A307CCED7F78B9A1F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C91451B887D5BF5508A7157A /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64DD5A256276C81DB514D2D2 /* Debug */,
+				A2BEE2A661F27886446C8658 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FE3498398303BA6CCD6B9C4B /* Project object */;
+}
