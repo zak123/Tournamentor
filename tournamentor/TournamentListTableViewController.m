@@ -10,6 +10,9 @@
 
 @interface TournamentListTableViewController ()
 
+@property (nonatomic) NSArray *tournaments;
+
+
 @end
 
 @implementation TournamentListTableViewController
@@ -18,6 +21,28 @@
     [super viewDidLoad];
     
     [self setTitle:self.user.name];
+    
+    
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
+    
+    [communicator getTournaments:self.user.name withKey:self.user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
+        
+        NSLog(@"%@", tournamentsArray);
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^() {
+                _tournaments = tournamentsArray;
+                
+                [self.tableView reloadData];
+                
+                
+            });
+        }
+        
+    }];
+    
+    
+    
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -35,23 +60,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return self.tournaments.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    TournamentListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    Tournament *cellTourn = _tournaments[indexPath.row];
+    cell.tournamentNameLabel.text = cellTourn.tournamentName;
     
-    // Configure the cell...
+    
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

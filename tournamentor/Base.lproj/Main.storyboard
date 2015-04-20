@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P96-Eu-4iH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -48,42 +49,55 @@
                     <navigationItem key="navigationItem" title="Welcome" id="mgT-SE-s1N"/>
                     <connections>
                         <outlet property="webView" destination="PAp-ms-RLp" id="jdc-kw-AgT"/>
-                        <segue destination="3xn-c3-gM1" kind="show" identifier="didGetApiKey" id="jQN-by-oHL"/>
+                        <segue destination="slJ-fr-j1M" kind="show" identifier="didGetApiKey" id="RYI-ms-nzm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ni-QM-o6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-528" y="-511"/>
         </scene>
-        <!--Tournamentor-->
-        <scene sceneID="HGd-zm-hMk">
+        <!--Tournament List Table View Controller-->
+        <scene sceneID="Jpd-A9-jvw">
             <objects>
-                <viewController title="Tournamentor" id="3xn-c3-gM1" customClass="TournamentListTableViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="vIQ-0t-X5E"/>
-                        <viewControllerLayoutGuide type="bottom" id="jYw-4x-zTP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Rez-6t-Di3">
+                <tableViewController id="slJ-fr-j1M" customClass="TournamentListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="zYq-wf-Qid">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGB-8t-q2s">
-                                <rect key="frame" x="279" y="289" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="NGB-8t-q2s" secondAttribute="centerX" id="PlN-We-gaJ"/>
-                            <constraint firstAttribute="centerY" secondItem="NGB-8t-q2s" secondAttribute="centerY" id="sTs-Se-ZcM"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HQv-pc-N7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="70" id="LyB-N5-uhQ" customClass="TournamentListTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LyB-N5-uhQ" id="dbI-pR-XDn">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dws-xg-ngq">
+                                            <rect key="frame" x="8" y="24" width="534" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dws-xg-ngq" firstAttribute="top" secondItem="dbI-pR-XDn" secondAttribute="topMargin" constant="16" id="Co5-qK-Sho"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dws-xg-ngq" secondAttribute="bottom" constant="16" id="Lis-Lk-X1t"/>
+                                        <constraint firstItem="dws-xg-ngq" firstAttribute="leading" secondItem="dbI-pR-XDn" secondAttribute="leadingMargin" id="eBr-jr-SwP"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dws-xg-ngq" secondAttribute="trailing" constant="50" id="r5E-sx-mpI"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="tournamentNameLabel" destination="dws-xg-ngq" id="JDZ-n3-gyA"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="slJ-fr-j1M" id="4i6-SL-nOZ"/>
+                            <outlet property="delegate" destination="slJ-fr-j1M" id="5g2-lX-kEF"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wXd-Wh-Nwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="220" y="-511"/>
+            <point key="canvasLocation" x="326" y="-801"/>
         </scene>
     </scenes>
 </document>

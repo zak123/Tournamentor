@@ -10,6 +10,8 @@
 		00FC5213E1A805957D9175E9 /* libPods-tournamentor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D846CB6E7A421D73DF0BFD /* libPods-tournamentor.a */; };
 		B60086851AE19A8C00517501 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60086841AE19A8C00517501 /* Security.framework */; };
 		B600868A1AE1BEAF00517501 /* DataHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = B60086891AE1BEAF00517501 /* DataHolder.m */; };
+		B62055771AE57A2700F113E0 /* Tournament.m in Sources */ = {isa = PBXBuildFile; fileRef = B62055761AE57A2700F113E0 /* Tournament.m */; };
+		B620557A1AE5888500F113E0 /* TournamentListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B62055791AE5888500F113E0 /* TournamentListTableViewCell.m */; };
 		B63356471AE1792500D3170B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356461AE1792500D3170B /* main.m */; };
 		B633564A1AE1792500D3170B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356491AE1792500D3170B /* AppDelegate.m */; };
 		B63356501AE1792500D3170B /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B633564F1AE1792500D3170B /* MasterViewController.m */; };
@@ -40,6 +42,10 @@
 		B60086841AE19A8C00517501 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B60086881AE1BEAF00517501 /* DataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHolder.h; sourceTree = "<group>"; };
 		B60086891AE1BEAF00517501 /* DataHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHolder.m; sourceTree = "<group>"; };
+		B62055751AE57A2700F113E0 /* Tournament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tournament.h; sourceTree = "<group>"; };
+		B62055761AE57A2700F113E0 /* Tournament.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tournament.m; sourceTree = "<group>"; };
+		B62055781AE5888500F113E0 /* TournamentListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TournamentListTableViewCell.h; sourceTree = "<group>"; };
+		B62055791AE5888500F113E0 /* TournamentListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TournamentListTableViewCell.m; sourceTree = "<group>"; };
 		B63356411AE1792500D3170B /* tournamentor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tournamentor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63356451AE1792500D3170B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B63356461AE1792500D3170B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -213,6 +219,10 @@
 		B6ECE48C1AE318EA00310D84 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B62055751AE57A2700F113E0 /* Tournament.h */,
+				B62055761AE57A2700F113E0 /* Tournament.m */,
+				B62055781AE5888500F113E0 /* TournamentListTableViewCell.h */,
+				B62055791AE5888500F113E0 /* TournamentListTableViewCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -352,6 +362,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B62055771AE57A2700F113E0 /* Tournament.m in Sources */,
+				B620557A1AE5888500F113E0 /* TournamentListTableViewCell.m in Sources */,
 				B63356761AE179B900D3170B /* User.m in Sources */,
 				B600868A1AE1BEAF00517501 /* DataHolder.m in Sources */,
 				B63356531AE1792500D3170B /* DetailViewController.m in Sources */,

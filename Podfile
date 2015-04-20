@@ -4,6 +4,7 @@
 target 'tournamentor' do
     
 pod 'MBProgressHUD', '~> 0.9.1'
+pod 'AFNetworking', '~> 2.5'
 
 end
 
