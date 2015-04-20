@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4A681BE3-9B8F-44B2-A46A-F6DFEFE9A378</string>
+	<string>D660AF89-6126-4E8D-A596-819F09F4CD05</string>
 	<key>IDESourceControlProjectName</key>
 	<string>tournamentor</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>BEEC0C74EE629DB4F2A6A1034558FA89A3899489</key>
-		<string>https://github.com/zak123/tournamentor.git</string>
+		<string>https://github.com/zak123/tournamentor</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>tournamentor.xcworkspace</string>
@@ -21,7 +21,7 @@
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/zak123/tournamentor.git</string>
+	<string>https://github.com/zak123/tournamentor</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

@@ -42,15 +42,16 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
         
         
     }
-    NSError *error1 = nil;
+//    NSError *error1 = nil;
     
-    completionBlock(tournamentArray, error1);
+    completionBlock(tournamentArray, nil);
     NSLog(@"Success");
 
     
     
 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    NSLog(@"Error");
+    NSLog(@"HTTP Request Failed");
+    completionBlock(nil, error);
 }];
 }
 

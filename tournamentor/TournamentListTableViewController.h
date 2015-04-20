@@ -10,6 +10,7 @@
 #import "User.h"
 #import "ChallongeCommunicator.h"
 #import "TournamentListTableViewCell.h"
+#import "DataHolder.h"
 
 @interface TournamentListTableViewController : UITableViewController
 

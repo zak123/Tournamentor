@@ -20,25 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTitle:self.user.name];
     
+
     
-    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
-    
-    [communicator getTournaments:self.user.name withKey:self.user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
-        
-        NSLog(@"%@", tournamentsArray);
-        if (!error) {
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                _tournaments = tournamentsArray;
-                
-                [self.tableView reloadData];
-                
-                
-            });
-        }
-        
-    }];
     
     
     
@@ -50,18 +34,52 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    User *user = [[User alloc]init];
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    [[DataHolder sharedInstance] loadData];
+    
+    user.name = [DataHolder sharedInstance].username;
+    
+    user.apiKey = [DataHolder sharedInstance].apiKey;
+    
+    [self setTitle:user.name];
+
+    
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
+    
+    [communicator getTournaments:user.name withKey:user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
+        
+        NSLog(@"%@", tournamentsArray);
+        
+        if (error) {
+            NSLog(@"Error detected");
+            [self performSegueWithIdentifier:@"needsApiKey" sender:self];
+            //            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^() {
+                _tournaments = tournamentsArray;
+                
+                [self.tableView reloadData];
+                
+                
+            });
+            
+        }
+        
+        
+        
+    }];
+    
+
 }
+
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
@@ -70,7 +88,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TournamentListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    TournamentListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tournamentCell" forIndexPath:indexPath];
     Tournament *cellTourn = _tournaments[indexPath.row];
     cell.tournamentNameLabel.text = cellTourn.tournamentName;
     

@@ -14,12 +14,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="hit-fH-ekQ" kind="relationship" relationship="rootViewController" id="sJG-rX-8qM"/>
+                        <segue destination="slJ-fr-j1M" kind="relationship" relationship="rootViewController" id="Lq2-KB-9h8"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhV-EN-GB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1273" y="-511"/>
+            <point key="canvasLocation" x="-464" y="-801"/>
         </scene>
         <!--Welcome-->
         <scene sceneID="llR-ZZ-JQT">
@@ -54,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ni-QM-o6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-528" y="-511"/>
+            <point key="canvasLocation" x="-464" y="-1535"/>
         </scene>
         <!--Tournament List Table View Controller-->
         <scene sceneID="Jpd-A9-jvw">
@@ -65,7 +65,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="70" id="LyB-N5-uhQ" customClass="TournamentListTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tournamentCell" rowHeight="70" id="LyB-N5-uhQ" customClass="TournamentListTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LyB-N5-uhQ" id="dbI-pR-XDn">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -94,10 +94,17 @@
                             <outlet property="delegate" destination="slJ-fr-j1M" id="5g2-lX-kEF"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="gRS-BF-HCq"/>
+                    <connections>
+                        <segue destination="hit-fH-ekQ" kind="show" identifier="needsApiKey" id="4H5-AX-UFr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXd-Wh-Nwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="326" y="-801"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="RYI-ms-nzm"/>
+    </inferredMetricsTieBreakers>
 </document>
