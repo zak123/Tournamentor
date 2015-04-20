@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking.h>
+#import "Tournament.h"
 
 @interface ChallongeCommunicator : NSObject
+
+-(void)getTournaments:(NSString *)username withKey:(NSString *)apiKey block:(void (^)(NSArray *tournamentsArray, NSError *error))completionBlock;
 
 @end

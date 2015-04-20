@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-tournamentor-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-tournamentor-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7A8ABC8EB283B60247E88F3A</key>
+		<key>4AAD8EB9E0D777F9E4BE763B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DB35ECCA8820FBC559AC6CC5</key>
+		<key>74083F2431564D19580797EB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8520F829E13820E8235F0C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

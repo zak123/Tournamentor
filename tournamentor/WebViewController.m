@@ -67,16 +67,17 @@
     
     if (APIKEY.length > 1) {
         [DataHolder sharedInstance].apiKey = APIKEY;
+        [DataHolder sharedInstance].username = USERNAME;
         
         [[DataHolder sharedInstance] saveData];
         
-        User *newUser = [[User alloc]init];
-        newUser.apiKey = APIKEY;
-        newUser.name = USERNAME;
+//        User *newUser = [[User alloc]init];
+//        newUser.apiKey = APIKEY;
+//        newUser.name = USERNAME;
+//        
+//        user = newUser;
         
-        user = newUser;
-        
-        NSString *completedDialog = [NSString stringWithFormat:@"%@, you are now signed into your Challonge account. hit OK to use Tournamentor.", newUser.name];
+        NSString *completedDialog = [NSString stringWithFormat:@"%@, you are now signed into your Challonge account. hit OK to use Tournamentor.", USERNAME];
         
         UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Signed In"
                                                          message:completedDialog
@@ -89,6 +90,7 @@
 
         
     }
+
     
     
     [_hud hide:YES];
@@ -101,11 +103,12 @@
 # pragma helper methods
 
 -(void)showTournamentListView {
-    TournamentListTableViewController *VC = [[TournamentListTableViewController alloc] init];
+//    TournamentListTableViewController *VC = [[TournamentListTableViewController alloc] init];
+//    
+////    VC.user = user;
     
-    VC.user = user;
-    
-    [self.navigationController pushViewController:VC animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController pushViewController:VC animated:YES];
 }
 
 -(NSString *)getAPIKey:(NSString *)plainHTML

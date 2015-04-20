@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "ChallongeCommunicator.h"
+#import "TournamentListTableViewCell.h"
+#import "DataHolder.h"
 
 @interface TournamentListTableViewController : UITableViewController
 
 @property (nonatomic) User *user;
+
 
 
 @end
