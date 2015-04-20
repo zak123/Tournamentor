@@ -103,11 +103,12 @@
 # pragma helper methods
 
 -(void)showTournamentListView {
-    TournamentListTableViewController *VC = [[TournamentListTableViewController alloc] init];
+//    TournamentListTableViewController *VC = [[TournamentListTableViewController alloc] init];
+//    
+////    VC.user = user;
     
-//    VC.user = user;
-    
-    [self.navigationController pushViewController:VC animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController pushViewController:VC animated:YES];
 }
 
 -(NSString *)getAPIKey:(NSString *)plainHTML
