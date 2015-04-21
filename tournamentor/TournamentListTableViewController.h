@@ -11,6 +11,7 @@
 #import "ChallongeCommunicator.h"
 #import "TournamentListTableViewCell.h"
 #import "DataHolder.h"
+#import "MatchListTableViewController.h"
 
 @interface TournamentListTableViewController : UITableViewController
 

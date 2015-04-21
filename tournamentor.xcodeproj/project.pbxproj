@@ -22,6 +22,9 @@
 		B63356671AE1792500D3170B /* tournamentorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356661AE1792500D3170B /* tournamentorTests.m */; };
 		B63356761AE179B900D3170B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356751AE179B900D3170B /* User.m */; };
 		B633567A1AE17F0C00D3170B /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356791AE17F0C00D3170B /* WebViewController.m */; };
+		B6D8C4FE1AE6F3BE00A8B568 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D8C4FD1AE6F3BE00A8B568 /* Match.m */; };
+		B6D8C5011AE6F8C200A8B568 /* MatchListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D8C5001AE6F8C200A8B568 /* MatchListTableViewController.m */; };
+		B6D8C5041AE6F8E600A8B568 /* MatchListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D8C5031AE6F8E600A8B568 /* MatchListTableViewCell.m */; };
 		B6ECE48B1AE3165B00310D84 /* TournamentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE48A1AE3165B00310D84 /* TournamentListTableViewController.m */; };
 		B6ECE48F1AE3199200310D84 /* ChallongeCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE48E1AE3199200310D84 /* ChallongeCommunicator.m */; };
 /* End PBXBuildFile section */
@@ -65,6 +68,12 @@
 		B63356751AE179B900D3170B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		B63356781AE17F0C00D3170B /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		B63356791AE17F0C00D3170B /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		B6D8C4FC1AE6F3BE00A8B568 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		B6D8C4FD1AE6F3BE00A8B568 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
+		B6D8C4FF1AE6F8C200A8B568 /* MatchListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchListTableViewController.h; sourceTree = "<group>"; };
+		B6D8C5001AE6F8C200A8B568 /* MatchListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchListTableViewController.m; sourceTree = "<group>"; };
+		B6D8C5021AE6F8E600A8B568 /* MatchListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchListTableViewCell.h; sourceTree = "<group>"; };
+		B6D8C5031AE6F8E600A8B568 /* MatchListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchListTableViewCell.m; sourceTree = "<group>"; };
 		B6ECE4891AE3165B00310D84 /* TournamentListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TournamentListTableViewController.h; sourceTree = "<group>"; };
 		B6ECE48A1AE3165B00310D84 /* TournamentListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TournamentListTableViewController.m; sourceTree = "<group>"; };
 		B6ECE48D1AE3199200310D84 /* ChallongeCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallongeCommunicator.h; sourceTree = "<group>"; };
@@ -128,6 +137,8 @@
 				B63356791AE17F0C00D3170B /* WebViewController.m */,
 				B6ECE4891AE3165B00310D84 /* TournamentListTableViewController.h */,
 				B6ECE48A1AE3165B00310D84 /* TournamentListTableViewController.m */,
+				B6D8C4FF1AE6F8C200A8B568 /* MatchListTableViewController.h */,
+				B6D8C5001AE6F8C200A8B568 /* MatchListTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -135,6 +146,10 @@
 		B600868B1AE1BEB700517501 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B62055781AE5888500F113E0 /* TournamentListTableViewCell.h */,
+				B62055791AE5888500F113E0 /* TournamentListTableViewCell.m */,
+				B6D8C5021AE6F8E600A8B568 /* MatchListTableViewCell.h */,
+				B6D8C5031AE6F8E600A8B568 /* MatchListTableViewCell.m */,
 				B60086881AE1BEAF00517501 /* DataHolder.h */,
 				B60086891AE1BEAF00517501 /* DataHolder.m */,
 				B6ECE48D1AE3199200310D84 /* ChallongeCommunicator.h */,
@@ -221,8 +236,8 @@
 			children = (
 				B62055751AE57A2700F113E0 /* Tournament.h */,
 				B62055761AE57A2700F113E0 /* Tournament.m */,
-				B62055781AE5888500F113E0 /* TournamentListTableViewCell.h */,
-				B62055791AE5888500F113E0 /* TournamentListTableViewCell.m */,
+				B6D8C4FC1AE6F3BE00A8B568 /* Match.h */,
+				B6D8C4FD1AE6F3BE00A8B568 /* Match.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -365,9 +380,12 @@
 				B62055771AE57A2700F113E0 /* Tournament.m in Sources */,
 				B620557A1AE5888500F113E0 /* TournamentListTableViewCell.m in Sources */,
 				B63356761AE179B900D3170B /* User.m in Sources */,
+				B6D8C4FE1AE6F3BE00A8B568 /* Match.m in Sources */,
 				B600868A1AE1BEAF00517501 /* DataHolder.m in Sources */,
+				B6D8C5041AE6F8E600A8B568 /* MatchListTableViewCell.m in Sources */,
 				B63356531AE1792500D3170B /* DetailViewController.m in Sources */,
 				B633567A1AE17F0C00D3170B /* WebViewController.m in Sources */,
+				B6D8C5011AE6F8C200A8B568 /* MatchListTableViewController.m in Sources */,
 				B6ECE48F1AE3199200310D84 /* ChallongeCommunicator.m in Sources */,
 				B63356501AE1792500D3170B /* MasterViewController.m in Sources */,
 				B633564A1AE1792500D3170B /* AppDelegate.m in Sources */,

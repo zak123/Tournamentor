@@ -54,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ni-QM-o6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-464" y="-1535"/>
+            <point key="canvasLocation" x="-464" y="-1559"/>
         </scene>
         <!--Tournament List Table View Controller-->
         <scene sceneID="Jpd-A9-jvw">
@@ -73,7 +73,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dws-xg-ngq">
                                             <rect key="frame" x="8" y="24" width="534" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -86,6 +86,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="tournamentNameLabel" destination="dws-xg-ngq" id="JDZ-n3-gyA"/>
+                                    <segue destination="U9w-Bn-ILz" kind="show" identifier="showMatches" id="1Mp-T5-49o"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -102,6 +103,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXd-Wh-Nwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="326" y="-801"/>
+        </scene>
+        <!--Match List Table View Controller-->
+        <scene sceneID="v4a-0H-z4l">
+            <objects>
+                <tableViewController id="U9w-Bn-ILz" customClass="MatchListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="TBm-cs-s2c">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="matchCell" rowHeight="70" id="DHp-qW-8gg" customClass="MatchListTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHp-qW-8gg" id="gHM-ZB-R2U">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obf-R7-Hvg">
+                                            <rect key="frame" x="8" y="24" width="576" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="obf-R7-Hvg" firstAttribute="leading" secondItem="gHM-ZB-R2U" secondAttribute="leadingMargin" id="3zg-Gr-9bB"/>
+                                        <constraint firstItem="obf-R7-Hvg" firstAttribute="top" secondItem="gHM-ZB-R2U" secondAttribute="topMargin" constant="16" id="KZW-y8-EVd"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="obf-R7-Hvg" secondAttribute="bottom" constant="16" id="MKk-5S-Asq"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="obf-R7-Hvg" secondAttribute="trailing" constant="8" id="xeg-vy-G6G"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="roundLabel" destination="obf-R7-Hvg" id="hTJ-7C-TvV"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="U9w-Bn-ILz" id="o8L-NA-Nnj"/>
+                            <outlet property="delegate" destination="U9w-Bn-ILz" id="3M5-di-FYZ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aob-58-RCo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="-801"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
