@@ -134,6 +134,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="roundLabel" destination="obf-R7-Hvg" id="hTJ-7C-TvV"/>
+                                    <segue destination="7fs-LS-9Ww" kind="show" id="LY6-pR-cnw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -146,6 +147,91 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aob-58-RCo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1078" y="-801"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="SH5-fr-obc">
+            <objects>
+                <tableViewController id="7fs-LS-9Ww" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="pto-gr-bhN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="Player 1 Score" id="0nI-5w-Wbt">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pTZ-0V-n5i">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pTZ-0V-n5i" id="dhw-0u-iFG">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Reg-Oa-QyG">
+                                                    <rect key="frame" x="498" y="7" width="94" height="29"/>
+                                                </stepper>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Reg-Oa-QyG" firstAttribute="top" secondItem="dhw-0u-iFG" secondAttribute="topMargin" constant="-1" id="m5h-65-bxp"/>
+                                                <constraint firstItem="Reg-Oa-QyG" firstAttribute="trailing" secondItem="dhw-0u-iFG" secondAttribute="trailingMargin" id="oa2-8u-hCl"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Reg-Oa-QyG" secondAttribute="bottom" constant="-1" id="sqE-XT-o43"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Player 2 Score" id="ZjC-sX-qmj">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9K5-cV-BjC">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9K5-cV-BjC" id="nAr-Dz-7S1">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="njc-xp-1yb">
+                                                    <rect key="frame" x="498" y="7" width="94" height="29"/>
+                                                </stepper>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="njc-xp-1yb" secondAttribute="bottom" constant="7" id="9Bn-Ow-fGV"/>
+                                                <constraint firstAttribute="trailing" secondItem="njc-xp-1yb" secondAttribute="trailing" constant="8" id="WEr-jC-WXP"/>
+                                                <constraint firstItem="njc-xp-1yb" firstAttribute="top" secondItem="nAr-Dz-7S1" secondAttribute="top" constant="7" id="mHA-2V-fyn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Who Won?" id="dr1-mm-htg">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rrJ-4Z-lfp">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rrJ-4Z-lfp" id="Sxw-Lt-tKH">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1ud-oa-vui">
+                                                    <rect key="frame" x="8" y="8" width="584" height="29"/>
+                                                    <segments>
+                                                        <segment title="Player 1"/>
+                                                        <segment title="Player 2"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="1ud-oa-vui" secondAttribute="trailing" id="HMV-AT-wn6"/>
+                                                <constraint firstItem="1ud-oa-vui" firstAttribute="leading" secondItem="Sxw-Lt-tKH" secondAttribute="leadingMargin" id="SYh-UX-5n3"/>
+                                                <constraint firstItem="1ud-oa-vui" firstAttribute="top" secondItem="Sxw-Lt-tKH" secondAttribute="topMargin" id="cpX-9Q-WEH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="1ud-oa-vui" secondAttribute="bottom" constant="-1" id="rlO-a5-6KX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="7fs-LS-9Ww" id="CcM-rV-xEx"/>
+                            <outlet property="delegate" destination="7fs-LS-9Ww" id="YCU-dm-GSF"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a1a-au-ubC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1776" y="-801"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
