@@ -242,10 +242,46 @@
                                             <color key="shadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <size key="shadowOffset" width="-1" height="-1"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="player1Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfk-n2-dNR">
+                                            <rect key="frame" x="8" y="8" width="100" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="player2Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m27-AI-cZ3">
+                                            <rect key="frame" x="8" y="40" width="100" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="p1score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeX-iH-fmz">
+                                            <rect key="frame" x="116" y="8" width="60" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="p2score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTU-6J-zWj">
+                                            <rect key="frame" x="116" y="40" width="60" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="xTU-6J-zWj" firstAttribute="leading" secondItem="m27-AI-cZ3" secondAttribute="trailing" constant="8" id="BI6-Kw-Pd5"/>
+                                        <constraint firstItem="PeX-iH-fmz" firstAttribute="top" secondItem="gHM-ZB-R2U" secondAttribute="top" constant="8" id="GiC-Zs-JaT"/>
+                                        <constraint firstAttribute="bottom" secondItem="xTU-6J-zWj" secondAttribute="bottom" constant="8" id="HGb-HE-2NQ"/>
                                         <constraint firstItem="obf-R7-Hvg" firstAttribute="top" secondItem="gHM-ZB-R2U" secondAttribute="top" constant="8" id="J2E-ho-e4d"/>
+                                        <constraint firstItem="m27-AI-cZ3" firstAttribute="top" secondItem="Yfk-n2-dNR" secondAttribute="bottom" constant="8" id="OYM-Xd-qZk"/>
+                                        <constraint firstItem="m27-AI-cZ3" firstAttribute="leading" secondItem="gHM-ZB-R2U" secondAttribute="leading" constant="8" id="Qpw-ak-vb1"/>
+                                        <constraint firstItem="Yfk-n2-dNR" firstAttribute="top" secondItem="gHM-ZB-R2U" secondAttribute="top" constant="8" id="Wfr-vM-qIB"/>
+                                        <constraint firstItem="xTU-6J-zWj" firstAttribute="top" secondItem="PeX-iH-fmz" secondAttribute="bottom" constant="11" id="ZVi-oe-dRG"/>
                                         <constraint firstAttribute="bottom" secondItem="obf-R7-Hvg" secondAttribute="bottom" constant="8" id="e5Z-p6-e8b"/>
+                                        <constraint firstItem="Yfk-n2-dNR" firstAttribute="leading" secondItem="gHM-ZB-R2U" secondAttribute="leading" constant="8" id="fNg-JP-t0i"/>
+                                        <constraint firstAttribute="bottom" secondItem="m27-AI-cZ3" secondAttribute="bottom" constant="8" id="fm1-tH-o8x"/>
+                                        <constraint firstItem="PeX-iH-fmz" firstAttribute="leading" secondItem="Yfk-n2-dNR" secondAttribute="trailing" constant="8" id="js4-Xg-9aC"/>
+                                        <constraint firstItem="xTU-6J-zWj" firstAttribute="top" secondItem="PeX-iH-fmz" secondAttribute="bottom" constant="11" id="kbW-y3-hj4"/>
+                                        <constraint firstItem="m27-AI-cZ3" firstAttribute="top" secondItem="Yfk-n2-dNR" secondAttribute="bottom" constant="8" id="koQ-dO-40y"/>
                                         <constraint firstAttribute="trailing" secondItem="obf-R7-Hvg" secondAttribute="trailing" constant="16" id="opc-YB-6rd"/>
                                     </constraints>
                                 </tableViewCellContentView>
