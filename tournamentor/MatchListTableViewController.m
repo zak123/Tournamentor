@@ -19,16 +19,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [self setTitle:self.selectedTournament.tournamentName];
     
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     
     [communicator getMatchesForTournament:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *matchArray, NSError *error) {
-        NSLog(@"RESULTS %@ RESULTS", matchArray);
+        NSLog(@"%@", matchArray);
         
         if (!error) {
             dispatch_async(dispatch_get_main_queue(), ^() {
-        self.matches = matchArray;
-        [self.tableView reloadData];
+                self.matches = matchArray;
+                [self.tableView reloadData];
             });
         }
     }];

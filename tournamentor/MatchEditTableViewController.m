@@ -19,17 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setTitle:self.selectedMatch.bracketID];
+    
     NSString *player1 = [NSString stringWithFormat:@"%@", self.selectedMatch.player1_id];
     NSString *player2 = [NSString stringWithFormat:@"%@", self.selectedMatch.player2_id];
     
     
     [self.whoWonPicker setTitle:player1 forSegmentAtIndex:0];
     [self.whoWonPicker setTitle:player2 forSegmentAtIndex:1];
-    
-    NSLog(@"%@", self.selectedMatch.state);
-    
-    
-    
     
 }
 
