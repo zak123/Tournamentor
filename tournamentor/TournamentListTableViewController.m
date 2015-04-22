@@ -7,6 +7,8 @@
 //
 
 #import "TournamentListTableViewController.h"
+#import <SSKeychain/SSKeychain.h>
+#import <SSKeychain/SSKeychainQuery.h>
 
 @interface TournamentListTableViewController ()
 
@@ -25,11 +27,8 @@
     self.user = [[User alloc]init];
 
     
-    [[DataHolder sharedInstance] loadData];
-    
-    self.user.name = [DataHolder sharedInstance].username;
-    
-    self.user.apiKey = [DataHolder sharedInstance].apiKey;
+    self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
+    self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
     
     [self setTitle:self.user.name];
 

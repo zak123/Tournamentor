@@ -13,6 +13,7 @@
 
 @property (nonatomic) Match *selectedMatch;
 
+@property (strong) UINavigationBar* navigationBar;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *player1ScoreLabel;

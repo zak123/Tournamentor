@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "74083F2431564D19580797EB"
+               BlueprintIdentifier = "50B8A5A30A2CB2A2F53A7FFB"
                BuildableName = "libPods-tournamentor.a"
                BlueprintName = "Pods-tournamentor"
                ReferencedContainer = "container:Pods.xcodeproj">

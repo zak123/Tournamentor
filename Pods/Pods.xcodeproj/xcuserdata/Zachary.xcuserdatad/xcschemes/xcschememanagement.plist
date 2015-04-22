@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-tournamentor-SSKeychain.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-tournamentor.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4AAD8EB9E0D777F9E4BE763B</key>
+		<key>50B8A5A30A2CB2A2F53A7FFB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>74083F2431564D19580797EB</key>
+		<key>9CC204ECF603DCCA2E9A2BDF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C8520F829E13820E8235F0C8</key>
+		<key>E79AD2446512444A58AD6F50</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4B6CBA846E2830DE3052445</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -8,6 +8,8 @@
 
 #import "WebViewController.h"
 #import <MBProgressHUD.h>
+#import <SSKeychain/SSKeychain.h>
+#import <SSKeychain/SSKeychainQuery.h>
 
 @interface WebViewController () <UIWebViewDelegate, UIAlertViewDelegate>
 
@@ -66,10 +68,13 @@
     
     
     if (APIKEY.length > 1) {
-        [DataHolder sharedInstance].apiKey = APIKEY;
-        [DataHolder sharedInstance].username = USERNAME;
+//        [DataHolder sharedInstance].apiKey = APIKEY;
+//        [DataHolder sharedInstance].username = USERNAME;
+//        
+//        [[DataHolder sharedInstance] saveData];
         
-        [[DataHolder sharedInstance] saveData];
+        [SSKeychain setPassword:APIKEY forService:@"Challonge" account:USERNAME];
+
         
 //        User *newUser = [[User alloc]init];
 //        newUser.apiKey = APIKEY;

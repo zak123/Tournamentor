@@ -18,7 +18,14 @@
 @implementation MatchEditTableViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"Awesome";
+    self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:_navigationBar];
+    [self.navigationBar pushNavigationItem:self.navigationItem animated:NO];
+    
     [self setTitle:self.selectedMatch.bracketID];
     
     NSString *player1 = [NSString stringWithFormat:@"%@", self.selectedMatch.player1_id];
@@ -28,6 +35,39 @@
     [self.whoWonPicker setTitle:player1 forSegmentAtIndex:0];
     [self.whoWonPicker setTitle:player2 forSegmentAtIndex:1];
     
+}
+
+
+-(void)layoutNavigationBar{
+    self.navigationBar.frame = CGRectMake(0, self.tableView.contentOffset.y, self.tableView.frame.size.width, self.topLayoutGuide.length + 44);
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Close"
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(didClose)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(didHitDone)];
+    
+    self.navigationItem.leftBarButtonItem = closeButton;
+    self.navigationItem.rightBarButtonItem = doneButton;
+    self.tableView.contentInset = UIEdgeInsetsMake(self.navigationBar.frame.size.height, 0, 0, 0);
+}
+
+-(void)didClose {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(void)didHitDone {
+    //Save match info to challonge
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    //no need to call super
+    [self layoutNavigationBar];
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [self layoutNavigationBar];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

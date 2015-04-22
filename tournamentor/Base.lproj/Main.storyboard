@@ -95,7 +95,14 @@
                             <outlet property="delegate" destination="slJ-fr-j1M" id="5g2-lX-kEF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="gRS-BF-HCq"/>
+                    <navigationItem key="navigationItem" id="gRS-BF-HCq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aAu-7K-jPV">
+                            <connections>
+                                <segue destination="9NT-rL-BaJ" kind="show" identifier="addTournament" id="NSV-gA-Q3k"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <segue destination="hit-fH-ekQ" kind="show" identifier="needsApiKey" id="4H5-AX-UFr"/>
                     </connections>
@@ -103,6 +110,115 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXd-Wh-Nwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="326" y="-801"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="m4y-t9-cF2">
+            <objects>
+                <tableViewController id="9NT-rL-BaJ" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="NCA-2h-xrJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="Tournament Name" id="PIP-hf-feC">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="g68-Yf-ipH">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g68-Yf-ipH" id="dXy-kp-1mO">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Tournament URL" footerTitle="eg. challonge.com/mytournament" id="BRr-ZA-ymE">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ioW-89-rbh">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ioW-89-rbh" id="0AC-0e-8aV">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Format" id="Ok9-rQ-3Ly">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1Gq-tk-maY">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Gq-tk-maY" id="w2V-RB-iPf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="33v-Dk-LRs">
+                                                    <rect key="frame" x="8" y="8" width="584" height="29"/>
+                                                    <segments>
+                                                        <segment title="Single Elimination"/>
+                                                        <segment title="Double Elimination"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="33v-Dk-LRs" secondAttribute="trailing" id="CIL-D4-6Tt"/>
+                                                <constraint firstItem="33v-Dk-LRs" firstAttribute="leading" secondItem="w2V-RB-iPf" secondAttribute="leadingMargin" id="EeP-uE-u8r"/>
+                                                <constraint firstItem="33v-Dk-LRs" firstAttribute="top" secondItem="w2V-RB-iPf" secondAttribute="topMargin" id="hin-ER-ock"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="33v-Dk-LRs" secondAttribute="bottom" constant="-1" id="yfI-Tf-8q5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Host a sign up page or provide participants?" id="Elv-HR-yry">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nOu-Eo-opV">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nOu-Eo-opV" id="sCT-98-eE8">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oNB-Af-gzN">
+                                                    <rect key="frame" x="8" y="8" width="584" height="29"/>
+                                                    <segments>
+                                                        <segment title="Host Signup Page"/>
+                                                        <segment title="Provide Participants"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oNB-Af-gzN" secondAttribute="trailing" id="7f4-Q8-NjT"/>
+                                                <constraint firstItem="oNB-Af-gzN" firstAttribute="leading" secondItem="sCT-98-eE8" secondAttribute="leadingMargin" id="o1W-l4-3ni"/>
+                                                <constraint firstItem="oNB-Af-gzN" firstAttribute="top" secondItem="sCT-98-eE8" secondAttribute="topMargin" id="yMe-XM-q43"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Game" id="RG9-eW-GAW">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1LH-Ua-953">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1LH-Ua-953" id="v09-aH-lqb">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Description" id="YFW-sg-ACE">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="117" id="HAy-ug-DEN">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HAy-ug-DEN" id="Yjq-sg-cW7">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="9NT-rL-BaJ" id="nf2-kR-yep"/>
+                            <outlet property="delegate" destination="9NT-rL-BaJ" id="HXa-uR-1gd"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6eH-01-IsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="-1551"/>
         </scene>
         <!--Match List Table View Controller-->
         <scene sceneID="v4a-0H-z4l">
@@ -134,7 +250,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="roundLabel" destination="obf-R7-Hvg" id="hTJ-7C-TvV"/>
-                                    <segue destination="7fs-LS-9Ww" kind="show" identifier="showPickedMatch" id="LY6-pR-cnw"/>
+                                    <segue destination="7fs-LS-9Ww" kind="presentation" identifier="showPickedMatch" id="LY6-pR-cnw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
