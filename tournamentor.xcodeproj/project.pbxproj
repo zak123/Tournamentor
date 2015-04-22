@@ -188,7 +188,6 @@
 			children = (
 				B6ECE48C1AE318EA00310D84 /* Model */,
 				B600868B1AE1BEB700517501 /* Helpers */,
-				B63356771AE179BD00D3170B /* Model */,
 				B63356481AE1792500D3170B /* AppDelegate.h */,
 				B63356491AE1792500D3170B /* AppDelegate.m */,
 				B60086861AE1BE4100517501 /* Boilerplate */,
@@ -227,15 +226,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B63356771AE179BD00D3170B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B63356741AE179B900D3170B /* User.h */,
-				B63356751AE179B900D3170B /* User.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		B6ECE48C1AE318EA00310D84 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +233,8 @@
 				B62055761AE57A2700F113E0 /* Tournament.m */,
 				B6D8C4FC1AE6F3BE00A8B568 /* Match.h */,
 				B6D8C4FD1AE6F3BE00A8B568 /* Match.m */,
+				B63356741AE179B900D3170B /* User.h */,
+				B63356751AE179B900D3170B /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
