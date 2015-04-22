@@ -28,8 +28,8 @@
     
     [self setTitle:self.selectedMatch.bracketID];
     
-    NSString *player1 = [NSString stringWithFormat:@"%@", self.selectedMatch.player1_id];
-    NSString *player2 = [NSString stringWithFormat:@"%@", self.selectedMatch.player2_id];
+    NSString *player1 = [NSString stringWithFormat:@"%@", self.selectedMatch.player1_name];
+    NSString *player2 = [NSString stringWithFormat:@"%@", self.selectedMatch.player2_name];
     
     
     [self.whoWonPicker setTitle:player1 forSegmentAtIndex:0];
@@ -45,7 +45,12 @@
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(didClose)];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(didHitDone)];
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Done"
+                                   style:UIBarButtonItemStyleDone
+                                   target:self
+                                   action:@selector(didHitDone)];
     
     self.navigationItem.leftBarButtonItem = closeButton;
     self.navigationItem.rightBarButtonItem = doneButton;
@@ -73,12 +78,12 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         
-        return [NSString stringWithFormat:@"%@ score", self.selectedMatch.player1_id];
+        return [NSString stringWithFormat:@"%@ score", self.selectedMatch.player1_name];
     }
     
     if (section == 1) {
         
-        return [NSString stringWithFormat:@"%@ score", self.selectedMatch.player2_id];
+        return [NSString stringWithFormat:@"%@ score", self.selectedMatch.player2_name];
     }
     if (section == 2) {
         

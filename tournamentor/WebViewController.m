@@ -68,19 +68,11 @@
     
     
     if (APIKEY.length > 1) {
-//        [DataHolder sharedInstance].apiKey = APIKEY;
-//        [DataHolder sharedInstance].username = USERNAME;
-//        
-//        [[DataHolder sharedInstance] saveData];
+
         
         [SSKeychain setPassword:APIKEY forService:@"Challonge" account:USERNAME];
 
-        
-//        User *newUser = [[User alloc]init];
-//        newUser.apiKey = APIKEY;
-//        newUser.name = USERNAME;
-//        
-//        user = newUser;
+
         
         NSString *completedDialog = [NSString stringWithFormat:@"%@, you are now signed into your Challonge account. hit OK to use Tournamentor.", USERNAME];
         
@@ -93,6 +85,25 @@
         [alert show];
         
 
+        
+    }
+    else {
+        NSString *error = [self getError:plainHTML];
+        
+        if ([self.webView.request.URL.absoluteString isEqualToString:@"https://challonge.com/settings/developer"] && [error isEqualToString:@"API keys can only be issued to users with a verified email. Please verify your email address by following the link that was emailed to you. "]) {
+        
+        UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Email Verification Error"
+                                                         message:@"Make sure you have verified your email address with Challonge.com, you can resend the verification e-mail by going to http://challonge.com/settings/developer and hitting \"send new link.\" Once you have done this, hit OK."
+                                                        delegate:self
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles: nil];
+        [alert addButtonWithTitle:@"OK"];
+        [alert show];
+        }
+        else {
+            //maybe programatically click button?
+        }
+        
         
     }
 
@@ -108,12 +119,7 @@
 # pragma helper methods
 
 -(void)showTournamentListView {
-//    TournamentListTableViewController *VC = [[TournamentListTableViewController alloc] init];
-//    
-////    VC.user = user;
-    
     [self.navigationController popToRootViewControllerAnimated:YES];
-//    [self.navigationController pushViewController:VC animated:YES];
 }
 
 -(NSString *)getAPIKey:(NSString *)plainHTML
@@ -147,6 +153,27 @@
     
     return username;
 }
+
+-(NSString *)getError:(NSString *)plainHTML {
+    NSString *error = @"";
+// <a data-method="post" href="/settings/resend_activation_key" rel="nofollow">Send a new link.</a>
+    @try {
+        NSScanner *scanner = [[NSScanner alloc]initWithString:plainHTML];
+        [scanner scanUpToString:@"<div class=\"alert alert-danger\">" intoString:nil];
+        [scanner scanString:@"<div class=\"alert alert-danger\">" intoString:nil];
+        [scanner scanUpToString:@"<a data-method=\"post\" href=\"/settings/resend_activation_key\"" intoString:&error];
+        NSLog(@"%@", error);
+    }
+    @catch (NSException *exception) {}
+    
+    error = [error stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+
+    
+    
+    
+    return error;
+}
+
 
 
 

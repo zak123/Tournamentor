@@ -76,10 +76,12 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
         
         
         
+        
+        
         NSMutableArray *matchesArray = [[NSMutableArray alloc]init];
         
         NSArray *tournamentMatches = responseObject[@"tournament"][@"matches"];
-        
+        NSArray *participants = responseObject[@"tournament"][@"participants"];
         
         for (id eachMatch in tournamentMatches) {
             
@@ -97,7 +99,23 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
             
             [matchesArray addObject:match];
             
+            for (id eachParticipant in participants){
+                
+                NSDictionary *aParticipant = eachParticipant[@"participant"];
+                if (aParticipant[@"id"] == match.player1_id){
+                    match.player1_name = aParticipant[@"display_name"];
+                }
+                if (aParticipant[@"id"] == match.player2_id){
+                    match.player2_name = aParticipant[@"display_name"];
+                }
+                
+            }
+            
         }
+
+
+            
+        
         //    NSError *error1 = nil;
         
         completionBlock(matchesArray, nil);

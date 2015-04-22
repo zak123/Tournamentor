@@ -11,8 +11,10 @@
 @interface Match : NSObject
 
 @property (nonatomic) NSString *state;
-@property (nonatomic) NSString *player1_id;
-@property (nonatomic) NSString *player2_id;
+@property (nonatomic) NSNumber *player1_id;
+@property (nonatomic) NSNumber *player2_id;
+@property (nonatomic) NSString *player1_name;
+@property (nonatomic) NSString *player2_name;
 @property (nonatomic) NSString *round;
 @property (nonatomic) NSString *matchID;
 @property (nonatomic) NSString *bracketID;
