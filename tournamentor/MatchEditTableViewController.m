@@ -10,6 +10,7 @@
 
 // Here we do the logic to post to challonge the scores that we set for the current match ID
 #import "MatchEditTableViewController.h"
+#import "ChallongeCommunicator.h"
 
 @interface MatchEditTableViewController ()
 
@@ -20,6 +21,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
     
     self.navigationItem.title = @"Awesome";
     self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
@@ -34,6 +37,15 @@
     
     [self.whoWonPicker setTitle:player1 forSegmentAtIndex:0];
     [self.whoWonPicker setTitle:player2 forSegmentAtIndex:1];
+    
+    [communicator updateMatch:self.currentTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey andWinnerID:self.selectedMatch.player1_id andMatchID:self.selectedMatch.matchID andScore:@"1-0" block:^(NSError *error) {
+        if (!error){
+            NSLog(@"PUT Success");
+        }
+        else{
+            NSLog(@"THIS IS ERROR %@ THIS IS ERROR", error);
+        }
+    }];
     
 }
 

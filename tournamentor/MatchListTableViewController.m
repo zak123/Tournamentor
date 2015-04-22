@@ -80,6 +80,9 @@
         
         dVC.selectedMatch = self.matches[indexPath.row];
         
+        dVC.currentUser = self.currentUser;
+        dVC.currentTournament = self.selectedTournament;
+        
     }
     
 
