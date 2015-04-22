@@ -67,6 +67,17 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"showPickedMatch"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        MatchEditTableViewController *dVC = (MatchEditTableViewController *)segue.destinationViewController;
+        
+        dVC.selectedMatch = self.matches[indexPath.row];
+        
+    }
+    
+
 
 }
 

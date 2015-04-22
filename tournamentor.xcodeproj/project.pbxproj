@@ -25,6 +25,7 @@
 		B6D8C4FE1AE6F3BE00A8B568 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D8C4FD1AE6F3BE00A8B568 /* Match.m */; };
 		B6D8C5011AE6F8C200A8B568 /* MatchListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D8C5001AE6F8C200A8B568 /* MatchListTableViewController.m */; };
 		B6D8C5041AE6F8E600A8B568 /* MatchListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D8C5031AE6F8E600A8B568 /* MatchListTableViewCell.m */; };
+		B6D8C5071AE713A200A8B568 /* MatchEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D8C5061AE713A200A8B568 /* MatchEditTableViewController.m */; };
 		B6ECE48B1AE3165B00310D84 /* TournamentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE48A1AE3165B00310D84 /* TournamentListTableViewController.m */; };
 		B6ECE48F1AE3199200310D84 /* ChallongeCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE48E1AE3199200310D84 /* ChallongeCommunicator.m */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,8 @@
 		B6D8C5001AE6F8C200A8B568 /* MatchListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchListTableViewController.m; sourceTree = "<group>"; };
 		B6D8C5021AE6F8E600A8B568 /* MatchListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchListTableViewCell.h; sourceTree = "<group>"; };
 		B6D8C5031AE6F8E600A8B568 /* MatchListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchListTableViewCell.m; sourceTree = "<group>"; };
+		B6D8C5051AE713A200A8B568 /* MatchEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchEditTableViewController.h; sourceTree = "<group>"; };
+		B6D8C5061AE713A200A8B568 /* MatchEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchEditTableViewController.m; sourceTree = "<group>"; };
 		B6ECE4891AE3165B00310D84 /* TournamentListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TournamentListTableViewController.h; sourceTree = "<group>"; };
 		B6ECE48A1AE3165B00310D84 /* TournamentListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TournamentListTableViewController.m; sourceTree = "<group>"; };
 		B6ECE48D1AE3199200310D84 /* ChallongeCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallongeCommunicator.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				B6ECE48A1AE3165B00310D84 /* TournamentListTableViewController.m */,
 				B6D8C4FF1AE6F8C200A8B568 /* MatchListTableViewController.h */,
 				B6D8C5001AE6F8C200A8B568 /* MatchListTableViewController.m */,
+				B6D8C5051AE713A200A8B568 /* MatchEditTableViewController.h */,
+				B6D8C5061AE713A200A8B568 /* MatchEditTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B62055771AE57A2700F113E0 /* Tournament.m in Sources */,
+				B6D8C5071AE713A200A8B568 /* MatchEditTableViewController.m in Sources */,
 				B620557A1AE5888500F113E0 /* TournamentListTableViewCell.m in Sources */,
 				B63356761AE179B900D3170B /* User.m in Sources */,
 				B6D8C4FE1AE6F3BE00A8B568 /* Match.m in Sources */,

@@ -13,6 +13,7 @@
 #import "MatchListTableViewCell.h"
 #import "Tournament.h"
 #import "User.h"
+#import "MatchEditTableViewController.h"
 
 @interface MatchListTableViewController : UITableViewController
 
