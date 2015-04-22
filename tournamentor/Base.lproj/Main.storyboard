@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P96-Eu-4iH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P96-Eu-4iH">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -234,18 +234,19 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHp-qW-8gg" id="gHM-ZB-R2U">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obf-R7-Hvg">
-                                            <rect key="frame" x="8" y="24" width="576" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="matchStatusLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obf-R7-Hvg">
+                                            <rect key="frame" x="451" y="8" width="133" height="53"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <color key="shadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <size key="shadowOffset" width="-1" height="-1"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="obf-R7-Hvg" firstAttribute="leading" secondItem="gHM-ZB-R2U" secondAttribute="leadingMargin" id="3zg-Gr-9bB"/>
-                                        <constraint firstItem="obf-R7-Hvg" firstAttribute="top" secondItem="gHM-ZB-R2U" secondAttribute="topMargin" constant="16" id="KZW-y8-EVd"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="obf-R7-Hvg" secondAttribute="bottom" constant="16" id="MKk-5S-Asq"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="obf-R7-Hvg" secondAttribute="trailing" constant="8" id="xeg-vy-G6G"/>
+                                        <constraint firstItem="obf-R7-Hvg" firstAttribute="top" secondItem="gHM-ZB-R2U" secondAttribute="top" constant="8" id="J2E-ho-e4d"/>
+                                        <constraint firstAttribute="bottom" secondItem="obf-R7-Hvg" secondAttribute="bottom" constant="8" id="e5Z-p6-e8b"/>
+                                        <constraint firstAttribute="trailing" secondItem="obf-R7-Hvg" secondAttribute="trailing" constant="16" id="opc-YB-6rd"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
