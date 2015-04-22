@@ -7,6 +7,8 @@
 //
 
 #import "MatchListTableViewController.h"
+#import <UAProgressView.h>
+
 
 @interface MatchListTableViewController ()
 
@@ -65,6 +67,25 @@
     
     cell.roundLabel.text = cellMatch.state;
     
+    cell.player1Label.text = cellMatch.player1_name;
+    cell.player2Label.text = cellMatch.player2_name;
+
+    if (cellMatch.score.length > 1) {
+        
+        NSArray *scoresArray = [cellMatch.score componentsSeparatedByString:@"-"];
+        
+        cell.player1Score.text = [NSString stringWithFormat:@"%.0f", [scoresArray[0] doubleValue]];
+        
+        cell.player2Score.text = [NSString stringWithFormat:@"%.0f", [scoresArray[1] doubleValue]];
+        
+
+        
+    } else {
+        cell.player1Score.text = @"0";
+        cell.player2Score.text = @"0";
+    }
+    
+    
     return cell;
 }
 
@@ -79,6 +100,7 @@
         MatchEditTableViewController *dVC = (MatchEditTableViewController *)segue.destinationViewController;
         
         dVC.selectedMatch = self.matches[indexPath.row];
+
         
     }
     

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "507828A165A9CA0CD9CC64BD"
-               BuildableName = "libPods-tournamentor-SSKeychain.a"
-               BlueprintName = "Pods-tournamentor-SSKeychain"
+               BlueprintIdentifier = "F668CBE869752C7FDF885541"
+               BuildableName = "libPods-tournamentor-UAProgressView.a"
+               BlueprintName = "Pods-tournamentor-UAProgressView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

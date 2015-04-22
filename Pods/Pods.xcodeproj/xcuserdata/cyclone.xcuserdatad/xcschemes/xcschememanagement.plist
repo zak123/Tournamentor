@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-tournamentor-UAProgressView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-tournamentor.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,42 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>17C8BE31DF73BA5EDEC20EA4</key>
+		<key>0B76648542723272CBE197C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>359C060FADB51146DB06D2E6</key>
+		<key>2981DC2B0F5B9486972242B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>50B8A5A30A2CB2A2F53A7FFB</key>
+		<key>507828A165A9CA0CD9CC64BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>993BA1A36520D6A5DEF72D14</key>
+		<key>C756746246F723E52A7CA258</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9CC204ECF603DCCA2E9A2BDF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C3B430EA32833BF297A51354</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E79AD2446512444A58AD6F50</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4B6CBA846E2830DE3052445</key>
+		<key>F668CBE869752C7FDF885541</key>
 		<dict>
 			<key>primary</key>
 			<true/>
