@@ -23,10 +23,15 @@
             timestampString = "451369583.042132"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< forbrian
             startingLineNumber = "40"
             endingLineNumber = "40"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
+=======
+            startingLineNumber = "38"
+            endingLineNumber = "38">
+>>>>>>> local
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
