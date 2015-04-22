@@ -63,7 +63,7 @@
     
     Match *cellMatch = _matches[indexPath.row];
     
-    cell.roundLabel.text = cellMatch.state;
+    cell.roundLabel.text = [NSString stringWithFormat:@"%@ vs %@ - %@", cellMatch.player1_name, cellMatch.player2_name, cellMatch.state];
     
     return cell;
 }
@@ -79,6 +79,9 @@
         MatchEditTableViewController *dVC = (MatchEditTableViewController *)segue.destinationViewController;
         
         dVC.selectedMatch = self.matches[indexPath.row];
+        dVC.currentUser = self.currentUser;
+        dVC.currentTournament = self.selectedTournament;
+        
         
     }
     

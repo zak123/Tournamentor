@@ -16,9 +16,9 @@
 @property (nonatomic) NSString *player1_name;
 @property (nonatomic) NSString *player2_name;
 @property (nonatomic) NSString *round;
-@property (nonatomic) NSString *matchID;
+@property (nonatomic) NSNumber *matchID;
 @property (nonatomic) NSString *bracketID;
 @property (nonatomic) NSString *score;
-@property (nonatomic) NSString *winner_id;
+@property (nonatomic) NSNumber *winner_id;
 
 @end

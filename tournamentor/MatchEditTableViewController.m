@@ -13,10 +13,17 @@
 
 @interface MatchEditTableViewController ()
 
+@property (nonatomic) NSString *scores_csv;
+
+
+@property (nonatomic) NSNumber *winnerID;
+
 @end
 
-@implementation MatchEditTableViewController
-
+@implementation MatchEditTableViewController {
+    double p1score;
+    double p2score;
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -28,13 +35,50 @@
     
     [self setTitle:self.selectedMatch.bracketID];
     
-    NSString *player1 = [NSString stringWithFormat:@"%@", self.selectedMatch.player1_name];
-    NSString *player2 = [NSString stringWithFormat:@"%@", self.selectedMatch.player2_name];
+    [self updateUI];
+    
+
     
     
-    [self.whoWonPicker setTitle:player1 forSegmentAtIndex:0];
-    [self.whoWonPicker setTitle:player2 forSegmentAtIndex:1];
+}
+-(void)updateUI {
     
+    
+    self.winnerID = self.selectedMatch.player1_id;
+    self.scores_csv = self.selectedMatch.score;
+    
+    
+    if (self.scores_csv.length > 1) {
+    NSArray *scoresArray = [self.scores_csv componentsSeparatedByString:@"-"];
+        p1score = [scoresArray[0] doubleValue];
+        p2score = [scoresArray[1] doubleValue];
+    }
+    
+
+    
+    self.player1Stepper.value = p1score;
+    self.player2Stepper.value = p2score;
+    self.player1ScoreLabel.text = [NSString stringWithFormat:@"%.f",p1score];
+    self.player2ScoreLabel.text = [NSString stringWithFormat:@"%.f",p2score];
+    
+    
+    [self.whoWonPicker setTitle:self.selectedMatch.player1_name forSegmentAtIndex:0];
+    [self.whoWonPicker setTitle:self.selectedMatch.player2_name forSegmentAtIndex:1];
+}
+
+- (IBAction)whoWonChanged:(id)sender {
+    
+    switch (self.whoWonPicker.selectedSegmentIndex)
+    {
+        case 0:
+            self.winnerID = self.selectedMatch.player1_id;
+            break;
+        case 1:
+            self.winnerID = self.selectedMatch.player2_id;
+            break;
+        default: 
+            break; 
+    }
 }
 
 
@@ -62,7 +106,21 @@
 }
 -(void)didHitDone {
     //Save match info to challonge
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    self.scores_csv = [NSString stringWithFormat:@"%.f-%.f", p1score,p2score];
+    
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
+    [communicator updateMatchForTournament:self.currentTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey forMatchID:self.selectedMatch.matchID withScores:self.scores_csv winnerID:self.winnerID block:^(NSError *error) {
+        if (!error) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+
+        }
+        else {
+            NSLog(@"ERRORRRRR");
+        }
+        
+
+    }];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -114,10 +172,15 @@
 
 - (IBAction)player1StepperChanged:(id)sender {
     self.player1ScoreLabel.text = [NSString stringWithFormat:@"%.f",self.player1Stepper.value];
+    p1score = self.player1Stepper.value;
+    
+    
     
 }
 - (IBAction)player2StepperChanged:(id)sender {
     self.player2ScoreLabel.text = [NSString stringWithFormat:@"%.f", self.player2Stepper.value];
+    p2score = self.player2Stepper.value;
+    
     
 }
 

@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Match.h"
+#import "ChallongeCommunicator.h"
+#import "Tournament.h"
+#import "User.h"
 
 @interface MatchEditTableViewController : UITableViewController
 
 @property (nonatomic) Match *selectedMatch;
+@property (nonatomic) User *currentUser;
+@property (nonatomic) Tournament *currentTournament;
+
 
 @property (strong) UINavigationBar* navigationBar;
-
 
 @property (weak, nonatomic) IBOutlet UILabel *player1ScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *player2ScoreLabel;
