@@ -157,6 +157,31 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
 }
 
+-(void)addNewTournament:(NSString *)tournamentName withUsername:(NSString *)username andAPIKey:(NSString *)key andTournamentURL:(NSString *)URL andTournamentType:(NSString *)type andTournamentDescription:(NSString *)description block:(void (^)(NSError *error))completionBlock {
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://%@:%@@api.challonge.com/v1/tournaments.json", username, key];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    
+    
+    NSDictionary *parameters = @{@"tournament[name]": tournamentName, @"tournament[url]": URL, @"tournament[tournament_type]":type, @"tournament[description]":description};
+    
+    
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Succeed Goddamnit!");
+        
+        completionBlock(nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completionBlock(error);
+    }];
+    
+    
+    
+    
+}
+
 
 
 @end

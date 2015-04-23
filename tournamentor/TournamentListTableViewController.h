@@ -12,6 +12,7 @@
 #import "TournamentListTableViewCell.h"
 #import "DataHolder.h"
 #import "MatchListTableViewController.h"
+#import "NewTournamentViewController.h"
 
 @interface TournamentListTableViewController : UITableViewController
 

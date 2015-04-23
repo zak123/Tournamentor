@@ -7,8 +7,11 @@
 //
 
 #import "NewTournamentViewController.h"
+#import "ChallongeCommunicator.h"
 
 @interface NewTournamentViewController ()
+
+@property (nonatomic) NSString *tournamentType;
 
 @end
 
@@ -18,27 +21,39 @@
     
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Awesome";
-    self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:_navigationBar];
-    [self.navigationBar pushNavigationItem:self.navigationItem animated:NO];
+//    self.navigationItem.title = @"Awesome";
+//    self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
+//    [self.view addSubview:_navigationBar];
+//    [self.navigationBar pushNavigationItem:self.navigationItem animated:NO];
     
-    
+    [self layoutNavigationBar];
+    self.tournamentType = @"single elimination";
+
     
     
     
 }
 
 
+- (IBAction)tournamentTypeChanged:(id)sender {
+    
+    switch (self.tournamentTypePicker.selectedSegmentIndex)
+    {
+        case 0:
+            self.tournamentType = @"single elimination";
+            break;
+        case 1:
+            self.tournamentType = @"double elimination";
+            break;
+        default:
+            break;
+    }
+}
 
 
 -(void)layoutNavigationBar{
-    self.navigationBar.frame = CGRectMake(0, self.tableView.contentOffset.y, self.tableView.frame.size.width, self.topLayoutGuide.length + 44);
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]
-                                    initWithTitle:@"Close"
-                                    style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(didClose)];
+
+
     
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
                                    initWithTitle:@"Done"
@@ -46,18 +61,27 @@
                                    target:self
                                    action:@selector(didHitDone)];
     
-    self.navigationItem.leftBarButtonItem = closeButton;
     self.navigationItem.rightBarButtonItem = doneButton;
-    self.tableView.contentInset = UIEdgeInsetsMake(self.navigationBar.frame.size.height, 0, 0, 0);
 }
 
 -(void)didClose {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 -(void)didHitDone {
-    //Save match info to challonge
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    //Save match info to challonge
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
+    [communicator addNewTournament:self.tournamentNameTextField.text withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey andTournamentURL:self.tournamentURLTextField.text andTournamentType:self.tournamentType andTournamentDescription:self.descriptionTextView.text block:^(NSError *error) {
+        if (!error) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }
+        else {
+            NSLog(@"Error Goddamnit!");
+        }
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

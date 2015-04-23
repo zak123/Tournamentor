@@ -110,6 +110,15 @@
     dVC.currentUser = self.user;
     }
     
+    if ([segue.identifier isEqualToString:@"addTournament"]) {
+        
+        
+        NewTournamentViewController *dVC = (NewTournamentViewController *)segue.destinationViewController;
+        
+        dVC.currentUser = self.user;
+        
+    }
+    
     
     
     

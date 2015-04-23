@@ -179,6 +179,9 @@
                                                         <segment title="Single Elimination"/>
                                                         <segment title="Double Elimination"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="tournamentTypeChanged:" destination="9NT-rL-BaJ" eventType="valueChanged" id="pKZ-ng-xeG"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>

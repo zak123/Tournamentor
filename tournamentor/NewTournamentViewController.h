@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tournament.h"
+#import "User.h"
 
 @interface NewTournamentViewController : UITableViewController
 
 @property (strong) UINavigationBar* navigationBar;
+@property (nonatomic) Tournament *tournament;
+@property (nonatomic) User *currentUser;
+
 @property (weak, nonatomic) IBOutlet UITextField *tournamentNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *tournamentURLTextField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tournamentTypePicker;
