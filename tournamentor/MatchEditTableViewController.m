@@ -117,6 +117,9 @@
         }
         else {
             NSLog(@"ERRORRRRR");
+            
+            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Error creating tournament" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [error show];
         }
         
 

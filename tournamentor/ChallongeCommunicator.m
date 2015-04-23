@@ -205,18 +205,17 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //
     
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [NSSet setWithArray:participants], @"participants[][name]", nil];
     
-    NSDictionary *parameters = @{@"participant[][name]": participants};
-//    NSDictionary *parameters = @{@"participant[][name]":@[@"Hello", @"World"]};
-    
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
     
     
     
     
-    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Succeed Array POST! with %@", responseObject);
         
         
