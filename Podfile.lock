@@ -22,15 +22,18 @@ PODS:
     - AFNetworking/NSURLSession
   - MBProgressHUD (0.9.1)
   - SSKeychain (1.2.3)
+  - UAProgressView (0.1.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - MBProgressHUD (~> 0.9.1)
   - SSKeychain
+  - UAProgressView
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
+  UAProgressView: 9518e321a5d4173f66c225717db873322ec1f070
 
 COCOAPODS: 0.36.3

@@ -183,5 +183,62 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
 }
 
 
+-(void)updateMatch:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key andWinnerID:(NSNumber *)winnderID andMatchID:(NSNumber *)matchID andScore:(NSString *)score block:(void (^)(NSError *error))completionBlock{
+    //https://api.challonge.com/v1/tournaments/{tournament}/matches/{match_id}.{json|xml}
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSDictionary *parameters = @{@"winner_id":winnderID, @"match_id":matchID, @"scores_csv":score};
+    
+    [manager PUT:@"https://%@:%@@api.challonge.com/v1/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success PUT");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Failure POST");
+    }];
+    
+    
+    
+    
+    
+    
+//    NSURLS *client = [AFHTTPClient clientWithBaseURL:@"https://%@:%@@api.challonge.com/v1/",  username, key];
+//    
+
+//    
+//    NSURL *url = [NSURL URLWithString:urlString];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    [request setHTTPMethod:@"PUT"];
+    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    [operation start];
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    
+        
+        
+//        NSLog(@"THIS IS RESPONSE OBJECT %@ THIS IS RESPONSE OBJECT", responseObject);
+//        
+//        NSLog(@"Done setting PUT");
+//        
+//        
+//        
+//        
+//        //    NSError *error1 = nil;
+//        
+//        completionBlock(nil);
+//        
+//        
+//        
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"HTTP Request Failed");
+//        completionBlock(error);
+//    }];
+
+    
+    
+    
+}
+
 
 @end
