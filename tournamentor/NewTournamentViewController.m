@@ -15,13 +15,49 @@
 @implementation NewTournamentViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationItem.title = @"Awesome";
+    self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:_navigationBar];
+    [self.navigationBar pushNavigationItem:self.navigationItem animated:NO];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    
+    
+}
+
+
+
+
+-(void)layoutNavigationBar{
+    self.navigationBar.frame = CGRectMake(0, self.tableView.contentOffset.y, self.tableView.frame.size.width, self.topLayoutGuide.length + 44);
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:@"Close"
+                                    style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(didClose)];
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Done"
+                                   style:UIBarButtonItemStyleDone
+                                   target:self
+                                   action:@selector(didHitDone)];
+    
+    self.navigationItem.leftBarButtonItem = closeButton;
+    self.navigationItem.rightBarButtonItem = doneButton;
+    self.tableView.contentInset = UIEdgeInsetsMake(self.navigationBar.frame.size.height, 0, 0, 0);
+}
+
+-(void)didClose {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(void)didHitDone {
+    //Save match info to challonge
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,15 +68,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 1;
 }
 
 /*

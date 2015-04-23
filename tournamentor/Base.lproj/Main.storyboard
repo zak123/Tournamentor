@@ -271,6 +271,13 @@
                             <outlet property="delegate" destination="9NT-rL-BaJ" id="HXa-uR-1gd"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="2Nt-ez-a7v" id="KP7-3K-2OL"/>
+                        <outlet property="gameTextField" destination="zyN-OA-ypP" id="C6p-DS-mAo"/>
+                        <outlet property="tournamentNameTextField" destination="7aV-Pa-zwG" id="FbY-C4-fId"/>
+                        <outlet property="tournamentTypePicker" destination="33v-Dk-LRs" id="A9g-uA-UOL"/>
+                        <outlet property="tournamentURLTextField" destination="5eI-dX-Q1W" id="efh-Pe-VMD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6eH-01-IsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
