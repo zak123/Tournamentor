@@ -21,12 +21,10 @@
     
     [super viewDidLoad];
     
-//    self.navigationItem.title = @"Awesome";
-//    self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
-//    [self.view addSubview:_navigationBar];
-//    [self.navigationBar pushNavigationItem:self.navigationItem animated:NO];
     
     [self layoutNavigationBar];
+    
+    
     self.tournamentType = @"single elimination";
 
     
@@ -64,23 +62,24 @@
     self.navigationItem.rightBarButtonItem = doneButton;
 }
 
--(void)didClose {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
+
 -(void)didHitDone {
     
     
-    //Save match info to challonge
-    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
-    [communicator addNewTournament:self.tournamentNameTextField.text withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey andTournamentURL:self.tournamentURLTextField.text andTournamentType:self.tournamentType andTournamentDescription:self.descriptionTextView.text block:^(NSError *error) {
-        if (!error) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            
-        }
-        else {
-            NSLog(@"Error Goddamnit!");
-        }
-    }];
+//    Save match info to challonge
+//    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
+//    [communicator addNewTournament:self.tournamentNameTextField.text withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey andTournamentURL:self.tournamentURLTextField.text andTournamentType:self.tournamentType andTournamentDescription:self.descriptionTextView.text block:^(NSError *error) {
+//        if (!error) {
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//            
+//        }
+//        else {
+//            NSLog(@"Error Goddamnit!");
+//        }
+//    }];
+    
+    [self performSegueWithIdentifier:@"addParticipants" sender:self];
+    
     
 }
 
@@ -93,7 +92,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 6;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

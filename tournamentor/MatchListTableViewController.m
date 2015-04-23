@@ -67,10 +67,12 @@
     
     cell.roundLabel.text = cellMatch.state;
     
-    cell.player1Label.text = cellMatch.player1_name;
-    cell.player2Label.text = cellMatch.player2_name;
+ 
 
     if (cellMatch.score.length > 1) {
+        
+        cell.player1Label.text = [NSString stringWithFormat:@"%@ -", cellMatch.player1_name];
+        cell.player2Label.text = [NSString stringWithFormat:@"%@ -", cellMatch.player2_name];
         
         NSArray *scoresArray = [cellMatch.score componentsSeparatedByString:@"-"];
         
@@ -81,8 +83,10 @@
 
         
     } else {
-        cell.player1Score.text = @"0";
-        cell.player2Score.text = @"0";
+        cell.player1Label.text = cellMatch.player1_name;
+        cell.player2Label.text = cellMatch.player2_name;
+        cell.player1Score.text = nil;
+        cell.player2Score.text = nil;
     }
     
     
