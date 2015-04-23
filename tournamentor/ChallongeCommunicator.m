@@ -195,48 +195,35 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Failure POST");
     }];
-    
-    
-    
-    
-    
-    
-//    NSURLS *client = [AFHTTPClient clientWithBaseURL:@"https://%@:%@@api.challonge.com/v1/",  username, key];
-//    
+   
+}
 
-//    
-//    NSURL *url = [NSURL URLWithString:urlString];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    [request setHTTPMethod:@"PUT"];
+-(void)updateParticipants:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key withParticipants:(NSArray *)participants block:(void (^)(NSError *error))completionBlock {
     
-//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-//    [operation start];
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    NSString *urlString = [NSString stringWithFormat:@"https://%@:%@@api.challonge.com/v1/tournaments/%@/participants/bulk_add.json", username, key, tournament];
     
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    
+    
+    NSDictionary *parameters = @{@"participant[][name]": participants};
+//    NSDictionary *parameters = @{@"participant[][name]":@[@"Hello", @"World"]};
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Succeed Array POST! with %@", responseObject);
         
         
-//        NSLog(@"THIS IS RESPONSE OBJECT %@ THIS IS RESPONSE OBJECT", responseObject);
-//        
-//        NSLog(@"Done setting PUT");
-//        
-//        
-//        
-//        
-//        //    NSError *error1 = nil;
-//        
-//        completionBlock(nil);
-//        
-//        
-//        
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"HTTP Request Failed");
-//        completionBlock(error);
-//    }];
-
-    
-    
+        completionBlock(nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completionBlock(error);
+    }];
     
 }
 

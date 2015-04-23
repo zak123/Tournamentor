@@ -316,6 +316,10 @@
                                             <rect key="frame" x="50" y="0.0" width="550" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="edited:" destination="D7z-8p-Akt" eventType="editingChanged" id="GFM-O6-znn"/>
+                                                <outlet property="delegate" destination="D7z-8p-Akt" id="GRs-DX-Add"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>

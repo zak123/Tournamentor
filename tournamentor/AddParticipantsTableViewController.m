@@ -8,11 +8,13 @@
 
 #import "AddParticipantsTableViewController.h"
 
-@interface AddParticipantsTableViewController ()
+@interface AddParticipantsTableViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *counter;
 
 @property (nonatomic) NSMutableArray *participantsArray;
+@property (nonatomic) NSMutableArray *participantNames;
+
 
 @end
 
@@ -22,6 +24,8 @@
 -(void)viewDidLoad {
     
     self.participantsArray = [[NSMutableArray alloc]init];
+    self.participantNames = [[NSMutableArray alloc]init];
+    
     
     
 
@@ -29,16 +33,45 @@
     self.navigationItem.rightBarButtonItem = done;
     
     
-    
 }
-- (IBAction)edited:(id)sender {
+
+- (IBAction)edited:(UITextField *)sender {
+    NSLog(@"%@", sender.text);
     
     
 }
 
+
 -(void)done {
     
+    
+    for (int i=0; i < self.participantsArray.count; i++) {
+        
+        
+        NSIndexPath *curCell = [NSIndexPath indexPathForRow:i inSection:0];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:curCell];
+        AddParticipantTableViewCell *myCell = (AddParticipantTableViewCell *)cell;
+        NSLog(@"log %@", myCell.participantName.text);
+        
+        [self.participantNames addObject:[NSString stringWithString:myCell.participantName.text]];
+
+    }
+    
+    NSLog(@"%@", self.participantNames);
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
+    [communicator updateParticipants:@"grgrgrgrgrgrg" withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantNames block:^(NSError *error) {
+        if(!error){
+            NSLog(@"Succeed participant array load");
+        }
+        else{
+            NSLog(@"Fail participants muthafucka");
+        }
+    }];
+
+    
+    
 }
+    
 - (IBAction)addRow:(id)sender {
     num++;
     self.counter.text = [NSString stringWithFormat:@"%i",num];

@@ -8,6 +8,7 @@
 
 #import "NewTournamentViewController.h"
 #import "ChallongeCommunicator.h"
+#import "AddParticipantTableViewCell.h"
 
 @interface NewTournamentViewController ()
 
@@ -70,7 +71,7 @@
 //    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
 //    [communicator addNewTournament:self.tournamentNameTextField.text withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey andTournamentURL:self.tournamentURLTextField.text andTournamentType:self.tournamentType andTournamentDescription:self.descriptionTextView.text block:^(NSError *error) {
 //        if (!error) {
-//            [self.navigationController popToRootViewControllerAnimated:YES];
+//            [self performSegueWithIdentifier:@"addParticipants" sender:self];
 //            
 //        }
 //        else {
@@ -78,8 +79,9 @@
 //        }
 //    }];
     
-    [self performSegueWithIdentifier:@"addParticipants" sender:self];
     
+    
+    [self performSegueWithIdentifier:@"addParticipants" sender:self];
     
 }
 
@@ -144,14 +146,21 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"addParticipants"]) {
+        
+        AddParticipantsTableViewController *aVC = (AddParticipantsTableViewController *)segue.destinationViewController;
+        
+        aVC.currentUser = self.currentUser;
+        aVC.tournament = self.tournament;
+        
+        
+    }
 }
-*/
+
 
 @end
