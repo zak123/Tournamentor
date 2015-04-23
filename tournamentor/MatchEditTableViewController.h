@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Match.h"
+#import "User.h"
+#import "Tournament.h"
 
 
 @interface MatchEditTableViewController : UITableViewController
 
 @property (nonatomic) Match *selectedMatch;
+@property (nonatomic) User *currentUser;
+@property (nonatomic) Tournament *currentTournament;
 
 @property (strong) UINavigationBar* navigationBar;
 
