@@ -111,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="326" y="-801"/>
         </scene>
-        <!--Table View Controller-->
+        <!--New Tournament View Controller-->
         <scene sceneID="m4y-t9-cF2">
             <objects>
-                <tableViewController id="9NT-rL-BaJ" sceneMemberID="viewController">
+                <tableViewController id="9NT-rL-BaJ" customClass="NewTournamentViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="NCA-2h-xrJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,6 +126,19 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g68-Yf-ipH" id="dXy-kp-1mO">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7aV-Pa-zwG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7aV-Pa-zwG" firstAttribute="top" secondItem="dXy-kp-1mO" secondAttribute="top" id="Kl6-Sd-ePB"/>
+                                                <constraint firstItem="7aV-Pa-zwG" firstAttribute="leading" secondItem="dXy-kp-1mO" secondAttribute="leading" id="d50-xB-c8c"/>
+                                                <constraint firstAttribute="trailing" secondItem="7aV-Pa-zwG" secondAttribute="trailing" id="rVp-fr-9OM"/>
+                                                <constraint firstAttribute="bottom" secondItem="7aV-Pa-zwG" secondAttribute="bottom" id="xD7-WR-kmB"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -136,6 +149,19 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ioW-89-rbh" id="0AC-0e-8aV">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-dX-Q1W">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="5eI-dX-Q1W" secondAttribute="trailing" id="4bt-f0-paU"/>
+                                                <constraint firstAttribute="bottom" secondItem="5eI-dX-Q1W" secondAttribute="bottom" id="Krj-W6-0jC"/>
+                                                <constraint firstItem="5eI-dX-Q1W" firstAttribute="top" secondItem="0AC-0e-8aV" secondAttribute="top" id="f0E-Tj-KgW"/>
+                                                <constraint firstItem="5eI-dX-Q1W" firstAttribute="leading" secondItem="0AC-0e-8aV" secondAttribute="leading" id="mxB-rF-k5X"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -195,6 +221,19 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1LH-Ua-953" id="v09-aH-lqb">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zyN-OA-ypP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zyN-OA-ypP" firstAttribute="top" secondItem="v09-aH-lqb" secondAttribute="top" id="72F-t8-dC1"/>
+                                                <constraint firstAttribute="bottom" secondItem="zyN-OA-ypP" secondAttribute="bottom" id="LzL-Pt-h0B"/>
+                                                <constraint firstAttribute="trailing" secondItem="zyN-OA-ypP" secondAttribute="trailing" id="b3t-Au-cjG"/>
+                                                <constraint firstItem="zyN-OA-ypP" firstAttribute="leading" secondItem="v09-aH-lqb" secondAttribute="leading" id="jrf-Jk-naA"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -205,6 +244,23 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HAy-ug-DEN" id="Yjq-sg-cW7">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Nt-ez-a7v">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="116"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2Nt-ez-a7v" firstAttribute="top" secondItem="Yjq-sg-cW7" secondAttribute="top" id="32o-8f-S70"/>
+                                                <constraint firstItem="2Nt-ez-a7v" firstAttribute="leading" secondItem="Yjq-sg-cW7" secondAttribute="leading" id="CAP-eU-LvI"/>
+                                                <constraint firstAttribute="bottom" secondItem="2Nt-ez-a7v" secondAttribute="bottom" id="EHG-nD-Y44"/>
+                                                <constraint firstAttribute="trailing" secondItem="2Nt-ez-a7v" secondAttribute="trailing" id="RF9-et-zXI"/>
+                                                <constraint firstAttribute="centerX" secondItem="2Nt-ez-a7v" secondAttribute="centerX" id="pHN-Wj-pxl"/>
+                                                <constraint firstAttribute="centerY" secondItem="2Nt-ez-a7v" secondAttribute="centerY" id="rT1-Gc-nIu"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
