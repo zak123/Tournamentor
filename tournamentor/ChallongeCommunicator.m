@@ -203,7 +203,7 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *urlString = [NSString stringWithFormat:@"https://%@:%@@api.challonge.com/v1/tournaments/%@/participants/bulk_add.json", username, key, tournament];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
+    //
     
     
     NSDictionary *parameters = @{@"participant[][name]": participants};
