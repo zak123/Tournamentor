@@ -274,8 +274,20 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNn-nB-S0R" customClass="SSBouncyButton">
-                                    <rect key="frame" x="276" y="-2" width="48" height="48"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Go4-2t-2EC">
+                                    <rect key="frame" x="284" y="11" width="33" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="33" id="tNP-xu-LNj"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNn-nB-S0R">
+                                    <rect key="frame" x="557" y="4" width="35" height="35"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="35" id="nc6-m4-c9w"/>
+                                    </constraints>
                                     <state key="normal" image="add">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -284,20 +296,14 @@
                                         <action selector="addRow:" destination="D7z-8p-Akt" eventType="touchUpInside" id="hWl-T4-Y4a"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Go4-2t-2EC">
-                                    <rect key="frame" x="332" y="11" width="0.0" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="Go4-2t-2EC" firstAttribute="top" secondItem="gvz-o6-WLg" secondAttribute="top" constant="11" id="7kV-un-Wa8"/>
-                                <constraint firstAttribute="centerY" secondItem="gNn-nB-S0R" secondAttribute="centerY" id="bGm-oP-Aj7"/>
-                                <constraint firstItem="Go4-2t-2EC" firstAttribute="leading" secondItem="gNn-nB-S0R" secondAttribute="trailing" constant="8" id="pZi-lG-jgJ"/>
-                                <constraint firstAttribute="bottom" secondItem="Go4-2t-2EC" secondAttribute="bottom" constant="12" id="qhb-eq-5km"/>
-                                <constraint firstAttribute="centerX" secondItem="gNn-nB-S0R" secondAttribute="centerX" id="ypi-Eq-p1P"/>
+                                <constraint firstItem="Go4-2t-2EC" firstAttribute="centerX" secondItem="gvz-o6-WLg" secondAttribute="centerX" id="8kh-Ag-9Fu"/>
+                                <constraint firstItem="gNn-nB-S0R" firstAttribute="trailing" secondItem="gvz-o6-WLg" secondAttribute="trailingMargin" id="EF6-aS-3uE"/>
+                                <constraint firstItem="gNn-nB-S0R" firstAttribute="top" secondItem="gvz-o6-WLg" secondAttribute="top" constant="4" id="Ur6-EW-gXt"/>
+                                <constraint firstItem="gNn-nB-S0R" firstAttribute="centerY" secondItem="Go4-2t-2EC" secondAttribute="centerY" id="ac4-Hx-jps"/>
+                                <constraint firstAttribute="bottom" secondItem="gNn-nB-S0R" secondAttribute="bottom" constant="5" id="eor-Ez-hcg"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -306,7 +312,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mmE-Fo-o0l" id="MXS-ka-fGJ">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-Sj-1ZR">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-Sj-1ZR">
                                             <rect key="frame" x="50" y="0.0" width="550" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -336,7 +342,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pll-tq-vcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1977" y="-1551"/>
+            <point key="canvasLocation" x="2024" y="-1587"/>
         </scene>
         <!--Match List Table View Controller-->
         <scene sceneID="v4a-0H-z4l">
@@ -550,6 +556,6 @@
         <image name="add" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RYI-ms-nzm"/>
+        <segue reference="Lq2-KB-9h8"/>
     </inferredMetricsTieBreakers>
 </document>

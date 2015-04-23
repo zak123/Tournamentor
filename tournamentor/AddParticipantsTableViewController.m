@@ -9,6 +9,7 @@
 #import "AddParticipantsTableViewController.h"
 
 @interface AddParticipantsTableViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *counter;
 
 @property (nonatomic) NSMutableArray *participantsArray;
@@ -30,11 +31,13 @@
     
     
 }
+- (IBAction)edited:(id)sender {
+    
+    
+}
 
 -(void)done {
-    AddParticipantTableViewCell *cell = [[AddParticipantTableViewCell alloc]init];
     
-    NSLog(@"%@", cell.participantName.text);
 }
 - (IBAction)addRow:(id)sender {
     num++;

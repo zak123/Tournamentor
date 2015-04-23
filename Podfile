@@ -7,7 +7,6 @@ pod 'MBProgressHUD', '~> 0.9.1'
 pod 'AFNetworking', '~> 2.5'
 pod 'SSKeychain'
 pod 'UAProgressView'
-pod 'SSBouncyButton', '~> 1.0'
 
 end
 
