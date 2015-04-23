@@ -132,6 +132,31 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
 }
 
+-(void)updateMatchForTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key forMatchID:(NSNumber *)matchID withScores:(NSString *)scores winnerID:(NSNumber *)winnerID block:(void (^)(NSError *error))completionBlock {
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://%@:%@@api.challonge.com/v1/tournaments/%@/matches/%@.json", username, key, tournament, matchID];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    
+    
+    NSDictionary *parameters = @{@"match[winner_id]": winnerID,@"match[scores_csv]": scores};
+                                                                 
+    
+    [manager PUT:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"SUCCEEEEEEDEDDDDD");
+        
+        completionBlock(nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completionBlock(error);
+    }];
+    
+    
+    
+    
+}
+
 
 -(void)updateMatch:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key andWinnerID:(NSNumber *)winnderID andMatchID:(NSNumber *)matchID andScore:(NSString *)score block:(void (^)(NSError *error))completionBlock{
     //https://api.challonge.com/v1/tournaments/{tournament}/matches/{match_id}.{json|xml}

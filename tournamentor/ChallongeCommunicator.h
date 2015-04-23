@@ -17,6 +17,6 @@
 
 -(void)getMatchesForTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSArray *matchArray, NSError *error))completionBlock;
 
--(void)updateMatch:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key andWinnerID:(NSNumber *)winnderID andMatchID:(NSNumber *)matchID andScore:(NSString *)score block:(void (^)(NSError *error))completionBlock;
+-(void)updateMatchForTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key forMatchID:(NSNumber *)matchID withScores:(NSString *)scores winnerID:(NSNumber *)winnerID block:(void (^)(NSError *error))completionBlock;
 
 @end

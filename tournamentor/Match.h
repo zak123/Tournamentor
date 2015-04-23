@@ -19,6 +19,6 @@
 @property (nonatomic) NSNumber *matchID;
 @property (nonatomic) NSString *bracketID;
 @property (nonatomic) NSString *score;
-@property (nonatomic) NSString *winner_id;
+@property (nonatomic) NSNumber *winner_id;
 
 @end
