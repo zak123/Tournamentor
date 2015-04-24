@@ -26,6 +26,8 @@
     [super viewDidLoad];
 //    [self showActionSheet];
     
+    
+    
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 1.5; //seconds
