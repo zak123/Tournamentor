@@ -25,7 +25,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self showActionSheet];
+    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]
+                                      initWithImage:[UIImage imageNamed:@"signout"]
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(signOut)];
     
+    self.navigationItem.leftBarButtonItem = signOutButton;
     
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
@@ -50,6 +56,11 @@
     [self updateTournaments];
     
     
+
+}
+
+-(void) signOut {
+    [self performSegueWithIdentifier:@"needsApiKey" sender:self];
 
 }
 

@@ -24,6 +24,16 @@
 
     [super viewDidLoad];
     
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.navigationItem setHidesBackButton:YES animated:YES];
+
+    
+    [SSKeychain setPassword:nil forService:@"Challonge" account:nil];
 
 
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
