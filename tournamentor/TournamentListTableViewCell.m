@@ -20,4 +20,8 @@
     // Configure the view for the selected state
 }
 
+//- (void)setFillWidth:(int)width {
+//    self.progressRect = CGREctMake
+//}
+
 @end

@@ -65,6 +65,7 @@
 
 
 -(void)didHitDone {
+    self.tournament = [[Tournament alloc]init];
     
     self.tournament.tournamentURL = self.tournamentURLTextField.text;
     self.tournament.tournamentName = self.tournamentNameTextField.text;
@@ -76,6 +77,8 @@
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
     [communicator addNewTournament:self.tournamentNameTextField.text withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey andTournamentURL:self.tournamentURLTextField.text andTournamentType:self.tournamentType andTournamentDescription:self.descriptionTextView.text block:^(NSError *error) {
         if (!error) {
+            
+            
             [self performSegueWithIdentifier:@"addParticipants" sender:self];
             
         }
@@ -102,7 +105,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 5;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -160,6 +163,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addParticipants"]) {
+
         
         AddParticipantsTableViewController *aVC = (AddParticipantsTableViewController *)segue.destinationViewController;
         
