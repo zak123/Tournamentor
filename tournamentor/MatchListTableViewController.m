@@ -98,6 +98,12 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     cell.roundLabel.text = cellMatch.state;
     
+    if (indexPath.row & 1) {
+        cell.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
+    }
+    else {
+        cell.backgroundColor = [UIColor colorWithRed:0.231 green:0.231 blue:0.231 alpha:1];
+    }
  
 
     if (cellMatch.score.length > 1) {
@@ -151,14 +157,38 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     return bracketCollectionViewCell;
 }
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    Match *selectedMatch = self.matches[indexPath.row];
+    
+    if ([selectedMatch.state isEqualToString:@"complete"]) {
+        
+        UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You can't edit a match that is complete! Either reset the tournament (Long press a tournament on the preview screen) or edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [confirmation show];
+        return NO;
+    }
+    if ([selectedMatch.state isEqualToString:@"pending"]) {
+        UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You are trying to edit a match too far into the future! You can only edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [confirmation show];
+        return NO;
 
+    }
+    else {
+        return YES;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+}
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+
     
     if ([segue.identifier isEqualToString:@"showPickedMatch"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         MatchEditTableViewController *dVC = (MatchEditTableViewController *)segue.destinationViewController;
         
@@ -180,11 +210,12 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         
         
     }
+}
 
     
 
 
-}
+
 
 
 @end

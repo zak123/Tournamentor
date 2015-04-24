@@ -30,8 +30,11 @@
     
     [super viewDidLoad];
     
+    
     self.navigationItem.title = @"Awesome";
     self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
+    [self.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    
     [self.view addSubview:_navigationBar];
     [self.navigationBar pushNavigationItem:self.navigationItem animated:NO];
     
