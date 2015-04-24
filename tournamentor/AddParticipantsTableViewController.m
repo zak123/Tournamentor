@@ -62,6 +62,7 @@
     [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantNames block:^(NSError *error) {
         if(!error){
             NSLog(@"Succeed participant array load");
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         else{
             NSLog(@"Error Message: %@", error);
