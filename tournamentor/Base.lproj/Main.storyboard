@@ -392,7 +392,7 @@
                                     <connections>
                                         <outlet property="player1Label" destination="dfY-yC-MOf" id="byY-LY-OlZ"/>
                                         <outlet property="player2Label" destination="Yii-wd-WSD" id="rwW-kh-W6R"/>
-                                        <segue destination="7fs-LS-9Ww" kind="presentation" id="tzG-Lv-dUu"/>
+                                        <segue destination="7fs-LS-9Ww" kind="presentation" identifier="showPickedMatchHeader" id="tzG-Lv-dUu"/>
                                     </connections>
                                 </collectionViewCell>
                             </cells>

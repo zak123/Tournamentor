@@ -168,6 +168,19 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         
         
     }
+    else if ([segue.identifier isEqualToString:@"showPickedMatchHeader"]) {
+        
+        NSIndexPath *indexPath = [self.bracketView indexPathForCell:sender];
+        
+        MatchEditTableViewController *dVC = (MatchEditTableViewController *)segue.destinationViewController;
+        
+        dVC.selectedMatch = self.matches[indexPath.row];
+        dVC.currentUser = self.currentUser;
+        dVC.currentTournament = self.selectedTournament;
+        
+        
+    }
+
     
 
 
