@@ -9,6 +9,7 @@
 #import "MatchListTableViewController.h"
 #import <UAProgressView.h>
 #import "BracketCollectionView.h"
+#import "BracketCollectionViewCell.h"
 
 
 @interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
@@ -23,7 +24,7 @@
     
 }
 
-static NSString * const reuseIdentifier = @"matchCollectionViewCell";
+static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 
 - (void)viewDidLoad {
@@ -139,13 +140,16 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *matchCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    BracketCollectionViewCell *bracketCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
+    Match *cellMatch = _matches[indexPath.row];
     
+    bracketCollectionViewCell.player1Label.text = cellMatch.player1_name;
+    bracketCollectionViewCell.player2Label.text = cellMatch.player2_name;
     
     // Configure the cell
     
-    return matchCollectionViewCell;
+    return bracketCollectionViewCell;
 }
 
 
@@ -164,6 +168,19 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
         
         
     }
+    else if ([segue.identifier isEqualToString:@"showPickedMatchHeader"]) {
+        
+        NSIndexPath *indexPath = [self.bracketView indexPathForCell:sender];
+        
+        MatchEditTableViewController *dVC = (MatchEditTableViewController *)segue.destinationViewController;
+        
+        dVC.selectedMatch = self.matches[indexPath.row];
+        dVC.currentUser = self.currentUser;
+        dVC.currentTournament = self.selectedTournament;
+        
+        
+    }
+
     
 
 

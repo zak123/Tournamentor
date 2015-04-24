@@ -21,7 +21,7 @@
 
 @implementation BracketCollectionView
 
-static NSString * const reuseIdentifier = @"matchCollectionViewCell";
+static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 /*- (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,13 +69,12 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *matchCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
+    UICollectionViewCell *bracketCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
+    // comment these out when done
     
-    
-    return matchCollectionViewCell;
+    return bracketCollectionViewCell;
 }
 
 #pragma mark <UICollectionViewDelegate>
