@@ -10,7 +10,7 @@
 #import <SSKeychain/SSKeychain.h>
 #import <SSKeychain/SSKeychainQuery.h>
 
-@interface TournamentListTableViewController ()
+@interface TournamentListTableViewController () <UIActionSheetDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic) NSArray *tournaments;
 
@@ -19,10 +19,18 @@
 
 @implementation TournamentListTableViewController {
     MBProgressHUD *_hud;
+    NSIndexPath *longPressedTournament;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self showActionSheet];
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 1.5; //seconds
+    lpgr.delegate = self;
+    [self.tableView addGestureRecognizer:lpgr];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -31,15 +39,21 @@
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.mode = MBProgressHUDModeIndeterminate;
     _hud.labelText = @"Loading";
-    [_hud show:YES];
     
     
     self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
     self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
     
     [self setTitle:self.user.name];
-
+    [self updateTournaments];
     
+    
+
+}
+
+-(void) updateTournaments {
+    [_hud show:YES];
+
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     
     [communicator getTournaments:self.user.name withKey:self.user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
@@ -54,12 +68,12 @@
                 [self performSegueWithIdentifier:@"needsApiKey" sender:self];
             }
             else {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Your sign in information is not valid" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
-            [alert addButtonWithTitle:@"OK"];
-            [alert show];
-            
-            [self performSegueWithIdentifier:@"needsApiKey" sender:self];
-            //            [self.navigationController popViewControllerAnimated:YES];
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Your sign in information is not valid" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+                [alert addButtonWithTitle:@"OK"];
+                [alert show];
+                
+                [self performSegueWithIdentifier:@"needsApiKey" sender:self];
+                //            [self.navigationController popViewControllerAnimated:YES];
             }
         }
         
@@ -78,9 +92,102 @@
         
         
     }];
-    
 
 }
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        
+        CGPoint p = [gestureRecognizer locationInView:self.tableView];
+        
+        longPressedTournament = [self.tableView indexPathForRowAtPoint:p];
+        if (longPressedTournament == nil) {
+            NSLog(@"long press on table view but not on a row");
+        } else {
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:longPressedTournament];
+            if (cell.isHighlighted) {
+                NSLog(@"long press on table view at section %ld row %ld", (long)longPressedTournament.section, (long)longPressedTournament.row);
+                [self showActionSheetForCell];
+            }
+        }
+    }
+}
+
+-(void)showActionSheetForCell {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"What would you like to do?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:@"Delete Tournament"
+                                                    otherButtonTitles:@"Start Tournament", @"Reset Tournament", @"End Tournament", nil];
+    
+    [actionSheet showInView:self.view];
+    
+}
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
+    Tournament *selectedTournament = self.tournaments[longPressedTournament.row];
+    
+    
+    if (buttonIndex == 0) {
+        NSLog(@"Deleted Tournament picked %ld", (long)longPressedTournament.row);
+        // delete tournament at this index
+        [communicator deleteTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
+            if (!error) {
+                NSLog(@"deleted tournament");
+                [self updateTournaments];
+            }
+            else {
+            NSLog(@"%@", error);
+            }
+        }];
+        
+    }
+    if (buttonIndex ==1) {
+        NSLog(@"start tournament");
+        [communicator startTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
+            if (!error) {
+                NSLog(@"tournament started");
+                [self updateTournaments];
+
+            }
+            else {
+                NSLog(@"error");
+            }
+        }];
+        
+    }
+    if (buttonIndex == 2) {
+        NSLog(@"reset tournament");
+        [communicator resetTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
+            if (!error) {
+                NSLog(@"tournament reset");
+                [self updateTournaments];
+
+            }
+            else {
+                NSLog(@"%@", error);
+            }
+        }];
+    }
+    if (buttonIndex == 3) {
+        NSLog(@"end tournament");
+        [communicator endTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
+            if (!error) {
+                NSLog(@"tournament finalized");
+                [self updateTournaments];
+
+            }
+            else {
+                NSLog(@"%@", error);
+            }
+        }];
+    }
+  
+}
+
 
 
 #pragma mark - Table view data source
@@ -99,6 +206,9 @@
     Tournament *cellTourn = _tournaments[indexPath.row];
     
     cell.tournamentNameLabel.text = cellTourn.tournamentName;
+    
+    
+    
     
     float progressFloat = [cellTourn.progress floatValue];
     

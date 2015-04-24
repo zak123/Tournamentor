@@ -11,7 +11,7 @@
 #import "BracketCollectionView.h"
 
 
-@interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic) NSArray *matches;
 @property (weak, nonatomic) IBOutlet BracketCollectionView *bracketView;
@@ -28,6 +28,7 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 
 }
 
@@ -68,6 +69,7 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
     
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -131,12 +133,6 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //#warning Incomplete method implementation -- Return the number of items in the section
-    
-
-    
-    
-    
-
     
     return self.matches.count;
     
