@@ -21,7 +21,10 @@
 
 @end
 
-@implementation MatchListTableViewController
+@implementation MatchListTableViewController {
+    MBProgressHUD *_hud;
+    
+}
 
 static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 
@@ -32,6 +35,12 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.mode = MBProgressHUDModeIndeterminate;
+    _hud.labelText = @"Loading";
+    [_hud show:YES];
+    
+    
     [self setTitle:self.selectedTournament.tournamentName];
     
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
@@ -45,7 +54,17 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
                 [self.tableView reloadData];
                 self.bracketView.matches = self.matches;
                 
+                [_hud hide:YES];
+                
             });
+          
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Tournament not found. Maybe it was deleted recently?" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+            [alert addButtonWithTitle:@"OK"];
+            [alert show];
+
+            [_hud hide:YES];
         }
     }];
     

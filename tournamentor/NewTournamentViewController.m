@@ -81,6 +81,9 @@
         }
         else {
             NSLog(@"Error Goddamnit!");
+            
+            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Could not create tournament. Make sure your tournament URL only contains characters and numbers, and that everything else is filled out." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [error show];
         }
     }];
     

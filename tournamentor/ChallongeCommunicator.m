@@ -36,6 +36,8 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
         tourn.tournamentName = aTournament[@"name"];
         tourn.numberParticipants = aTournament[@"participants_count"];
         tourn.tournamentURL = aTournament[@"url"];
+        tourn.progress = aTournament[@"progress_meter"];
+        
         
         
         

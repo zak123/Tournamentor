@@ -11,6 +11,7 @@
 #import "ChallongeCommunicator.h"
 #import "Tournament.h"
 #import "User.h"
+#import <MBProgressHUD.h>
 
 @interface MatchEditTableViewController : UITableViewController
 

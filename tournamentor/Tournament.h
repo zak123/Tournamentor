@@ -15,6 +15,7 @@
 @property (nonatomic) NSString *tournamentURL;
 @property (nonatomic) NSString *tournamentDescription;
 @property (nonatomic) NSString *tournamentType;
+@property (nonatomic) NSNumber *progress;
 
 
 @end

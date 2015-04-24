@@ -13,6 +13,7 @@
 #import "DataHolder.h"
 #import "MatchListTableViewController.h"
 #import "NewTournamentViewController.h"
+#import <MBProgressHUD.h>
 
 @interface TournamentListTableViewController : UITableViewController
 

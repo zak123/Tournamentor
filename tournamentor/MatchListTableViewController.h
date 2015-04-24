@@ -14,6 +14,7 @@
 #import "Tournament.h"
 #import "User.h"
 #import "MatchEditTableViewController.h"
+#import <MBProgressHUD.h>
 
 
 @interface MatchListTableViewController : UITableViewController 

@@ -17,7 +17,9 @@
 
 @end
 
-@implementation TournamentListTableViewController
+@implementation TournamentListTableViewController {
+    MBProgressHUD *_hud;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,7 +27,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.user = [[User alloc]init];
-
+    
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.mode = MBProgressHUDModeIndeterminate;
+    _hud.labelText = @"Loading";
+    [_hud show:YES];
+    
     
     self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
     self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
@@ -40,6 +47,7 @@
         NSLog(@"%@", tournamentsArray);
         
         if (error) {
+            [_hud hide:YES];
             NSLog(@"Error detected");
             
             if (self.user.apiKey.length < 1) {
@@ -60,6 +68,7 @@
                 _tournaments = [[tournamentsArray reverseObjectEnumerator] allObjects];
                 
                 [self.tableView reloadData];
+                [_hud hide:YES];
                 
                 
             });
@@ -85,13 +94,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    
     TournamentListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     Tournament *cellTourn = _tournaments[indexPath.row];
     
     cell.tournamentNameLabel.text = cellTourn.tournamentName;
+    
+    float progressFloat = [cellTourn.progress floatValue];
+    
+    cell.backgroundColor = [UIColor clearColor];
+    int fillWidth = (progressFloat/100.0) * cell.frame.size.width;
+    
+    CGRect rect = CGRectMake(0, 0, fillWidth, cell.frame.size.height);
+    UIView * view = [[UIView alloc] initWithFrame:rect];
+    view.backgroundColor = [UIColor greenColor];
+    [cell.contentView addSubview:view];
+    [cell.contentView sendSubviewToBack:view];
     
     
     

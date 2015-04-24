@@ -23,6 +23,8 @@
 @implementation MatchEditTableViewController {
     double p1score;
     double p2score;
+    MBProgressHUD *_hud;
+
 }
 - (void)viewDidLoad {
     
@@ -107,18 +109,27 @@
 -(void)didHitDone {
     //Save match info to challonge
     
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.mode = MBProgressHUDModeIndeterminate;
+    _hud.labelText = @"Loading";
+    [_hud show:YES];
+    
+    
     self.scores_csv = [NSString stringWithFormat:@"%.f-%.f", p1score,p2score];
     
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     [communicator updateMatchForTournament:self.currentTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey forMatchID:self.selectedMatch.matchID withScores:self.scores_csv winnerID:self.winnerID block:^(NSError *error) {
         if (!error) {
+            [_hud hide:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
 
         }
         else {
+            
+            [_hud hide:YES];
             NSLog(@"ERRORRRRR");
             
-            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Error creating tournament" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Error editing match. Make sure the match has not been updated by someone else, and also check internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [error show];
         }
         
