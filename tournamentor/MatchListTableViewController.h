@@ -16,7 +16,7 @@
 #import "MatchEditTableViewController.h"
 
 
-@interface MatchListTableViewController : UITableViewController
+@interface MatchListTableViewController : UITableViewController 
 
 @property (nonatomic) Tournament *selectedTournament;
 @property (nonatomic) User *currentUser;

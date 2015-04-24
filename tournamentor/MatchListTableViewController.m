@@ -8,16 +8,23 @@
 
 #import "MatchListTableViewController.h"
 #import <UAProgressView.h>
+#import "BracketCollectionView.h"
 
 
-@interface MatchListTableViewController ()
+@interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic) NSArray *matches;
+
+
+@property (weak, nonatomic) IBOutlet BracketCollectionView *bracketView;
 
 
 @end
 
 @implementation MatchListTableViewController
+
+static NSString * const reuseIdentifier = @"matchCollectionViewCell";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,9 +43,13 @@
             dispatch_async(dispatch_get_main_queue(), ^() {
                 self.matches = matchArray;
                 [self.tableView reloadData];
+                self.bracketView.matches = self.matches;
+                
             });
         }
     }];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,6 +102,30 @@
     
     
     return cell;
+}
+
+#pragma mark <UICollectionViewDataSource>
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    //#warning Incomplete method implementation -- Return the number of sections
+    return 1;
+}
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    //#warning Incomplete method implementation -- Return the number of items in the section
+    return 4;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *matchCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
+    
+    // Configure the cell
+    Match *match = [[Match alloc] init];
+    
+    
+    return matchCollectionViewCell;
 }
 
 
