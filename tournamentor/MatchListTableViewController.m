@@ -40,15 +40,17 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
     
     [self setTitle:self.selectedTournament.tournamentName];
     
-    
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     [communicator getMatchesForTournament:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *matchArray, NSError *error) {
         NSLog(@"%@", matchArray);
         
         if (!error) {
             dispatch_async(dispatch_get_main_queue(), ^() {
                 self.matches = matchArray;
-                [self.tableView reloadData];
                 self.bracketView.matches = self.matches;
+                [self.tableView reloadData];
+                [self.bracketView reloadData];
+
                 
                 [_hud hide:YES];
                 
@@ -130,25 +132,13 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //#warning Incomplete method implementation -- Return the number of items in the section
     
-    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
+
     
     
     
-    [communicator getMatchesForTournament:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *matchArray, NSError *error) {
-        NSLog(@"%@", matchArray);
-        
-        if (!error) {
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                self.matches = matchArray;
-                [self.tableView reloadData];
-                self.bracketView.matches = self.matches;
-                [self.bracketView reloadData];
-                
-            });
-        }
-    }];
+
     
-    return self.bracketView.matches.count;
+    return self.matches.count;
     
 }
 
