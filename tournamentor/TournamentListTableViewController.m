@@ -223,7 +223,6 @@
     
     
     
-    
     float progressFloat = [cellTourn.progress floatValue];
     
     cell.backgroundColor = [UIColor clearColor];
@@ -237,9 +236,9 @@
     }
     
 //    [cell setFillWidth:fillWidth];
-    
-    CGRect rect = CGRectMake(0, 70, fillWidth, cell.frame.size.height-80);
-    UIView * view = [[UIView alloc] initWithFrame:rect];
+    // __block means that blocks can make a variable/value mutable
+    __block CGRect rect = CGRectMake(0, 70, 0, cell.frame.size.height-80);
+    __block UIView * view = [[UIView alloc] initWithFrame:rect];
     
 //    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fade"]];
 //    [cell.contentView addSubview:backgroundView];
@@ -257,6 +256,13 @@
     [cell.contentView sendSubviewToBack:view];
     
     
+    [UIView animateWithDuration:1 animations:^{
+
+        rect.size.width = fillWidth;
+        view.frame = rect;
+    }];
+    
+    NSLog(@"Cell at index called: %ld", (long)indexPath.row);
     
     return cell;
 }
