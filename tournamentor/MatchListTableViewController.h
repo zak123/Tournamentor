@@ -28,6 +28,8 @@
 
 
 
+
+
 @property (nonatomic, strong) UIView *centralView;
 
 
