@@ -14,10 +14,7 @@
 @interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic) NSArray *matches;
-
-
 @property (weak, nonatomic) IBOutlet BracketCollectionView *bracketView;
-
 
 @end
 
@@ -34,20 +31,7 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 -(void)viewWillAppear:(BOOL)animated {
     [self setTitle:self.selectedTournament.tournamentName];
     
-    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     
-    [communicator getMatchesForTournament:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *matchArray, NSError *error) {
-        NSLog(@"%@", matchArray);
-        
-        if (!error) {
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                self.matches = matchArray;
-                [self.tableView reloadData];
-                self.bracketView.matches = self.matches;
-                
-            });
-        }
-    }];
     
     
 }
@@ -114,16 +98,35 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //#warning Incomplete method implementation -- Return the number of items in the section
-    return 4;
+    
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
+    
+    
+    
+    [communicator getMatchesForTournament:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *matchArray, NSError *error) {
+        NSLog(@"%@", matchArray);
+        
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^() {
+                self.matches = matchArray;
+                [self.tableView reloadData];
+                self.bracketView.matches = self.matches;
+                [self.bracketView reloadData];
+                
+            });
+        }
+    }];
+    
+    return self.bracketView.matches.count;
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *matchCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     
-    // Configure the cell
-    Match *match = [[Match alloc] init];
     
+    // Configure the cell
     
     return matchCollectionViewCell;
 }

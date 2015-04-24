@@ -63,7 +63,9 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //#warning Incomplete method implementation -- Return the number of items in the section
-    return 4;
+    
+    
+    return self.matches.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -71,7 +73,6 @@ static NSString * const reuseIdentifier = @"matchCollectionViewCell";
     
     
     // Configure the cell
-    Match *match = [[Match alloc] init];
     
     
     return matchCollectionViewCell;
