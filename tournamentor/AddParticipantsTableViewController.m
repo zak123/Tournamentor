@@ -59,12 +59,12 @@
     
     NSLog(@"%@", self.participantNames);
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
-    [communicator updateParticipants:self.tournament.tournamentName withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantNames block:^(NSError *error) {
+    [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantNames block:^(NSError *error) {
         if(!error){
             NSLog(@"Succeed participant array load");
         }
         else{
-            NSLog(@"Fail participants muthafucka");
+            NSLog(@"Error Message: %@", error);
         }
     }];
 

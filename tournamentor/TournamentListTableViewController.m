@@ -10,7 +10,7 @@
 #import <SSKeychain/SSKeychain.h>
 #import <SSKeychain/SSKeychainQuery.h>
 
-@interface TournamentListTableViewController () <UIActionSheetDelegate, UIGestureRecognizerDelegate>
+@interface TournamentListTableViewController () <UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) NSArray *tournaments;
 
@@ -125,24 +125,38 @@
     
 }
 
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     Tournament *selectedTournament = self.tournaments[longPressedTournament.row];
-    
-    
-    if (buttonIndex == 0) {
-        NSLog(@"Deleted Tournament picked %ld", (long)longPressedTournament.row);
-        // delete tournament at this index
+
+    if (buttonIndex == 1) {
+        NSLog(@"Confirmed to delete tournament");
+        
         [communicator deleteTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
                 NSLog(@"deleted tournament");
                 [self updateTournaments];
             }
             else {
-            NSLog(@"%@", error);
+                NSLog(@"%@", error);
             }
         }];
+    
+    }
+}
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
+    Tournament *selectedTournament = self.tournaments[longPressedTournament.row];
+    NSString *deleteMessage = [NSString stringWithFormat:@"Are you sure you want to delete %@", selectedTournament.tournamentName];
+    
+    if (buttonIndex == 0) {
+        NSLog(@"Deleted Tournament picked %ld", (long)longPressedTournament.row);
+        UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Are you sure?" message:deleteMessage  delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        [confirmation show];
+        
+        // delete tournament at this index
         
     }
     if (buttonIndex ==1) {
