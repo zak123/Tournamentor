@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P96-Eu-4iH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P96-Eu-4iH">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -98,6 +98,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="gRS-BF-HCq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="aAu-7K-jPV">
+                            <color key="tintColor" red="0.88235294117647056" green="0.32941176470588235" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="9NT-rL-BaJ" kind="show" identifier="addTournament" id="NSV-gA-Q3k"/>
                             </connections>
