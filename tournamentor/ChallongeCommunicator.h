@@ -23,4 +23,12 @@
 
 -(void)updateParticipants:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key withParticipants:(NSArray *)participants block:(void (^)(NSError *error))completionBlock;
 
+-(void)deleteTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSError *error))completionBlock;
+
+-(void)startTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSError *error))completionBlock;
+
+-(void)resetTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSError *error))completionBlock;
+
+-(void)endTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSError *error))completionBlock;
+
 @end

@@ -228,5 +228,55 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
 }
 
+-(void)deleteTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSError *error))completionBlock {
+    NSString *urlString = [NSString stringWithFormat:@"https://%@:%@@api.challonge.com/v1/tournaments/%@.json", username, key, tournament];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager DELETE:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        completionBlock(nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completionBlock(error);
+    }];
+    
+}
+
+-(void)startTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSError *error))completionBlock {
+       NSString *urlString = [NSString stringWithFormat:@"https://%@:%@@api.challonge.com/v1/tournaments/%@/start.json", username, key, tournament];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        completionBlock(nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completionBlock(error);
+    }];
+    
+}
+-(void)resetTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSError *error))completionBlock {
+    NSString *urlString = [NSString stringWithFormat:@"https://%@:%@@api.challonge.com/v1/tournaments/%@/reset.json", username, key, tournament];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        completionBlock(nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completionBlock(error);
+    }];
+    
+}
+-(void)endTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSError *error))completionBlock {
+    NSString *urlString = [NSString stringWithFormat:@"https://%@:%@@api.challonge.com/v1/tournaments/%@/finalize.json", username, key, tournament];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        completionBlock(nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completionBlock(error);
+    }];
+    
+}
+
 
 @end
