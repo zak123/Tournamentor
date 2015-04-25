@@ -30,6 +30,14 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // How to load participants from a tournament
+//    ChallongeCommunicator *testComm = [[ChallongeCommunicator alloc]init];
+//    [testComm getParticipants:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *participants, NSError *error) {
+//        if (!error) {
+//            NSLog(@"%@", participants);
+//        }
+//    }];
+    
 
 }
 

@@ -24,13 +24,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 //    [self showActionSheet];
+    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]
+                                      initWithImage:[UIImage imageNamed:@"signout"]
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(signOut)];
+    
+    self.navigationItem.leftBarButtonItem = signOutButton;
+    
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
+    
     lpgr.minimumPressDuration = 1.5; //seconds
     lpgr.delegate = self;
     [self.tableView addGestureRecognizer:lpgr];
+    
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,6 +62,11 @@
     [self updateTournaments];
     
     
+
+}
+
+-(void) signOut {
+    [self performSegueWithIdentifier:@"needsApiKey" sender:self];
 
 }
 
@@ -70,11 +89,11 @@
                 [self performSegueWithIdentifier:@"needsApiKey" sender:self];
             }
             else {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Your sign in information is not valid" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Your sign in information is not valid or network is too slow. You can try to sign out and sign back in again." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
                 [alert addButtonWithTitle:@"OK"];
                 [alert show];
                 
-                [self performSegueWithIdentifier:@"needsApiKey" sender:self];
+//                [self performSegueWithIdentifier:@"needsApiKey" sender:self];
                 //            [self.navigationController popViewControllerAnimated:YES];
             }
         }
@@ -134,11 +153,9 @@
     Tournament *selectedTournament = self.tournaments[longPressedTournament.row];
 
     if (buttonIndex == 1) {
-        NSLog(@"Confirmed to delete tournament");
         
         [communicator deleteTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
-                NSLog(@"deleted tournament");
                 [self updateTournaments];
             }
             else {
@@ -156,7 +173,6 @@
     NSString *deleteMessage = [NSString stringWithFormat:@"Are you sure you want to delete %@", selectedTournament.tournamentName];
     
     if (buttonIndex == 0) {
-        NSLog(@"Deleted Tournament picked %ld", (long)longPressedTournament.row);
         UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Are you sure?" message:deleteMessage  delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
         [confirmation show];
         
@@ -164,29 +180,25 @@
         
     }
     if (buttonIndex ==1) {
-        NSLog(@"start tournament");
         [communicator startTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
-                NSLog(@"tournament started");
                 [self updateTournaments];
 
             }
             else {
-                NSLog(@"error");
+                NSLog(@"Error starting tournament: %@", error);
             }
         }];
         
     }
     if (buttonIndex == 2) {
-        NSLog(@"reset tournament");
         [communicator resetTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
-                NSLog(@"tournament reset");
                 [self updateTournaments];
 
             }
             else {
-                NSLog(@"%@", error);
+                NSLog(@"Error resetting tournament: %@", error);
             }
         }];
     }
@@ -194,12 +206,11 @@
         NSLog(@"end tournament");
         [communicator endTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
-                NSLog(@"tournament finalized");
                 [self updateTournaments];
 
             }
             else {
-                NSLog(@"%@", error);
+                NSLog(@"Error ending tournament: %@", error);
             }
         }];
     }
@@ -227,7 +238,6 @@
     
     
     
-    
     float progressFloat = [cellTourn.progress floatValue];
     
     cell.backgroundColor = [UIColor clearColor];
@@ -241,9 +251,9 @@
     }
     
 //    [cell setFillWidth:fillWidth];
-    
-    CGRect rect = CGRectMake(0, 70, fillWidth, cell.frame.size.height-80);
-    UIView * view = [[UIView alloc] initWithFrame:rect];
+    // __block means that blocks can make a variable/value mutable
+    __block CGRect rect = CGRectMake(0, 70, 0, cell.frame.size.height-80);
+    __block UIView * view = [[UIView alloc] initWithFrame:rect];
     
 //    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fade"]];
 //    [cell.contentView addSubview:backgroundView];
@@ -261,6 +271,13 @@
     [cell.contentView sendSubviewToBack:view];
     
     
+    [UIView animateWithDuration:1 animations:^{
+
+        rect.size.width = fillWidth;
+        view.frame = rect;
+    }];
+    
+//    NSLog(@"Cell at index called: %ld", (long)indexPath.row);
     
     return cell;
 }

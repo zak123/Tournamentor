@@ -27,9 +27,21 @@
     
     
     self.tournamentType = @"single elimination";
-
     
+//    @property (weak, nonatomic) IBOutlet UITextField *tournamentNameTextField;
+//    @property (weak, nonatomic) IBOutlet UITextField *tournamentURLTextField;
+//    @property (weak, nonatomic) IBOutlet UITextField *gameTextField;
+//    @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
     
+    self.tournamentNameTextField.delegate = self;
+    self.tournamentURLTextField.delegate = self;
+    self.descriptionTextView.delegate = self;
+    self.gameTextField.delegate = self;
+    
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tapGR.delegate = self;
+    tapGR.numberOfTapsRequired = 1;
+    [self.tableView addGestureRecognizer:tapGR];
     
 }
 
@@ -72,6 +84,11 @@
     self.tournament.tournamentType = self.tournamentType;
     self.tournament.tournamentDescription = self.descriptionTextView.text;
     
+    [self.tournamentNameTextField endEditing:YES];
+    [self.tournamentURLTextField endEditing:YES];
+    [self.descriptionTextView endEditing:YES];
+    [self.gameTextField endEditing:YES];
+    
     
 //    Save match info to challonge
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
@@ -83,9 +100,9 @@
             
         }
         else {
-            NSLog(@"Error Goddamnit!");
+            NSLog(@"Error adding new tournament: %@", error);
             
-            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Could not create tournament. Make sure your tournament URL only contains characters and numbers, and that everything else is filled out." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Could not create tournament hosted at Challonge.com. Make sure your tournament URL only contains characters and numbers, and that everything else is filled out." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [error show];
         }
     }];
@@ -96,10 +113,28 @@
     
 }
 
+
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Tap gesture recognizer & keyboard dismiss
+
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    NSLog(@"it works, Mass");
+    
+    [self.tournamentNameTextField endEditing:YES];
+    [self.tournamentURLTextField endEditing:YES];
+    [self.descriptionTextView endEditing:YES];
+    [self.gameTextField endEditing:YES];
+    
+}
+
+
 
 #pragma mark - Table view data source
 

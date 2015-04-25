@@ -130,7 +130,7 @@
         else {
             
             [_hud hide:YES];
-            NSLog(@"ERRORRRRR");
+            NSLog(@"Error updating match for tournament: %@", error);
             
             UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Error editing match. Make sure the match has not been updated by someone else, and also check internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [error show];

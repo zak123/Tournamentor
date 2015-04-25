@@ -24,6 +24,16 @@
 
     [super viewDidLoad];
     
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.navigationItem setHidesBackButton:YES animated:YES];
+
+    
+    [SSKeychain setPassword:nil forService:@"Challonge" account:nil];
 
 
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -49,9 +59,15 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [_hud show:YES];
-    NSLog(@"Loadin Again");
     
 }
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    UIAlertView *errorLoading = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Error loading challonge.com. Check your network connection. Challonge could also be down." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [errorLoading show];
+}
+
+
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     
@@ -62,9 +78,7 @@
     NSString *APIKEY = [self getAPIKey:plainHTML];
     NSString *USERNAME = [self getUsername:plainHTML];
     
- 
-    NSLog(@"API KEY: %@", APIKEY);
-    NSLog(@"done");
+
     
     
     if (APIKEY.length > 1) {
@@ -144,7 +158,6 @@
         [scanner scanUpToString:@"<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">" intoString:nil];
         [scanner scanString:@"<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">" intoString:nil];
         [scanner scanUpToString:@"<b class=\"caret\">" intoString:&username];
-        NSLog(@"%@", username);
     }
     @catch (NSException *exception) {}
     
@@ -162,7 +175,6 @@
         [scanner scanUpToString:@"<div class=\"alert alert-danger\">" intoString:nil];
         [scanner scanString:@"<div class=\"alert alert-danger\">" intoString:nil];
         [scanner scanUpToString:@"<a data-method=\"post\" href=\"/settings/resend_activation_key\"" intoString:&error];
-        NSLog(@"%@", error);
     }
     @catch (NSException *exception) {}
     
