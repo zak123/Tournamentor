@@ -37,11 +37,13 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
         tourn.numberParticipants = aTournament[@"participants_count"];
         tourn.tournamentURL = aTournament[@"url"];
         tourn.progress = aTournament[@"progress_meter"];
+        tourn.state = aTournament[@"state"];
         
         
         
         
         NSLog(@"%@", tourn.tournamentName);
+        NSLog(@"Tournament State: %@", tourn.state);
         
 
         [tournamentArray addObject:tourn];

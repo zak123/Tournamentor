@@ -41,7 +41,6 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     
     [self setTitle:self.selectedTournament.tournamentName];
-    
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     [communicator getMatchesForTournament:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *matchArray, NSError *error) {
         NSLog(@"%@", matchArray);
@@ -59,6 +58,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
             });
           
         }
+
         else {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Tournament not found. Maybe it was deleted recently?" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
             [alert addButtonWithTitle:@"OK"];

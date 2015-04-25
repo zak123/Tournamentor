@@ -21,6 +21,8 @@
 
 @property (nonatomic) Tournament *selectedTournament;
 @property (nonatomic) User *currentUser;
+@property (nonatomic) Match *match;
+
 
 @property (nonatomic) NSString *username;
 @property (nonatomic) NSString *apiKey;

@@ -53,7 +53,9 @@
 
 -(void) updateTournaments {
     [_hud show:YES];
-
+    
+    
+    Tournament *tournament = [[Tournament alloc] init];
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     
     [communicator getTournaments:self.user.name withKey:self.user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
@@ -93,6 +95,8 @@
         
     }];
 
+    
+    
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
@@ -262,6 +266,13 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    Tournament *selectedTournament = self.tournaments[indexPath.row];
+    
+    if([selectedTournament.state isEqualToString:@"pending"]){
+        
+    }
     
     if ([segue.identifier isEqualToString:@"showMatches"]) {
     
