@@ -161,6 +161,9 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     bracketCollectionViewCell.player1Label.text = cellMatch.player1_name;
     bracketCollectionViewCell.player2Label.text = cellMatch.player2_name;
     
+    bracketCollectionViewCell.layer.masksToBounds = YES;
+    bracketCollectionViewCell.layer.cornerRadius = 6;
+    
     // Configure the cell
     
     return bracketCollectionViewCell;
