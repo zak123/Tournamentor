@@ -277,6 +277,40 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     }];
     
 }
+-(void)getParticipants:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSArray *participants, NSError *error))completionBlock {
+    NSString *urlString = [NSString stringWithFormat:@"https://%@:%@@api.challonge.com/v1/tournaments/%@/participants.json", username, key, tournament];
+    
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success");
+            
+            
+            NSMutableArray *participantsArray = [[NSMutableArray alloc]init];
+            
+//            NSArray *tournamentParticipants = responseObject[@"participant"];
+            
+            for (id eachParticipant in responseObject) {
+                
+                Participant *participant = [[Participant alloc]init];
+                NSDictionary *aParticipant = eachParticipant[@"participant"];
+                
+                participant.name = aParticipant[@"name"];
+                participant.finalRank = aParticipant[@"final_rank"];
+                participant.participantID = aParticipant[@"id"];
+                
+                
+                [participantsArray addObject:participant];
+            }
+            
+            completionBlock(participantsArray, nil);
+            
+
+            
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error getting participants: %@", error);
+    }];
+    
+}
 
 
 @end

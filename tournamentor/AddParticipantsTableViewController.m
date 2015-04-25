@@ -35,11 +35,7 @@
     
 }
 
-- (IBAction)edited:(UITextField *)sender {
-    NSLog(@"%@", sender.text);
-    
-    
-}
+
 
 
 -(void)done {
@@ -51,7 +47,6 @@
         NSIndexPath *curCell = [NSIndexPath indexPathForRow:i inSection:0];
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:curCell];
         AddParticipantTableViewCell *myCell = (AddParticipantTableViewCell *)cell;
-        NSLog(@"log %@", myCell.participantName.text);
         
         [self.participantNames addObject:[NSString stringWithString:myCell.participantName.text]];
 
@@ -61,11 +56,10 @@
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
     [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantNames block:^(NSError *error) {
         if(!error){
-            NSLog(@"Succeed participant array load");
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         else{
-            NSLog(@"Error Message: %@", error);
+            NSLog(@"Error adding participants: %@", error);
         }
     }];
 
