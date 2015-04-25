@@ -11,17 +11,16 @@
 #import "User.h"
 #import "AddParticipantsTableViewController.h"
 
-@interface NewTournamentViewController : UITableViewController
+@interface NewTournamentViewController : UITableViewController <UIGestureRecognizerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong) UINavigationBar* navigationBar;
 @property (nonatomic) Tournament *tournament;
 @property (nonatomic) User *currentUser;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *tournamentTypePicker;
 @property (weak, nonatomic) IBOutlet UITextField *tournamentNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *tournamentURLTextField;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *tournamentTypePicker;
 @property (weak, nonatomic) IBOutlet UITextField *gameTextField;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-
 
 @end
