@@ -38,7 +38,7 @@
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
     
-    lpgr.minimumPressDuration = 1.5; //seconds
+    lpgr.minimumPressDuration = 0.6; //seconds
     lpgr.delegate = self;
     [self.tableView addGestureRecognizer:lpgr];
     
@@ -59,6 +59,8 @@
     self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
     self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
     
+    NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
+    
     [self setTitle:self.user.name];
     [self updateTournaments];
     
@@ -67,6 +69,25 @@
 }
 
 -(void) signOut {
+    // sign user out (delete keychain) so that they can then reset the keychain to their desired challonge username
+    SSKeychainQuery *query = [[SSKeychainQuery alloc] init];
+    
+    NSArray *accounts = [query fetchAll:nil];
+    
+    for (id account in accounts) {
+        
+        SSKeychainQuery *query = [[SSKeychainQuery alloc] init];
+        
+        query.service = @"Challonge";
+        query.account = [account valueForKey:@"acct"];
+        
+        [query deleteItem:nil];
+        
+    }
+
+    
+//    [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
+    
     [self performSegueWithIdentifier:@"needsApiKey" sender:self];
 
 }

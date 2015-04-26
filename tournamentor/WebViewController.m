@@ -33,7 +33,6 @@
     [self.navigationItem setHidesBackButton:YES animated:YES];
 
     
-    [SSKeychain setPassword:nil forService:@"Challonge" account:nil];
 
 
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -58,6 +57,7 @@
 # pragma - Web View
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
+
     [_hud show:YES];
     
 }
