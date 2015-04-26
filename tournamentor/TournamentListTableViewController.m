@@ -33,6 +33,7 @@
     [self.refreshControl addTarget:self
                             action:@selector(updateTournaments)
                   forControlEvents:UIControlEventValueChanged];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
     
 //    [self showActionSheet];
     UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]
@@ -54,10 +55,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated {
     self.user = [[User alloc]init];
     
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -72,6 +69,12 @@
     
     [self setTitle:self.user.name];
     [self updateTournaments];
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+
     
     
 

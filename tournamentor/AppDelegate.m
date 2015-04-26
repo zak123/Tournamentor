@@ -22,6 +22,8 @@
     [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:[UIColor whiteColor]];
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationController class], nil] setTintColor:[UIColor colorWithRed:1 green:0.4 blue:0.2 alpha:1]];
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:1 green:0.4 blue:0.2 alpha:1]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
 
     
 
