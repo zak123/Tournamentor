@@ -169,23 +169,55 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     return bracketCollectionViewCell;
 }
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    Match *selectedMatch = self.matches[indexPath.row];
     
-    if ([selectedMatch.state isEqualToString:@"complete"]) {
+    if ([sender isKindOfClass:[BracketCollectionViewCell class]]){
         
-        UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You can't edit a match that is complete! Either reset the tournament (Long press a tournament on the preview screen) or edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [confirmation show];
-        return NO;
+        
+        BracketCollectionViewCell *bracketCollectionViewCell = sender;
+        NSIndexPath *indexPath = [self.bracketView indexPathForCell:bracketCollectionViewCell];
+        bracketCollectionViewCell = [self.bracketView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+        
+        Match *selectedMatch = self.matches[indexPath.item];
+        NSLog(@"State: %@", selectedMatch.state);
+        if ([selectedMatch.state isEqualToString:@"complete"]) {
+            
+            UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You can't edit a match that is complete! Either reset the tournament (Long press a tournament on the preview screen) or edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [confirmation show];
+            return NO;
+        }
+        else if ([selectedMatch.state isEqualToString:@"pending"]) {
+            UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You are trying to edit a match too far into the future! You can only edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [confirmation show];
+            return NO;
+            
+        }
+        else {
+            return YES;
+        }
     }
-    if ([selectedMatch.state isEqualToString:@"pending"]) {
-        UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You are trying to edit a match too far into the future! You can only edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [confirmation show];
-        return NO;
-
+    
+    if ([sender isKindOfClass:[MatchListTableViewCell class]]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Match *selectedMatch = self.matches[indexPath.row];
+        NSLog(@"State: %@", selectedMatch.state);
+        if ([selectedMatch.state isEqualToString:@"complete"]) {
+            
+            UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You can't edit a match that is complete! Either reset the tournament (Long press a tournament on the preview screen) or edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [confirmation show];
+            return NO;
+        }
+        if ([selectedMatch.state isEqualToString:@"pending"]) {
+            UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You are trying to edit a match too far into the future! You can only edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [confirmation show];
+            return NO;
+            
+        }
+        else {
+            return YES;
+        }
     }
-    else {
-        return YES;
+    else{
+        return NO;
     }
 }
 
@@ -197,7 +229,6 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-
     
     if ([segue.identifier isEqualToString:@"showPickedMatch"]) {
         
