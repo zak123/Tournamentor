@@ -15,6 +15,7 @@
 @property (nonatomic) NSArray *tournaments;
 
 
+
 @end
 
 @implementation TournamentListTableViewController {
@@ -24,6 +25,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // show refresh controll (pull2refresh)
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(updateTournaments)
+                  forControlEvents:UIControlEventValueChanged];
     
 //    [self showActionSheet];
     UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]
@@ -48,7 +57,7 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     self.user = [[User alloc]init];
     
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -67,6 +76,7 @@
     
 
 }
+
 
 -(void) signOut {
     // sign user out (delete keychain) so that they can then reset the keychain to their desired challonge username
@@ -103,12 +113,15 @@
         
         if (error) {
             [_hud hide:YES];
+            [self.refreshControl endRefreshing];
             NSLog(@"Error detected");
             
             if (self.user.apiKey.length < 1) {
                 [self performSegueWithIdentifier:@"needsApiKey" sender:self];
             }
             else {
+                [self.refreshControl endRefreshing];
+
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Your sign in information is not valid or network is too slow. You can try to sign out and sign back in again." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
                 [alert addButtonWithTitle:@"OK"];
                 [alert show];
@@ -124,6 +137,8 @@
                 
                 [self.tableView reloadData];
                 [_hud hide:YES];
+                [self.refreshControl endRefreshing];
+ 
                 
                 
             });

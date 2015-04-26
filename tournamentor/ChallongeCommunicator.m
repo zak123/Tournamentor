@@ -58,7 +58,7 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     
 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    NSLog(@"HTTP Request Failed");
+    NSLog(@"getTournaments HTTP Request Failed With Challong Error: %@", error);
     completionBlock(nil, error);
 }];
 }
