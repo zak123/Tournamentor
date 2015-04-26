@@ -87,7 +87,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="tournamentNameLabel" destination="dws-xg-ngq" id="JDZ-n3-gyA"/>
-                                    <segue destination="U9w-Bn-ILz" kind="show" identifier="showMatches" id="1Mp-T5-49o"/>
+                                    <segue destination="U9w-Bn-ILz" kind="show" identifier="showMatches" id="roA-Gn-1Xr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -252,7 +252,7 @@
         <!--Add Participants Table View Controller-->
         <scene sceneID="ZA4-kH-yZ4">
             <objects>
-                <tableViewController id="D7z-8p-Akt" customClass="AddParticipantsTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddParticipantsTableViewControllerStoryboardID" id="D7z-8p-Akt" customClass="AddParticipantsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3Jq-On-Xez">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

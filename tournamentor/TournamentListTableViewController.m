@@ -10,7 +10,7 @@
 #import <SSKeychain/SSKeychain.h>
 #import <SSKeychain/SSKeychainQuery.h>
 
-@interface TournamentListTableViewController () <UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
+@interface TournamentListTableViewController () <UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSArray *tournaments;
 
@@ -42,7 +42,8 @@
     lpgr.delegate = self;
     [self.tableView addGestureRecognizer:lpgr];
     
-    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     
 }
@@ -73,8 +74,6 @@
 -(void) updateTournaments {
     [_hud show:YES];
     
-    
-    Tournament *tournament = [[Tournament alloc] init];
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     
     [communicator getTournaments:self.user.name withKey:self.user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
@@ -234,6 +233,7 @@
     
     Tournament *cellTourn = _tournaments[indexPath.row];
     
+    
     cell.tournamentNameLabel.text = cellTourn.tournamentName;
     
     
@@ -279,17 +279,32 @@
     
 //    NSLog(@"Cell at index called: %ld", (long)indexPath.row);
     
+    
+    
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Tournament *cellTourn = _tournaments[indexPath.row];
+    
+    if([cellTourn.state isEqualToString:@"pending"]){
+        
+        ///[self performSegueWithIdentifier:@"showParticipants" sender:cellTourn.tournamentName];
+        //[self.navigationController pushViewController:<#(UIViewController *)#> animated:<#(BOOL)#>]
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        AddParticipantsTableViewController *addParticipantsTableViewController;
+        addParticipantsTableViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"AddParticipantsTableViewControllerStoryboardID"];
+        [self.navigationController pushViewController:addParticipantsTableViewController animated:YES];
+        
+    }
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    Tournament *selectedTournament = self.tournaments[indexPath.row];
-    
-    if([selectedTournament.state isEqualToString:@"pending"]){
-        
-    }
     
     if ([segue.identifier isEqualToString:@"showMatches"]) {
     
