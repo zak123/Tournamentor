@@ -173,6 +173,7 @@
             }
         }
     }
+    
 }
 
 -(void)showActionSheetForCell {
@@ -203,6 +204,7 @@
     
     }
 }
+
 
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -330,7 +332,7 @@
     if([cellTourn.state isEqualToString:@"pending"]){
         
         ///[self performSegueWithIdentifier:@"showParticipants" sender:cellTourn.tournamentName];
-        //[self.navigationController pushViewController:<#(UIViewController *)#> animated:<#(BOOL)#>]
+        //[self.navigationController pushViewController: animated:]
         
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         

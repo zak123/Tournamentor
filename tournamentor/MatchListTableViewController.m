@@ -12,7 +12,7 @@
 #import "BracketCollectionViewCell.h"
 
 
-@interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
+@interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) NSArray *matches;
 @property (weak, nonatomic) IBOutlet BracketCollectionView *bracketView;
@@ -152,6 +152,8 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     return self.matches.count;
     
 }
+
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BracketCollectionViewCell *bracketCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
