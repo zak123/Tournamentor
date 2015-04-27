@@ -23,6 +23,19 @@
     NSIndexPath *longPressedTournament;
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    self.user = [[User alloc]init];
+    
+    self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
+    self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
+    
+    NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
+    
+    
+    
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // show refresh controll (pull2refresh)
@@ -55,17 +68,14 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.user = [[User alloc]init];
+    
     
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.mode = MBProgressHUDModeIndeterminate;
     _hud.labelText = @"Loading";
     
     
-    self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
-    self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
     
-    NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
     
     [self setTitle:@"Tournaments"];
     [self updateTournaments];
@@ -73,12 +83,6 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-
-    
-    
-
-}
 
 
 -(void) signOut {
