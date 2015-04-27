@@ -43,6 +43,8 @@
     tapGR.numberOfTapsRequired = 1;
     [self.tableView addGestureRecognizer:tapGR];
     
+    
+    
 }
 
 
@@ -131,6 +133,23 @@
     [self.tournamentURLTextField endEditing:YES];
     [self.descriptionTextView endEditing:YES];
     [self.gameTextField endEditing:YES];
+    
+
+}
+
+
+#pragma mark - tournamentURL validation for acceptable characters
+
+- (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters {
+//    if (field == self.tournamentURLTextField) {
+        NSCharacterSet *TournamentURLcharacterSet = [NSCharacterSet alphanumericCharacterSet];
+        NSMutableCharacterSet *_alnum = [NSMutableCharacterSet characterSetWithCharactersInString:@"_"];
+        [_alnum formUnionWithCharacterSet:TournamentURLcharacterSet];
+        
+        NSCharacterSet *blockedCharacters = [TournamentURLcharacterSet invertedSet];
+        
+        return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+//    }
     
 }
 

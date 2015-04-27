@@ -23,4 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *gameTextField;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
+- (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters;
+
 @end
