@@ -127,13 +127,16 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    [self showTournamentListView];
+    
+    [self performSegueWithIdentifier:@"didGetApiKey" sender:self];
+    //[self showTournamentListView];
 }
 
 # pragma helper methods
 
 -(void)showTournamentListView {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController.viewControllers firstObject];
 }
 
 -(NSString *)getAPIKey:(NSString *)plainHTML

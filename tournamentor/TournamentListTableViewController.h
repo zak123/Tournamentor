@@ -19,6 +19,6 @@
 
 @property (nonatomic) User *user;
 
-
+- (UIViewController *)backViewController;
 
 @end

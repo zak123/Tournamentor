@@ -9,6 +9,7 @@
 #import "TournamentListTableViewController.h"
 #import <SSKeychain/SSKeychain.h>
 #import <SSKeychain/SSKeychainQuery.h>
+#import "WebViewController.h"
 
 @interface TournamentListTableViewController () <UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -23,18 +24,28 @@
     NSIndexPath *longPressedTournament;
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    self.user = [[User alloc]init];
+-(void)viewWillAppear:(BOOL)animated{
     
-    self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
-    self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
     
     NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
     
     
-    
+    if ([[self backViewController] isKindOfClass:[WebViewController class]]) {
+        NSLog(@"FROM WEB");
+        self.user = [[User alloc]init];
+        
+        self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
+        self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
+       [self updateTournaments];
+    }
+//    else if (self.user.name != nil && self.user.apiKey != nil){
+//        [self updateTournaments];
+//    }
+ 
+
     
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,15 +86,27 @@
     _hud.labelText = @"Loading";
     
     
+    self.user = [[User alloc]init];
     
+    self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
+    self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
     
     [self setTitle:@"Tournaments"];
-    [self updateTournaments];
     
+    [self updateTournaments];
     
 }
 
 
+- (UIViewController *)backViewController
+{
+    NSInteger numberOfViewControllers = self.navigationController.viewControllers.count;
+    
+    if (numberOfViewControllers < 2)
+        return nil;
+    else
+        return [self.navigationController.viewControllers objectAtIndex:numberOfViewControllers - 2];
+}
 
 -(void) signOut {
     // sign user out (delete keychain) so that they can then reset the keychain to their desired challonge username
