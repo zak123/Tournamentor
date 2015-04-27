@@ -84,6 +84,7 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
         
         NSMutableArray *matchesArray = [[NSMutableArray alloc]init];
         
+
         NSArray *tournamentMatches = responseObject[@"tournament"][@"matches"];
         NSArray *participants = responseObject[@"tournament"][@"participants"];
         
@@ -114,14 +115,14 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
                 }
                 
             }
-//            for (i = 0; aMatch[@"round"]; i++ ) {
-//                NSLog(@"round identify %i", i);
-//            }
+            
+            
+
             
         }
 
 
-            
+
         
         //    NSError *error1 = nil;
         

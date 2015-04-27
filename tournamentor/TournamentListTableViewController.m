@@ -181,7 +181,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:@"Delete Tournament"
-                                                    otherButtonTitles:@"Start Tournament", @"Reset Tournament", @"End Tournament", nil];
+                                                    otherButtonTitles:@"Start Tournament", @"Reset The Bracket", @"End Tournament", nil];
     
     [actionSheet showInView:self.view];
     
@@ -191,19 +191,39 @@
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     Tournament *selectedTournament = self.tournaments[longPressedTournament.row];
 
-    if (buttonIndex == 1) {
+    
+    if (alertView.tag == 100) {
+        NSLog(@"YES");
         
-        [communicator deleteTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
+        if (buttonIndex == 1) {
+            
+            [communicator deleteTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
+                if (!error) {
+                    [self updateTournaments];
+                }
+                else {
+                    NSLog(@"%@", error);
+                }
+            }];
+            
+        }
+
+    }
+    if (alertView.tag == 101) {
+        NSLog(@"RESET");
+        
+        [communicator resetTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
                 [self updateTournaments];
+                
             }
             else {
-                NSLog(@"%@", error);
+                NSLog(@"Error resetting tournament: %@", error);
             }
         }];
-    
+
     }
-}
+ }
 
 
 
@@ -211,15 +231,17 @@
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     Tournament *selectedTournament = self.tournaments[longPressedTournament.row];
     NSString *deleteMessage = [NSString stringWithFormat:@"Are you sure you want to delete %@", selectedTournament.tournamentName];
+    NSString *resetMessage = [NSString stringWithFormat:@"Are you sure you want to reset the bracket for %@", selectedTournament.tournamentName];
     
     if (buttonIndex == 0) {
         UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Are you sure?" message:deleteMessage  delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        confirmation.tag = 100;
         [confirmation show];
         
         // delete tournament at this index
         
     }
-    if (buttonIndex ==1) {
+    if (buttonIndex == 1) {
         [communicator startTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
                 [self updateTournaments];
@@ -232,16 +254,11 @@
         
     }
     if (buttonIndex == 2) {
-        [communicator resetTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
-            if (!error) {
-                [self updateTournaments];
-
-            }
-            else {
-                NSLog(@"Error resetting tournament: %@", error);
-            }
-        }];
-    }
+        
+        UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Are you sure?" message:resetMessage delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        confirmation.tag = 101;
+        [confirmation show];
+}
     if (buttonIndex == 3) {
         NSLog(@"end tournament");
         [communicator endTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
