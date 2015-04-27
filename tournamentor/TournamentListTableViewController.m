@@ -67,7 +67,7 @@
     
     NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
     
-    [self setTitle:self.user.name];
+    [self setTitle:@"Tournaments"];
     [self updateTournaments];
     
     
