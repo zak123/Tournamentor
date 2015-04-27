@@ -33,7 +33,6 @@
     [self.navigationItem setHidesBackButton:YES animated:YES];
 
     
-    [SSKeychain setPassword:nil forService:@"Challonge" account:nil];
 
 
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -58,6 +57,7 @@
 # pragma - Web View
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
+
     [_hud show:YES];
     
 }
@@ -127,13 +127,16 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    [self showTournamentListView];
+    
+    [self performSegueWithIdentifier:@"didGetApiKey" sender:self];
+    //[self showTournamentListView];
 }
 
 # pragma helper methods
 
 -(void)showTournamentListView {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController.viewControllers firstObject];
 }
 
 -(NSString *)getAPIKey:(NSString *)plainHTML

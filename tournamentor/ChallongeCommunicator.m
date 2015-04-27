@@ -58,7 +58,7 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     
 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    NSLog(@"HTTP Request Failed");
+    NSLog(@"getTournaments HTTP Request Failed With Challong Error: %@", error);
     completionBlock(nil, error);
 }];
 }
@@ -84,6 +84,7 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
         
         NSMutableArray *matchesArray = [[NSMutableArray alloc]init];
         
+
         NSArray *tournamentMatches = responseObject[@"tournament"][@"matches"];
         NSArray *participants = responseObject[@"tournament"][@"participants"];
         
@@ -115,10 +116,13 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
                 
             }
             
+            
+
+            
         }
 
 
-            
+
         
         //    NSError *error1 = nil;
         

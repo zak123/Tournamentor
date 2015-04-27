@@ -9,10 +9,12 @@
 #import "TournamentListTableViewController.h"
 #import <SSKeychain/SSKeychain.h>
 #import <SSKeychain/SSKeychainQuery.h>
+#import "WebViewController.h"
 
 @interface TournamentListTableViewController () <UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSArray *tournaments;
+
 
 
 @end
@@ -22,8 +24,40 @@
     NSIndexPath *longPressedTournament;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    
+    NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
+    
+    
+    if ([[self backViewController] isKindOfClass:[WebViewController class]]) {
+        NSLog(@"FROM WEB");
+        self.user = [[User alloc]init];
+        
+        self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
+        self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
+       [self updateTournaments];
+    }
+//    else if (self.user.name != nil && self.user.apiKey != nil){
+//        [self updateTournaments];
+//    }
+ 
+
+    
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // show refresh controll (pull2refresh)
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(updateTournaments)
+                  forControlEvents:UIControlEventValueChanged];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
     
 //    [self showActionSheet];
     UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]
@@ -38,7 +72,7 @@
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
     
-    lpgr.minimumPressDuration = 1.5; //seconds
+    lpgr.minimumPressDuration = 0.6; //seconds
     lpgr.delegate = self;
     [self.tableView addGestureRecognizer:lpgr];
     
@@ -46,27 +80,54 @@
     self.tableView.dataSource = self;
     
     
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    self.user = [[User alloc]init];
     
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.mode = MBProgressHUDModeIndeterminate;
     _hud.labelText = @"Loading";
     
     
+    self.user = [[User alloc]init];
+    
     self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
     self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
     
-    [self setTitle:self.user.name];
+    [self setTitle:@"Tournaments"];
+    
     [self updateTournaments];
     
-    
+}
 
+
+- (UIViewController *)backViewController
+{
+    NSInteger numberOfViewControllers = self.navigationController.viewControllers.count;
+    
+    if (numberOfViewControllers < 2)
+        return nil;
+    else
+        return [self.navigationController.viewControllers objectAtIndex:numberOfViewControllers - 2];
 }
 
 -(void) signOut {
+    // sign user out (delete keychain) so that they can then reset the keychain to their desired challonge username
+    SSKeychainQuery *query = [[SSKeychainQuery alloc] init];
+    
+    NSArray *accounts = [query fetchAll:nil];
+    
+    for (id account in accounts) {
+        
+        SSKeychainQuery *query = [[SSKeychainQuery alloc] init];
+        
+        query.service = @"Challonge";
+        query.account = [account valueForKey:@"acct"];
+        
+        [query deleteItem:nil];
+        
+    }
+
+    
+//    [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
+    
     [self performSegueWithIdentifier:@"needsApiKey" sender:self];
 
 }
@@ -82,12 +143,15 @@
         
         if (error) {
             [_hud hide:YES];
+            [self.refreshControl endRefreshing];
             NSLog(@"Error detected");
             
             if (self.user.apiKey.length < 1) {
                 [self performSegueWithIdentifier:@"needsApiKey" sender:self];
             }
             else {
+                [self.refreshControl endRefreshing];
+
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Your sign in information is not valid or network is too slow. You can try to sign out and sign back in again." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
                 [alert addButtonWithTitle:@"OK"];
                 [alert show];
@@ -103,6 +167,8 @@
                 
                 [self.tableView reloadData];
                 [_hud hide:YES];
+                [self.refreshControl endRefreshing];
+ 
                 
                 
             });
@@ -134,6 +200,7 @@
             }
         }
     }
+    
 }
 
 -(void)showActionSheetForCell {
@@ -141,7 +208,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:@"Delete Tournament"
-                                                    otherButtonTitles:@"Start Tournament", @"Reset Tournament", @"End Tournament", nil];
+                                                    otherButtonTitles:@"Start Tournament", @"Reset The Bracket", @"End Tournament", nil];
     
     [actionSheet showInView:self.view];
     
@@ -151,34 +218,57 @@
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     Tournament *selectedTournament = self.tournaments[longPressedTournament.row];
 
-    if (buttonIndex == 1) {
+    
+    if (alertView.tag == 100) {
+        NSLog(@"YES");
         
-        [communicator deleteTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
+        if (buttonIndex == 1) {
+            
+            [communicator deleteTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
+                if (!error) {
+                    [self updateTournaments];
+                }
+                else {
+                    NSLog(@"%@", error);
+                }
+            }];
+            
+        }
+
+    }
+    if (alertView.tag == 101) {
+        NSLog(@"RESET");
+        
+        [communicator resetTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
                 [self updateTournaments];
+                
             }
             else {
-                NSLog(@"%@", error);
+                NSLog(@"Error resetting tournament: %@", error);
             }
         }];
-    
+
     }
-}
+ }
+
 
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     Tournament *selectedTournament = self.tournaments[longPressedTournament.row];
     NSString *deleteMessage = [NSString stringWithFormat:@"Are you sure you want to delete %@", selectedTournament.tournamentName];
+    NSString *resetMessage = [NSString stringWithFormat:@"Are you sure you want to reset the bracket for %@", selectedTournament.tournamentName];
     
     if (buttonIndex == 0) {
         UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Are you sure?" message:deleteMessage  delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        confirmation.tag = 100;
         [confirmation show];
         
         // delete tournament at this index
         
     }
-    if (buttonIndex ==1) {
+    if (buttonIndex == 1) {
         [communicator startTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
                 [self updateTournaments];
@@ -191,16 +281,11 @@
         
     }
     if (buttonIndex == 2) {
-        [communicator resetTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
-            if (!error) {
-                [self updateTournaments];
-
-            }
-            else {
-                NSLog(@"Error resetting tournament: %@", error);
-            }
-        }];
-    }
+        
+        UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Are you sure?" message:resetMessage delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        confirmation.tag = 101;
+        [confirmation show];
+}
     if (buttonIndex == 3) {
         NSLog(@"end tournament");
         [communicator endTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
@@ -291,7 +376,7 @@
     if([cellTourn.state isEqualToString:@"pending"]){
         
         ///[self performSegueWithIdentifier:@"showParticipants" sender:cellTourn.tournamentName];
-        //[self.navigationController pushViewController:<#(UIViewController *)#> animated:<#(BOOL)#>]
+        //[self.navigationController pushViewController: animated:]
         
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         

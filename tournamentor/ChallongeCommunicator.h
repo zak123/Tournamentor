@@ -20,6 +20,7 @@
 
 -(void)getMatchesForTournament:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSArray *matchArray, NSError *error))completionBlock;
 
+
 -(void)getParticipants:(NSString *)tournament withUsername:(NSString *)username andAPIKey:(NSString *)key block:(void (^)(NSArray *participants, NSError *error))completionBlock;
 
 # pragma - putting data to challonge

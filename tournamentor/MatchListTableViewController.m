@@ -12,7 +12,7 @@
 #import "BracketCollectionViewCell.h"
 
 
-@interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
+@interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) NSArray *matches;
 @property (weak, nonatomic) IBOutlet BracketCollectionView *bracketView;
@@ -20,6 +20,7 @@
 @end
 
 @implementation MatchListTableViewController {
+    int numMatches;
     MBProgressHUD *_hud;
     
 }
@@ -55,6 +56,15 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         
         if (!error) {
             dispatch_async(dispatch_get_main_queue(), ^() {
+                
+                for (numMatches = 0; numMatches < matchArray.count; numMatches++) {
+//                    NSLog(@"NumMatches = %i", i+1);
+                    
+                    
+                }
+                
+                
+                
                 self.matches = matchArray;
                 self.bracketView.matches = self.matches;
                 [self.tableView reloadData];
@@ -152,6 +162,8 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     return self.matches.count;
     
 }
+
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BracketCollectionViewCell *bracketCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];

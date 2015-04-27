@@ -28,10 +28,10 @@
     
     self.tournamentType = @"single elimination";
     
-//    @property (weak, nonatomic) IBOutlet UITextField *tournamentNameTextField;
-//    @property (weak, nonatomic) IBOutlet UITextField *tournamentURLTextField;
-//    @property (weak, nonatomic) IBOutlet UITextField *gameTextField;
-//    @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+    //    @property (weak, nonatomic) IBOutlet UITextField *tournamentNameTextField;
+    //    @property (weak, nonatomic) IBOutlet UITextField *tournamentURLTextField;
+    //    @property (weak, nonatomic) IBOutlet UITextField *gameTextField;
+    //    @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
     
     self.tournamentNameTextField.delegate = self;
     self.tournamentURLTextField.delegate = self;
