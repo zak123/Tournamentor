@@ -10,6 +10,7 @@
 		00FC5213E1A805957D9175E9 /* libPods-tournamentor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D846CB6E7A421D73DF0BFD /* libPods-tournamentor.a */; };
 		9241FFE61AE9E01600F1E2BE /* BracketCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9241FFE51AE9E01600F1E2BE /* BracketCollectionViewCell.m */; };
 		9241FFE91AE9E38200F1E2BE /* BracketCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9241FFE81AE9E38200F1E2BE /* BracketCollectionView.m */; };
+		92D56ABD1AEEECDA00BC8453 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D56ABC1AEEECDA00BC8453 /* Main.storyboard */; };
 		B60086851AE19A8C00517501 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60086841AE19A8C00517501 /* Security.framework */; };
 		B600868A1AE1BEAF00517501 /* DataHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = B60086891AE1BEAF00517501 /* DataHolder.m */; };
 		B61F53671AEECBB1005831BF /* CustomLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B61F53661AEECBB1005831BF /* CustomLayout.m */; };
@@ -19,7 +20,6 @@
 		B633564A1AE1792500D3170B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356491AE1792500D3170B /* AppDelegate.m */; };
 		B63356501AE1792500D3170B /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B633564F1AE1792500D3170B /* MasterViewController.m */; };
 		B63356531AE1792500D3170B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356521AE1792500D3170B /* DetailViewController.m */; };
-		B63356561AE1792500D3170B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63356541AE1792500D3170B /* Main.storyboard */; };
 		B63356581AE1792500D3170B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63356571AE1792500D3170B /* Images.xcassets */; };
 		B633565B1AE1792500D3170B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B63356591AE1792500D3170B /* LaunchScreen.xib */; };
 		B63356671AE1792500D3170B /* tournamentorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63356661AE1792500D3170B /* tournamentorTests.m */; };
@@ -53,6 +53,7 @@
 		9241FFE51AE9E01600F1E2BE /* BracketCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BracketCollectionViewCell.m; sourceTree = "<group>"; };
 		9241FFE71AE9E38200F1E2BE /* BracketCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BracketCollectionView.h; sourceTree = "<group>"; };
 		9241FFE81AE9E38200F1E2BE /* BracketCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BracketCollectionView.m; sourceTree = "<group>"; };
+		92D56ABC1AEEECDA00BC8453 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9AD5D6DDBBED5DE213E80723 /* Pods-tournamentor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tournamentor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tournamentor/Pods-tournamentor.debug.xcconfig"; sourceTree = "<group>"; };
 		B60086841AE19A8C00517501 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B60086881AE1BEAF00517501 /* DataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHolder.h; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		B633564F1AE1792500D3170B /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		B63356511AE1792500D3170B /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		B63356521AE1792500D3170B /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		B63356551AE1792500D3170B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B63356571AE1792500D3170B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B633565A1AE1792500D3170B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B63356601AE1792500D3170B /* tournamentorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tournamentorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,8 +225,8 @@
 				B63356491AE1792500D3170B /* AppDelegate.m */,
 				B60086861AE1BE4100517501 /* Boilerplate */,
 				B60086871AE1BE4A00517501 /* Controllers */,
-				B63356541AE1792500D3170B /* Main.storyboard */,
 				B63356571AE1792500D3170B /* Images.xcassets */,
+				92D56ABC1AEEECDA00BC8453 /* Main.storyboard */,
 				B63356591AE1792500D3170B /* LaunchScreen.xib */,
 				B63356441AE1792500D3170B /* Supporting Files */,
 			);
@@ -356,7 +356,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B63356561AE1792500D3170B /* Main.storyboard in Resources */,
+				92D56ABD1AEEECDA00BC8453 /* Main.storyboard in Resources */,
 				B633565B1AE1792500D3170B /* LaunchScreen.xib in Resources */,
 				B63356581AE1792500D3170B /* Images.xcassets in Resources */,
 			);
@@ -453,14 +453,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B63356541AE1792500D3170B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B63356551AE1792500D3170B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B63356591AE1792500D3170B /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

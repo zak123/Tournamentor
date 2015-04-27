@@ -390,6 +390,11 @@
         [self.navigationController pushViewController:addParticipantsTableViewController animated:YES];
         
     }
+    else if ([cellTourn.state isEqualToString:@"underway"] || [cellTourn.state isEqualToString:@"complete"]){
+
+        [self performSegueWithIdentifier:@"showMatches" sender:cellTourn];
+
+    }
 
 }
 
@@ -397,13 +402,13 @@
     
     
     if ([segue.identifier isEqualToString:@"showMatches"]) {
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    
-    MatchListTableViewController *dVC = (MatchListTableViewController *)segue.destinationViewController;
-    
-    dVC.selectedTournament = self.tournaments[indexPath.row];
-    dVC.currentUser = self.user;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        MatchListTableViewController *dVC = (MatchListTableViewController *)segue.destinationViewController;
+        
+        dVC.selectedTournament = self.tournaments[indexPath.row];
+        dVC.currentUser = self.user;
     }
     
     if ([segue.identifier isEqualToString:@"addTournament"]) {
