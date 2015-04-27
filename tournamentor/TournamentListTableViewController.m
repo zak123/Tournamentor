@@ -297,6 +297,11 @@
         
         AddParticipantsTableViewController *addParticipantsTableViewController;
         addParticipantsTableViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"AddParticipantsTableViewControllerStoryboardID"];
+
+        addParticipantsTableViewController.tournament = self.tournaments[indexPath.row];
+        addParticipantsTableViewController.currentUser = self.user;
+        NSLog(@"Adding new participants");
+        
         [self.navigationController pushViewController:addParticipantsTableViewController animated:YES];
         
     }
@@ -324,14 +329,6 @@
         dVC.currentUser = self.user;
         
     }
-    
-    
-    
-    
-    
-    
-    
-
     
 }
 
