@@ -15,7 +15,7 @@
 @property (nonatomic) NSMutableArray *participantsArray;
 @property (nonatomic) NSMutableArray *participantCountArray;
 @property (nonatomic) NSMutableArray *existingParticipantsArray;
-
+@property (nonatomic) NSMutableArray *extraParticipantsArray;
 
 @end
 
@@ -39,6 +39,7 @@
         [communicator getParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *participants, NSError *error) {
             if (!error){
                 NSLog(@"Pending tournamanet participants loaded successfully");
+                
                 [self.existingParticipantsArray addObjectsFromArray:participants];
                 [self.participantsArray addObjectsFromArray:participants];
                 
@@ -56,6 +57,7 @@
                         [self.participantCountArray addObject:[NSString stringWithFormat:@"#%d", i+1]];
                     }
                 }
+                self.extraParticipantsArray[0] = self.existingParticipantsArray[self.existingParticipantsArray.count];
                 
                 [self.tableView reloadData];
             }
@@ -71,16 +73,46 @@
 
 -(void)done {
     
+//    if ([self.tournament.state isEqualToString:@"pending"]){
+//        
+//        for (int i=(int)self.existingParticipantsArray.count; i < self.participantsArray.count; i++) {
+//            
+//            
+//            NSIndexPath *curCell = [NSIndexPath indexPathForRow:i inSection:0];
+//            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:curCell];
+//            AddParticipantTableViewCell *myCell = (AddParticipantTableViewCell *)cell;
+//            
+//            [self.participantCountArray addObject:[NSString stringWithString:myCell.participantName.text]];
+//            
+//        }
+//        
+//        NSLog(@"%@", self.participantCountArray);
+//        
+//        ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
+//        
+//        [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantCountArray block:^(NSError *error) {
+//            
+//            if(!error){
+//                [self.navigationController popToRootViewControllerAnimated:YES];
+//            }
+//            else{
+//                NSLog(@"Error adding participants: %@", error);
+//            }
+//        }];
+//        
+//    }
+    
+    
     for (int i=0; i < self.participantsArray.count; i++) {
         
         
         NSIndexPath *curCell = [NSIndexPath indexPathForRow:i inSection:0];
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:curCell];
         AddParticipantTableViewCell *myCell = (AddParticipantTableViewCell *)cell;
-        
         [self.participantCountArray addObject:[NSString stringWithString:myCell.participantName.text]];
         
     }
+
     
     NSLog(@"%@", self.participantCountArray);
     
@@ -108,11 +140,19 @@
     
     [self.participantsArray addObject:newParticipant];
     
+    [self.extraParticipantsArray addObject:newParticipant];
+    
     [self.participantCountArray addObject:[NSString stringWithFormat:@"#%d",num]];
 
-//    [self.participantsArray addObject:self.participantNames[num]];
-
+//    [self.participantsArray addObject:self.participantCountArray[num]];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.participantsArray.count-1 inSection:0];
+    Participant *object = [self.participantsArray objectAtIndex:indexPath.row];
+    AddParticipantTableViewCell *myCell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    myCell.participantName.text = object.name;
+    
     [self.tableView reloadData];
+    NSLog(@"Extra Participant #1: %@", self.extraParticipantsArray[0]);
+    NSLog(@"Participant Array Element 6: %@", newParticipant.name);
     
 }
 
@@ -131,7 +171,7 @@
     
     myCell.textLabel.text = [self.participantCountArray objectAtIndex:indexPath.row];
     myCell.participantName.text = object.name;
-//    cell.textLabel.text = [self.participantsArray objectAtIndex:indexPath.row];
+//    myCell.textLabel.text = [self.participantsArray objectAtIndex:indexPath.row];
     
     return myCell;
     
