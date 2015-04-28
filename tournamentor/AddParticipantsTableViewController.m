@@ -110,7 +110,6 @@
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:curCell];
         AddParticipantTableViewCell *myCell = (AddParticipantTableViewCell *)cell;
         [self.participantCountArray addObject:[NSString stringWithString:myCell.participantName.text]];
-        
     }
 
     
@@ -166,11 +165,27 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AddParticipantTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+
     Participant *object = [self.participantsArray objectAtIndex:indexPath.row];
-    
+
+    if (indexPath.row & 1) {
+        myCell.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
+        
+        
+    }
+    else {
+        myCell.backgroundColor = [UIColor colorWithRed:0.231 green:0.231 blue:0.231 alpha:1];
+    }
     
     myCell.textLabel.text = [self.participantCountArray objectAtIndex:indexPath.row];
+    myCell.textLabel.textColor = [UIColor whiteColor];
+
+    myCell.participantName.textColor = [UIColor whiteColor];
     myCell.participantName.text = object.name;
+
+    [[myCell.participantName superview] bringSubviewToFront:myCell.participantName];
+    
+    //[[myButton superview] bringSubviewToFront:myButton];
 //    myCell.textLabel.text = [self.participantsArray objectAtIndex:indexPath.row];
     
     return myCell;
