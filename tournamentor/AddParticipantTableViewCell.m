@@ -8,16 +8,32 @@
 
 #import "AddParticipantTableViewCell.h"
 
-@implementation AddParticipantTableViewCell
+@implementation AddParticipantTableViewCell 
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.participant = [[Participant alloc] init];
+    self.participantName.delegate = self;
+    
+    [self.participantName addTarget:self action:@selector(changedName:) forControlEvents:UIControlEventEditingChanged];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)changedName:(UITextField *)textField {
+    NSLog(@"%@", textField.text);
+    
+    self.participant.name = textField.text;
+}
 
-    // Configure the view for the selected state
+- (void)setupParticipant:(Participant *)participant andTag:(NSInteger)tag andParticipantsCount:(NSMutableArray *)participantsCount {
+    self.participant = participant;
+    self.participantName.tag = tag;
+    self.participantName.text = participant.name;
+    self.textLabel.text = [participantsCount objectAtIndex:tag];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"%@", self.participant.name);
 }
 
 @end
