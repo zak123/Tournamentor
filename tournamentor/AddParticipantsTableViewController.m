@@ -82,11 +82,19 @@
         
     }
     
+<<<<<<< HEAD
     NSLog(@"%@", self.participantCountArray);
     
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
     
     [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantCountArray block:^(NSError *error) {
+=======
+    NSLog(@"%@", self.participantNames);
+    
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
+    
+    [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantNames block:^(NSError *error) {
+>>>>>>> 96b365e08ded96886fb888199acaac987c942379
         if(!error){
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
