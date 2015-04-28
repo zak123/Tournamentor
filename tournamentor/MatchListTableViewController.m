@@ -107,7 +107,6 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                         
                     }
                     
-
                 }
                 
                     
@@ -170,6 +169,8 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     return match.count;
 }
 
+
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray *keys = [roundDictionary allKeys];
     
@@ -202,6 +203,12 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MatchListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"matchCell" forIndexPath:indexPath];
+//    NSDictionary *aDictionary = [NSDictionary dictionaryWithDictionary:roundDictionary];
+//    NSArray *matchesArray = [aDictionary allValues];
+//    
+//
+//    
+//    Match *cellMatch =
     
     Match *cellMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
     
@@ -226,7 +233,33 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         
         cell.player2Score.text = [NSString stringWithFormat:@"%.0f", [scoresArray[1] doubleValue]];
         
+        cell.player2Label.alpha = 0;
+        cell.player1Label.alpha = 0;
+        cell.player1Score.alpha = 0;
+        cell.player2Score.alpha = 0;
+        cell.roundLabel.alpha = 0;
 
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            cell.player2Label.alpha = 1;
+            cell.player1Label.alpha = 1;
+            cell.player1Score.alpha = 1;
+            cell.player2Score.alpha = 1;
+            cell.roundLabel.alpha = 1;
+
+        }];
+     
+        
+        if ([cell.player1Score.text intValue] > [cell.player2Score.text intValue]) {
+           
+        }
+        
+        if ([cell.player2Score.text intValue] > [cell.player1Score.text intValue]) {
+            
+        }
+ 
+        
+    
         
     } else {
         cell.player1Label.text = cellMatch.player1_name;
@@ -243,16 +276,20 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     //#warning Incomplete method implementation -- Return the number of sections
-    return 1;
+    return roundDictionary.count;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //#warning Incomplete method implementation -- Return the number of items in the section
+    NSArray *keys = [roundDictionary allKeys];
     
-    return self.matches.count;
+    NSArray *match = roundDictionary[keys[section]];
+    
+    return match.count;
     
 }
+
 
 
 
@@ -280,7 +317,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         NSIndexPath *indexPath = [self.bracketView indexPathForCell:bracketCollectionViewCell];
         bracketCollectionViewCell = [self.bracketView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
         
-        Match *selectedMatch = self.matches[indexPath.item];
+        Match *selectedMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
         NSLog(@"State: %@", selectedMatch.state);
         if ([selectedMatch.state isEqualToString:@"complete"]) {
             
@@ -301,7 +338,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     if ([sender isKindOfClass:[MatchListTableViewCell class]]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Match *selectedMatch = self.matches[indexPath.row];
+        Match *selectedMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];;
         NSLog(@"State: %@", selectedMatch.state);
         if ([selectedMatch.state isEqualToString:@"complete"]) {
             
