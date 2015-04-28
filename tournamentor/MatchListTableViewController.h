@@ -15,6 +15,7 @@
 #import "User.h"
 #import "MatchEditTableViewController.h"
 #import <MBProgressHUD.h>
+#import "BracketCollectionViewHeader.h"
 
 
 @interface MatchListTableViewController : UITableViewController 

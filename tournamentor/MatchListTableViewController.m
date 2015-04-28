@@ -15,7 +15,7 @@
 @interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) NSArray *matches;
-@property (weak, nonatomic) IBOutlet BracketCollectionView *bracketView;
+@property (nonatomic) IBOutlet BracketCollectionView *bracketView;
 
 @end
 
@@ -34,6 +34,12 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    
+    
+
+
+
     
     // How to load participants from a tournament
 //    ChallongeCommunicator *testComm = [[ChallongeCommunicator alloc]init];
@@ -109,6 +115,8 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                     
                 }
                 
+//                [openMatches sort ]
+                
                     
                     
                 
@@ -147,6 +155,65 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 }
 
 
+//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+//    
+//    
+//    
+//    UICollectionReusableView *reusableview;
+//    
+//    
+//    BracketCollectionViewHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"cellHeader" forIndexPath:indexPath];
+//    
+//    headerView.viewHeader.text = @"TEST";
+//    
+//    if (reusableview == nil) {
+//        reusableview = [[UICollectionReusableView alloc] init];
+//    }
+//    
+//    return reusableview;
+//    
+//}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSArray *keys = [roundDictionary allKeys];
+    
+    NSNumber *max=[keys valueForKeyPath:@"@max.self"];
+    NSNumber *min=[keys valueForKeyPath:@"@min.self"];
+    
+    
+    NSString *str = [NSString stringWithFormat:@"%@", keys[indexPath.section]];
+    
+    if ([str containsString:@"-"]) {
+        if ([str doubleValue] == [min doubleValue]) {
+            str = [NSString stringWithFormat:@"Loser Finals"];
+        }else {
+            str = [NSString stringWithFormat:@"Losers Round %@", keys[indexPath.section]];
+            str = [str stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        }
+    }
+    else {
+        if ([str doubleValue] == [max doubleValue]) {
+            str = [NSString stringWithFormat:@"Finals"];
+        } else {
+            str = [NSString stringWithFormat:@"Winners Round %@", keys[indexPath.section]];
+        }
+    }
+    
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        
+        BracketCollectionViewHeader *reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"cellHeader" forIndexPath:indexPath];
+        
+        if (reusableview==nil) {
+            reusableview=[[BracketCollectionViewHeader alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        }
+        
+        reusableview.viewHeader.text=str;
+        return reusableview;
+    }
+    return nil;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
