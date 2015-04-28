@@ -140,7 +140,27 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray *keys = [roundDictionary allKeys];
     
-    NSString *str = [NSString stringWithFormat:@"Round %@", keys[section]];
+    NSNumber *max=[keys valueForKeyPath:@"@max.self"];
+    NSNumber *min=[keys valueForKeyPath:@"@min.self"];
+    
+    
+    NSString *str = [NSString stringWithFormat:@"%@", keys[section]];
+    
+    if ([str containsString:@"-"]) {
+        if ([str doubleValue] == [min doubleValue]) {
+            str = [NSString stringWithFormat:@"Loser Finals"];
+        }else {
+    str = [NSString stringWithFormat:@"Losers Round %@", keys[section]];
+            str = [str stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        }
+    }
+    else {
+        if ([str doubleValue] == [max doubleValue]) {
+            str = [NSString stringWithFormat:@"Finals"];
+        } else {
+        str = [NSString stringWithFormat:@"Winners Round %@", keys[section]];
+        }
+    }
     
     return str;
 }
