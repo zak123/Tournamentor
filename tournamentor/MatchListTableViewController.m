@@ -21,7 +21,11 @@
 
 @implementation MatchListTableViewController {
     int numMatches;
+    NSMutableArray *numMatchesArray;
+    NSNumber *numberRounds;
     MBProgressHUD *_hud;
+    NSMutableDictionary *roundDictionary;
+    NSArray *roundsArray;
     
 }
 
@@ -47,6 +51,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     _hud.mode = MBProgressHUDModeIndeterminate;
     _hud.labelText = @"Loading";
     [_hud show:YES];
+    numMatchesArray = [[NSMutableArray alloc]init];
     
     
     [self setTitle:self.selectedTournament.tournamentName];
@@ -59,16 +64,36 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                 
                 for (numMatches = 0; numMatches < matchArray.count; numMatches++) {
 //                    NSLog(@"NumMatches = %i", i+1);
+                    [numMatchesArray addObject:[NSString stringWithFormat:@"%i", numMatches]];
                     
-                    
+                }
+            
+                
+                
+            
+
+                
+                self.matches = matchArray;
+ //               self.bracketView.matches = self.matches;
+                
+           
+                
+                roundDictionary = [NSMutableDictionary dictionary];
+                
+                for (Match *match in matchArray) {
+                    if (!roundDictionary[match.round])
+                        roundDictionary[match.round] = [NSMutableArray array];
+                    [roundDictionary[match.round] addObject:match];
+  
                 }
                 
                 
                 
-                self.matches = matchArray;
-                self.bracketView.matches = self.matches;
                 [self.tableView reloadData];
                 [self.bracketView reloadData];
+                
+           
+
 
                 
                 [_hud hide:YES];
@@ -99,12 +124,25 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return roundDictionary.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.matches.count;
+
+    NSArray *keys = [roundDictionary allKeys];
+    
+    NSArray *match = roundDictionary[keys[section]];
+    
+    return match.count;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSArray *keys = [roundDictionary allKeys];
+    
+    NSString *str = [NSString stringWithFormat:@"Round %@", keys[section]];
+    
+    return str;
 }
 
 
@@ -112,7 +150,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     MatchListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"matchCell" forIndexPath:indexPath];
     
-    Match *cellMatch = _matches[indexPath.row];
+    Match *cellMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
     
     cell.roundLabel.text = cellMatch.state;
     
