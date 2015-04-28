@@ -363,7 +363,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BracketCollectionViewCell *bracketCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    Match *cellMatch = _matches[indexPath.row];
+    Match *cellMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
     
     bracketCollectionViewCell.player1Label.text = cellMatch.player1_name;
     bracketCollectionViewCell.player2Label.text = cellMatch.player2_name;
