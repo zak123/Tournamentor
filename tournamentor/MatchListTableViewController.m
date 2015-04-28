@@ -302,6 +302,16 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         
         
     }
+    
+    else if ([segue.identifier isEqualToString:@"AddParticipantsTableViewControllerStoryboardID"]){
+        
+        MatchEditTableViewController *dVC = (MatchEditTableViewController *)segue.destinationViewController;
+        
+        dVC.selectedMatch = self.matches[indexPath.row];
+        dVC.currentUser = self.currentUser;
+        dVC.currentTournament = self.selectedTournament;
+        NSLog(@"Adding more participants");
+    }
 }
 
     
