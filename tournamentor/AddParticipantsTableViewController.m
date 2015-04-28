@@ -53,7 +53,9 @@
     }
     
     NSLog(@"%@", self.participantNames);
+    
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
+    
     [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantNames block:^(NSError *error) {
         if(!error){
             [self.navigationController popToRootViewControllerAnimated:YES];

@@ -141,15 +141,33 @@
 #pragma mark - tournamentURL validation for acceptable characters
 
 - (BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)characters {
-//    if (field == self.tournamentURLTextField) {
-        NSCharacterSet *TournamentURLcharacterSet = [NSCharacterSet alphanumericCharacterSet];
-        NSMutableCharacterSet *_alnum = [NSMutableCharacterSet characterSetWithCharactersInString:@"_"];
-        [_alnum formUnionWithCharacterSet:TournamentURLcharacterSet];
+    NSCharacterSet *TournamentURLcharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyz0123456789_"];
+    
+    NSCharacterSet *blockedCharactersURL = [TournamentURLcharacterSet invertedSet];
+    
+    NSCharacterSet *TournamentNameCharacterSet = [NSCharacterSet alphanumericCharacterSet];
+    
+    NSMutableCharacterSet *space = [NSMutableCharacterSet characterSetWithCharactersInString:@" "];
+    [space formUnionWithCharacterSet:TournamentNameCharacterSet];
+    
+    NSCharacterSet *blockedCharacterName = [TournamentNameCharacterSet invertedSet];
+    
+    
+    if (field == self.tournamentURLTextField) {
         
-        NSCharacterSet *blockedCharacters = [TournamentURLcharacterSet invertedSet];
+        //NSMutableCharacterSet *_alnum = [NSMutableCharacterSet characterSetWithCharactersInString:@"_"];
+        //[_alnum formUnionWithCharacterSet:TournamentURLcharacterSet];
         
-        return ([characters rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
-//    }
+        return ([characters rangeOfCharacterFromSet:blockedCharactersURL].location == NSNotFound);
+        
+    } else if (field == self.tournamentNameTextField) {
+        
+        return ([characters rangeOfCharacterFromSet:blockedCharacterName].location == NSNotFound);
+        
+    } else {
+        return characters;
+    }
+    
     
 }
 
