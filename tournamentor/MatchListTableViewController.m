@@ -106,19 +106,72 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                         Match *aMatch = objectArray[i];
        
                         if ([aMatch.state  isEqual: @"open"]) {
-                            [openMatches addObject:[NSString stringWithFormat:@"%@", key]];
+                            [openMatches addObject:key];
                         }
                         else {
-                            [notOpenMatches addObject:[NSString stringWithFormat:@"%@", key]];
+                            [notOpenMatches addObject:key];
                     }
                 }
             }
+                NSMutableArray *openMatchesWinners = [[NSMutableArray alloc]init];
+                NSMutableArray *openMatchesLosers = [[NSMutableArray alloc]init];
+                
+                NSMutableArray *closedMatchesWinners = [[NSMutableArray alloc]init];
+                NSMutableArray *closedMatchesLosers = [[NSMutableArray alloc]init];
+                
+                NSArray *openMatchesWinnersSorted = [[NSArray alloc]init];
+                NSArray *openMatchesLosersSorted = [[NSArray alloc]init];
+                
+                NSArray *closedMatchesWinnersSorted = [[NSArray alloc]init];
+                NSArray *closedMatchesLosersSorted = [[NSArray alloc]init];
+                
+//                NSArray *openMatchesSorted = [[NSArray alloc]init];
+                for (NSNumber *j in openMatches) {
+                    if ([j intValue] > 0 && [j intValue] < 9000) {
+                        [openMatchesWinners addObject:j];
+                        
+                    }
+                    else {
+                        [openMatchesLosers addObject:j];
+                    }
+                }
+                for (NSNumber *k in notOpenMatches) {
+                    if ([k intValue] > 0 && [k intValue] < 9000) {
+                        [closedMatchesWinners addObject:k];
+                    }
+                    else {
+                        [closedMatchesLosers addObject:k];
+                    }
+                }
+                
+                openMatchesWinnersSorted = [openMatchesWinners sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                       return [obj1 compare:obj2];
+                }];
+                openMatchesLosersSorted = [openMatchesLosers sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                    return [obj1 compare:obj2];
+                }];
+                
+                closedMatchesWinnersSorted = [closedMatchesWinners sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                    return [obj1 compare:obj2];
+                }];
+                
+                closedMatchesLosersSorted = [closedMatchesLosers sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                    return [obj1 compare:obj2];
+                }];
+
+                
+                NSArray *reverseOpenMatchesLosersSorted = [[NSArray alloc]init];
+                NSArray *reverseClosedMatchesLosersSorted = [[NSArray alloc]init];
+                
+                reverseOpenMatchesLosersSorted = [[openMatchesLosersSorted reverseObjectEnumerator] allObjects];
+                reverseClosedMatchesLosersSorted = [[closedMatchesLosersSorted reverseObjectEnumerator] allObjects];
+                
                 NSMutableArray *sortedArray = [[NSMutableArray alloc]init];
-                    [sortedArray addObjectsFromArray:openMatches];
-                    [sortedArray addObjectsFromArray:notOpenMatches];
-                
-                
-//                   NSArray *newSorted = [sortedArray valueForKeyPath:@"@distinctUnionOfObjects.self"];
+                    [sortedArray addObjectsFromArray:openMatchesWinnersSorted];
+                    [sortedArray addObjectsFromArray:reverseOpenMatchesLosersSorted];
+                    [sortedArray addObjectsFromArray:closedMatchesWinnersSorted];
+                    [sortedArray addObjectsFromArray:reverseClosedMatchesLosersSorted];
+
                 newSorted = [NSArray arrayWithArray:[[NSOrderedSet orderedSetWithArray:sortedArray] array]];
                 
                 
@@ -222,7 +275,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-
+    
     NSArray *keys = newSorted;
     
     NSArray *match = roundDictionary[keys[section]];
@@ -273,7 +326,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
 //    Match *cellMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
     
-    id cellMatchKey = @([[newSorted objectAtIndex:indexPath.section] longLongValue]);
+    id cellMatchKey = [newSorted objectAtIndex:indexPath.section];
     
     Match *cellMatch = [[roundDictionary objectForKey:cellMatchKey] objectAtIndex:indexPath.row];
     
@@ -403,7 +456,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     if ([sender isKindOfClass:[MatchListTableViewCell class]]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Match *selectedMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];;
+        Match *selectedMatch = roundDictionary[newSorted[indexPath.section]][indexPath.row];
         NSLog(@"State: %@", selectedMatch.state);
         if ([selectedMatch.state isEqualToString:@"complete"]) {
             
