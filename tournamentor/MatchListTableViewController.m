@@ -84,8 +84,40 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                     if (!roundDictionary[match.round])
                         roundDictionary[match.round] = [NSMutableArray array];
                     [roundDictionary[match.round] addObject:match];
+                    
+                   
   
                 }
+                
+                NSMutableArray *openMatches = [[NSMutableArray alloc]init];
+                
+                for (NSNumber *key in [roundDictionary allKeys]) {
+                    NSLog(@"%@", key);
+                    NSArray *objectArray = [roundDictionary objectForKey:key];
+                    NSLog(@"%@", objectArray);
+                    
+                    for (int i = 0; i < objectArray.count; i++) {
+                        Match *aMatch = objectArray[i];
+                        
+                        
+                        
+                        if ([aMatch.state  isEqual: @"open"]) {
+                            [openMatches addObject:[NSString stringWithFormat:@"Open Match for %@", key]];
+                        }
+                        
+                    }
+                    
+
+                }
+                
+                    
+                    
+                
+                NSLog(@"%@", openMatches);
+                
+                
+                           
+                           
                 
                 
                 
@@ -101,6 +133,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
             });
           
         }
+                                                       
 
         else {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Tournament not found. Maybe it was deleted recently?" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
