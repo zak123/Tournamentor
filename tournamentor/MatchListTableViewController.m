@@ -26,6 +26,8 @@
     MBProgressHUD *_hud;
     NSMutableDictionary *roundDictionary;
     NSArray *roundsArray;
+    NSArray *newSorted;
+
     
 }
 
@@ -37,7 +39,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
     
     
-
+    newSorted = [[NSArray alloc]init];
 
 
     
@@ -71,14 +73,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                 for (numMatches = 0; numMatches < matchArray.count; numMatches++) {
 //                    NSLog(@"NumMatches = %i", i+1);
                     [numMatchesArray addObject:[NSString stringWithFormat:@"%i", numMatches]];
-                    
                 }
-            
-                
-                
-            
-
-                
                 self.matches = matchArray;
  //               self.bracketView.matches = self.matches;
                 
@@ -96,36 +91,35 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                 }
                 
                 NSMutableArray *openMatches = [[NSMutableArray alloc]init];
+                NSMutableArray *notOpenMatches = [[NSMutableArray alloc]init];
+                NSDictionary *openDic = [[NSDictionary alloc]init];
+
                 
                 for (NSNumber *key in [roundDictionary allKeys]) {
                     NSLog(@"%@", key);
                     NSArray *objectArray = [roundDictionary objectForKey:key];
                     NSLog(@"%@", objectArray);
                     
+                    openDic = @{ key : @(0) };
+                    
                     for (int i = 0; i < objectArray.count; i++) {
                         Match *aMatch = objectArray[i];
-                        
-                        
-                        
+       
                         if ([aMatch.state  isEqual: @"open"]) {
-                            [openMatches addObject:[NSString stringWithFormat:@"Open Match for %@", key]];
+                            [openMatches addObject:[NSString stringWithFormat:@"%@", key]];
                         }
-                        
+                        else {
+                            [notOpenMatches addObject:[NSString stringWithFormat:@"%@", key]];
                     }
-                    
                 }
-                
-//                [openMatches sort ]
-                
-                    
-                    
-                
-                NSLog(@"%@", openMatches);
+            }
+                NSMutableArray *sortedArray = [[NSMutableArray alloc]init];
+                    [sortedArray addObjectsFromArray:openMatches];
+                    [sortedArray addObjectsFromArray:notOpenMatches];
                 
                 
-                           
-                           
-                
+//                   NSArray *newSorted = [sortedArray valueForKeyPath:@"@distinctUnionOfObjects.self"];
+                newSorted = [NSArray arrayWithArray:[[NSOrderedSet orderedSetWithArray:sortedArray] array]];
                 
                 
                 [self.tableView reloadData];
@@ -229,7 +223,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 
-    NSArray *keys = [roundDictionary allKeys];
+    NSArray *keys = newSorted;
     
     NSArray *match = roundDictionary[keys[section]];
     
@@ -239,7 +233,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSArray *keys = [roundDictionary allKeys];
+    NSArray *keys = newSorted;
     
     NSNumber *max=[keys valueForKeyPath:@"@max.self"];
     NSNumber *min=[keys valueForKeyPath:@"@min.self"];
@@ -277,7 +271,11 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 //    
 //    Match *cellMatch =
     
-    Match *cellMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
+//    Match *cellMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
+    
+    id cellMatchKey = @([[newSorted objectAtIndex:indexPath.section] longLongValue]);
+    
+    Match *cellMatch = [[roundDictionary objectForKey:cellMatchKey] objectAtIndex:indexPath.row];
     
     cell.roundLabel.text = cellMatch.state;
     
