@@ -13,7 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *counter;
 
 @property (nonatomic) NSMutableArray *participantsArray;
-@property (nonatomic) NSMutableArray *participantNames;
+@property (nonatomic) NSMutableArray *participantCountArray;
+@property (nonatomic) NSMutableArray *existingParticipantsArray;
 
 
 @end
@@ -24,7 +25,7 @@
 -(void)viewDidLoad {
     
     self.participantsArray = [[NSMutableArray alloc]init];
-    self.participantNames = [[NSMutableArray alloc]init];
+    self.participantCountArray = [[NSMutableArray alloc]init];
     
     
     
@@ -32,14 +33,43 @@
     UIBarButtonItem *done = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
     
-    
+    if ([self.tournament.state isEqualToString:@"pending"]){
+        ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
+        
+        [communicator getParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *participants, NSError *error) {
+            if (!error){
+                NSLog(@"Pending tournamanet participants loaded successfully");
+                [self.existingParticipantsArray addObjectsFromArray:participants];
+                [self.participantsArray addObjectsFromArray:participants];
+                
+                for (int i = 0; i < participants.count; i++){
+                    num = i + 1;
+//                    Participant *object = [[Participant alloc]init];
+//                    [self.participantsArray addObject:object.name];
+                }
+                NSString *strFromInt = [NSString stringWithFormat:@"%d",num];
+                self.counter.text = strFromInt;
+                
+                if (self.participantsArray.count > 0){
+                    int i;
+                    for (i=0;i<self.participantsArray.count; i++){
+                        [self.participantCountArray addObject:[NSString stringWithFormat:@"#%d", i+1]];
+                    }
+                }
+                
+                [self.tableView reloadData];
+            }
+            else {
+                NSLog(@"Add participants error:%@", error);
+            }
+        }];
+    }
 }
 
 
 
 
 -(void)done {
-    
     
     for (int i=0; i < self.participantsArray.count; i++) {
         
@@ -48,13 +78,15 @@
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:curCell];
         AddParticipantTableViewCell *myCell = (AddParticipantTableViewCell *)cell;
         
-        [self.participantNames addObject:[NSString stringWithString:myCell.participantName.text]];
-
+        [self.participantCountArray addObject:[NSString stringWithString:myCell.participantName.text]];
+        
     }
     
-    NSLog(@"%@", self.participantNames);
+    NSLog(@"%@", self.participantCountArray);
+    
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
-    [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantNames block:^(NSError *error) {
+    
+    [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantCountArray block:^(NSError *error) {
         if(!error){
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
@@ -70,31 +102,37 @@
 - (IBAction)addRow:(id)sender {
     num++;
     self.counter.text = [NSString stringWithFormat:@"%i",num];
-    [self.participantsArray addObject:[NSString stringWithFormat:@"#%d",num]];
+    Participant *newParticipant = [[Participant alloc]init];
+    
+    
+    [self.participantsArray addObject:newParticipant];
+    
+    [self.participantCountArray addObject:[NSString stringWithFormat:@"#%d",num]];
+
+//    [self.participantsArray addObject:self.participantNames[num]];
+
     [self.tableView reloadData];
+    
 }
 
--(void)addRow {
-    num++;
-    [self.participantsArray addObject:[NSString stringWithFormat:@"#%d",num]];
-    [self.tableView reloadData];
-
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return num;
+    return self.participantsArray.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
     
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
- 
+    AddParticipantTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    Participant *object = [self.participantsArray objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [self.participantsArray objectAtIndex:indexPath.row];
     
-    return cell;
+    myCell.textLabel.text = [self.participantCountArray objectAtIndex:indexPath.row];
+    myCell.participantName.text = object.name;
+//    cell.textLabel.text = [self.participantsArray objectAtIndex:indexPath.row];
+    
+    return myCell;
     
 }
 
