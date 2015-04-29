@@ -116,6 +116,11 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
                 if ([aParticipant[@"id"] isEqualToNumber:match.player1_id]){
                     match.player1_name = aParticipant[@"display_name"];
                 }
+                }
+                if (match.player2_id == nil || [match.player2_id isKindOfClass:[NSNull class]]) {
+                    
+                }else {
+            
                 if ([aParticipant[@"id"] isEqualToNumber: match.player2_id]){
                     match.player2_name = aParticipant[@"display_name"];
                 
