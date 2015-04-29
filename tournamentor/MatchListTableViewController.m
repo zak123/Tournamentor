@@ -39,6 +39,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     [super viewDidLoad];
     
     [self headerViewToggle];
+    NSLog(@"brian is homo");
 
 
     
