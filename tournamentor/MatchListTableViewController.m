@@ -322,7 +322,32 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     Match *cellMatch = [[roundDictionary objectForKey:cellMatchKey] objectAtIndex:indexPath.row];
     
-    cell.roundLabel.text = cellMatch.state;
+    if ([cellMatch.state  isEqual: @"complete"]) {
+        cell.roundImage.image = [UIImage imageNamed:@"complete"];
+    }
+    if ([cellMatch.state isEqual: @"pending"]) {
+        cell.roundImage.image = [UIImage imageNamed:@"pending"];
+    }
+    if ([cellMatch.state isEqual: @"open"]) {
+        cell.roundImage.image = [UIImage imageNamed:@"edit"];
+    }
+    
+    cell.player2Label.alpha = 0;
+    cell.player1Label.alpha = 0;
+    cell.player1Score.alpha = 0;
+    cell.player2Score.alpha = 0;
+    cell.roundLabel.alpha = 0;
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        cell.player2Label.alpha = 1;
+        cell.player1Label.alpha = 1;
+        cell.player1Score.alpha = 1;
+        cell.player2Score.alpha = 1;
+        cell.roundLabel.alpha = 1;
+        
+    }];
+
     
     if (indexPath.row & 1) {
         cell.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
@@ -333,9 +358,8 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
  
 
     if (cellMatch.score.length > 1) {
-        
-        cell.player1Label.text = [NSString stringWithFormat:@"%@ -", cellMatch.player1_name];
-        cell.player2Label.text = [NSString stringWithFormat:@"%@ -", cellMatch.player2_name];
+        cell.player1Label.text = cellMatch.player1_name;
+        cell.player2Label.text = cellMatch.player2_name;
         
         NSArray *scoresArray = [cellMatch.score componentsSeparatedByString:@"-"];
         
@@ -343,22 +367,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         
         cell.player2Score.text = [NSString stringWithFormat:@"%.0f", [scoresArray[1] doubleValue]];
         
-        cell.player2Label.alpha = 0;
-        cell.player1Label.alpha = 0;
-        cell.player1Score.alpha = 0;
-        cell.player2Score.alpha = 0;
-        cell.roundLabel.alpha = 0;
-
         
-        [UIView animateWithDuration:0.3 animations:^{
-            cell.player2Label.alpha = 1;
-            cell.player1Label.alpha = 1;
-            cell.player1Score.alpha = 1;
-            cell.player2Score.alpha = 1;
-            cell.roundLabel.alpha = 1;
-
-        }];
-     
         
         if ([cell.player1Score.text intValue] > [cell.player2Score.text intValue]) {
            

@@ -322,7 +322,15 @@
     
     cell.tournamentNameLabel.text = cellTourn.tournamentName;
     
-    
+    if ([cellTourn.state isEqual:@"pending"]) {
+        cell.tournamentImage.image = [UIImage imageNamed:@"pending"];
+    }
+    if ([cellTourn.state isEqual:@"underway"]) {
+        cell.tournamentImage.image = [UIImage imageNamed:@"underway"];
+    }
+    if ([cellTourn.state isEqual:@"complete"]) {
+        cell.tournamentImage.image = [UIImage imageNamed:@"complete"];
+    }
     
     float progressFloat = [cellTourn.progress floatValue];
     

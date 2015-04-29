@@ -10,5 +10,6 @@
 
 @interface TournamentListTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *tournamentNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *tournamentImage;
 
 @end
