@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P96-Eu-4iH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P96-Eu-4iH">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -256,7 +256,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3Jq-On-Xez">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="gvz-o6-WLg">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -267,7 +267,7 @@
                                         <constraint firstAttribute="width" constant="33" id="tNP-xu-LNj"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNn-nB-S0R">
@@ -275,7 +275,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="35" id="nc6-m4-c9w"/>
                                     </constraints>
-                                    <state key="normal" image="add">
+                                    <state key="normal" image="plus-96-white">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -284,7 +284,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Go4-2t-2EC" firstAttribute="centerX" secondItem="gvz-o6-WLg" secondAttribute="centerX" id="8kh-Ag-9Fu"/>
                                 <constraint firstItem="gNn-nB-S0R" firstAttribute="trailing" secondItem="gvz-o6-WLg" secondAttribute="trailingMargin" id="EF6-aS-3uE"/>
@@ -299,8 +299,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mmE-Fo-o0l" id="MXS-ka-fGJ">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-Sj-1ZR">
-                                            <rect key="frame" x="50" y="0.0" width="550" height="44"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-Sj-1ZR" userLabel="addParticipantTextField">
+                                            <rect key="frame" x="70" y="7" width="522" height="30"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
@@ -309,10 +310,9 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="PUk-Sj-1ZR" firstAttribute="top" secondItem="MXS-ka-fGJ" secondAttribute="top" id="1NI-ML-1bM"/>
-                                        <constraint firstItem="PUk-Sj-1ZR" firstAttribute="leading" secondItem="MXS-ka-fGJ" secondAttribute="leading" constant="50" id="2DV-wJ-Iln"/>
-                                        <constraint firstAttribute="trailing" secondItem="PUk-Sj-1ZR" secondAttribute="trailing" id="W62-eY-QZz"/>
-                                        <constraint firstAttribute="bottom" secondItem="PUk-Sj-1ZR" secondAttribute="bottom" id="ZPD-Vu-cMY"/>
+                                        <constraint firstItem="PUk-Sj-1ZR" firstAttribute="leading" secondItem="MXS-ka-fGJ" secondAttribute="leadingMargin" constant="55" id="71G-wC-nYW"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="PUk-Sj-1ZR" secondAttribute="trailing" constant="-7" id="UIK-Cs-gdp"/>
+                                        <constraint firstItem="PUk-Sj-1ZR" firstAttribute="centerY" secondItem="MXS-ka-fGJ" secondAttribute="centerY" id="aHI-iO-2Tw"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -374,7 +374,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <outlet property="player1Label" destination="dfY-yC-MOf" id="byY-LY-OlZ"/>
                                         <outlet property="player2Label" destination="Yii-wd-WSD" id="rwW-kh-W6R"/>
@@ -383,7 +383,7 @@
                                 </collectionViewCell>
                             </cells>
                             <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellHeader" id="hED-FZ-XeR" customClass="BracketCollectionViewHeader">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="92"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3A-mC-Zfb">
@@ -617,7 +617,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="48" height="48"/>
+        <image name="plus-96-white" width="96" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Lq2-KB-9h8"/>
