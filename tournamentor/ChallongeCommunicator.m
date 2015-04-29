@@ -212,10 +212,18 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //
+    BOOL valid = YES;
     
     NSMutableArray *participantsNames = [NSMutableArray array];
     for (Participant *participant in participants) {
+        if (participant.name != nil) {
         [participantsNames addObject:participant.name];
+        }
+        else {
+            valid = NO;
+            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Participant names cannot be empty." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [error show];
+        }
     }
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -228,8 +236,14 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Succeed Array POST! with %@", responseObject);
         
-        
+        if (valid) {
         completionBlock(nil);
+        }
+        else {
+            NSError *error;
+            error = [NSError errorWithDomain:@"Communicator" code:123 userInfo:nil];
+        completionBlock(error);
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completionBlock(error);
     }];

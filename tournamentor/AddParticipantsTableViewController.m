@@ -36,7 +36,7 @@
     self.minusButton.alpha = 0;
     self.plusButton.alpha = 0;
     
-
+    
     UIBarButtonItem *done = [[UIBarButtonItem alloc]initWithTitle:@"Add Users" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
     
@@ -90,6 +90,12 @@
 }
 
 
+-(void)viewWillAppear:(BOOL)animated {
+    if (self.extraParticipantsArray.count == 0) {
+        [self.addUsersAndStart setTitle:@"Start Tournament" forState:UIControlStateNormal];
+    }
+}
+
 
 -(void)done {
     
@@ -103,7 +109,6 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
             else{
-                NSLog(@"Error adding participants: %@", error);
             }
         }];
         
@@ -147,49 +152,23 @@
         [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.extraParticipantsArray block:^(NSError *error) {
             
             if(!error){
-                
+                [communicator startTournament:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSError *error) {
+                    if(!error) {
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
+                    
+                }];
             }
             else{
-                UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Error adding users" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 
-                [error show];
             }
         }];
         
-        [communicator startTournament:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSError *error) {
-            if(!error) {
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
-            
-        }];
+        
         
     }
     else{
-        //
-        //        for (int i=0; i < self.participantCountArray.count; i++) {
-        //
-        //
-        //            NSIndexPath *curCell = [NSIndexPath indexPathForRow:i inSection:0];
-        //            AddParticipantTableViewCell *cell = (AddParticipantTableViewCell *)[self.tableView cellForRowAtIndexPath:curCell];
-        //            AddParticipantTableViewCell *myCell = (AddParticipantTableViewCell *)cell;
-        //            [self.participantsArray addObject:[NSString stringWithString:cell.participantName.text]];
-        //
-        //        }
-        
-        
         ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
-        
-        [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.extraParticipantsArray block:^(NSError *error) {
-            
-            if(!error){
-                
-            }
-            else{
-                UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Error adding users" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                
-                [error show];
-            }
-        }];
         
         [communicator startTournament:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSError *error) {
             if(!error) {
@@ -203,6 +182,9 @@
      
 - (IBAction)addRow:(id)sender {
     num++;
+    
+    [self.addUsersAndStart setTitle:@"Add Users + Start" forState:UIControlStateNormal];
+    
     self.counter.text = [NSString stringWithFormat:@"%i",num];
     Participant *newParticipant = [[Participant alloc]init];
     
@@ -238,6 +220,10 @@
         
         
         [self.tableView reloadData];
+    }
+    if (self.extraParticipantsArray.count == 0) {
+        [self.addUsersAndStart setTitle:@"Start Tournament" forState:UIControlStateNormal];
+
     }
     
     

@@ -26,6 +26,48 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
+    
+    [communicator getTournaments:self.user.name withKey:self.user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
+        
+        NSLog(@"%@", tournamentsArray);
+        
+        if (error) {
+            [self.refreshControl endRefreshing];
+            NSLog(@"Error detected");
+            
+            if (self.user.apiKey.length < 1) {
+                [self performSegueWithIdentifier:@"needsApiKey" sender:self];
+            }
+            else {
+                [self.refreshControl endRefreshing];
+                
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Your sign in information is not valid or network is too slow. You can try to sign out and sign back in again." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+                [alert addButtonWithTitle:@"OK"];
+                [alert show];
+                
+                //                [self performSegueWithIdentifier:@"needsApiKey" sender:self];
+                //            [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+        
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^() {
+                _tournaments = [[tournamentsArray reverseObjectEnumerator] allObjects];
+                
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+                
+                
+                
+            });
+            
+        }
+        
+        
+        
+    }];
+    
     
     
     NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
