@@ -30,6 +30,9 @@
     self.participantName.tag = tag;
     self.participantName.text = participant.name;
     self.textLabel.text = [participantsCount objectAtIndex:tag];
+    
+    self.textLabel.textColor = [UIColor whiteColor];
+    self.participantName.textColor = [UIColor whiteColor];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {

@@ -166,6 +166,15 @@
     Participant *object = [self.participantsArray objectAtIndex:indexPath.row];
     [cell setupParticipant:object andTag:indexPath.row andParticipantsCount:self.participantCountArray];
     
+    if (indexPath.row & 1) {
+        cell.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
+    } else {
+        cell.backgroundColor = [UIColor colorWithRed:0.231 green:0.231 blue:0.231 alpha:1];
+    }
+    
+    [[cell.participantName superview] bringSubviewToFront:cell.participantName];
+    
+    
     return cell;
     
 }
