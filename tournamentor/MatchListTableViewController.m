@@ -92,7 +92,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                 
                 NSMutableArray *openMatches = [[NSMutableArray alloc]init];
                 NSMutableArray *notOpenMatches = [[NSMutableArray alloc]init];
-                NSDictionary *openDic = [[NSDictionary alloc]init];
+//                NSDictionary *openDic = [[NSDictionary alloc]init];
 
                 
                 for (NSNumber *key in [roundDictionary allKeys]) {
@@ -100,7 +100,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                     NSArray *objectArray = [roundDictionary objectForKey:key];
                     NSLog(@"%@", objectArray);
                     
-                    openDic = @{ key : @(0) };
+//                    openDic = @{ key : @(0) };
                     
                     for (int i = 0; i < objectArray.count; i++) {
                         Match *aMatch = objectArray[i];
@@ -223,7 +223,8 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSArray *keys = [roundDictionary allKeys];
+    NSArray *keys = newSorted;
+    
     
     NSNumber *max=[keys valueForKeyPath:@"@max.self"];
     NSNumber *min=[keys valueForKeyPath:@"@min.self"];
@@ -400,7 +401,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //#warning Incomplete method implementation -- Return the number of items in the section
-    NSArray *keys = [roundDictionary allKeys];
+    NSArray *keys = newSorted;
     
     NSArray *match = roundDictionary[keys[section]];
     
@@ -414,7 +415,9 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BracketCollectionViewCell *bracketCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    Match *cellMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
+    id cellMatchKey = [newSorted objectAtIndex:indexPath.section];
+    
+    Match *cellMatch = [[roundDictionary objectForKey:cellMatchKey] objectAtIndex:indexPath.row];
     
     bracketCollectionViewCell.player1Label.text = cellMatch.player1_name;
     bracketCollectionViewCell.player2Label.text = cellMatch.player2_name;
@@ -435,7 +438,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         NSIndexPath *indexPath = [self.bracketView indexPathForCell:bracketCollectionViewCell];
         bracketCollectionViewCell = [self.bracketView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
         
-        Match *selectedMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
+        Match *selectedMatch = roundDictionary[newSorted[indexPath.section]][indexPath.row];
         NSLog(@"State: %@", selectedMatch.state);
         if ([selectedMatch.state isEqualToString:@"complete"]) {
             
@@ -480,6 +483,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 

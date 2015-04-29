@@ -396,6 +396,8 @@
         [self performSegueWithIdentifier:@"showMatches" sender:cellTourn];
 
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 
 }
 
