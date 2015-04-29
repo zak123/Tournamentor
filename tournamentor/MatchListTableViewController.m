@@ -37,8 +37,10 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     
+    [self headerViewToggle];
+
+
     
     newSorted = [[NSArray alloc]init];
 
@@ -68,6 +70,18 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     
 }
+
+-(void)headerViewToggle {
+    
+    CGRect frame = self.tableView.tableHeaderView.frame;
+    frame.size.height = 0;
+    self.tableView.tableHeaderView.frame = frame;
+    
+    self.tableView.tableHeaderView.hidden = YES;
+
+
+}
+
 
 -(void)updateTournamentsAndDictionary {
     numMatchesArray = [[NSMutableArray alloc]init];
