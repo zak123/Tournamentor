@@ -115,16 +115,6 @@
         
     }
     else{
-//    
-//        for (int i=0; i < self.participantCountArray.count; i++) {
-//            
-//            
-//            NSIndexPath *curCell = [NSIndexPath indexPathForRow:i inSection:0];
-//            AddParticipantTableViewCell *cell = (AddParticipantTableViewCell *)[self.tableView cellForRowAtIndexPath:curCell];
-//            AddParticipantTableViewCell *myCell = (AddParticipantTableViewCell *)cell;
-//            [self.participantsArray addObject:[NSString stringWithString:cell.participantName.text]];
-//            
-//        }
 
         
         NSLog(@"%@", self.participantsArray);
