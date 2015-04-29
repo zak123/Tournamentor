@@ -7,6 +7,7 @@
 //
 
 #import "AddParticipantsTableViewController.h"
+#import "TournamentListTableViewController.h"
 
 @interface AddParticipantsTableViewController () <UITextFieldDelegate>
 
@@ -106,7 +107,7 @@
         [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.extraParticipantsArray block:^(NSError *error) {
             
             if(!error){
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self performSegueWithIdentifier:@"doneEditingTournament" sender:self];
             }
             else{
             }
@@ -133,7 +134,7 @@
         [communicator updateParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey withParticipants:self.participantsArray block:^(NSError *error) {
 
             if(!error){
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self performSegueWithIdentifier:@"doneEditingTournament" sender:self];
             }
             else{
                 NSLog(@"Error adding participants: %@", error);
@@ -154,7 +155,7 @@
             if(!error){
                 [communicator startTournament:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSError *error) {
                     if(!error) {
-                        [self.navigationController popToRootViewControllerAnimated:YES];
+                        [self performSegueWithIdentifier:@"doneEditingTournament" sender:self];
                     }
                     
                 }];
@@ -172,7 +173,7 @@
         
         [communicator startTournament:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSError *error) {
             if(!error) {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self performSegueWithIdentifier:@"doneEditingTournament" sender:self];
             }
             
         }];

@@ -107,11 +107,19 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
             for (id eachParticipant in participants){
                 
                 NSDictionary *aParticipant = eachParticipant[@"participant"];
-                if (aParticipant[@"id"] == match.player1_id){
+                NSLog(@"aParticipant[@id] %@", aParticipant[@"id"]);
+               
+                if (match.player1_id == nil || [match.player1_id isKindOfClass:[NSNull class]]) {
+                    
+                }else {
+                
+                if ([aParticipant[@"id"] isEqualToNumber:match.player1_id]){
                     match.player1_name = aParticipant[@"display_name"];
                 }
-                if (aParticipant[@"id"] == match.player2_id){
+                if ([aParticipant[@"id"] isEqualToNumber: match.player2_id]){
                     match.player2_name = aParticipant[@"display_name"];
+                
+                }
                 }
                 
             }

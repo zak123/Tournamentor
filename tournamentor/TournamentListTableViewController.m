@@ -73,18 +73,6 @@
     NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
     
     
-    if ([[self backViewController] isKindOfClass:[WebViewController class]] || [[self backViewController] isKindOfClass:[AddParticipantsTableViewController class]]) {
-        NSLog(@"FROM WEB");
-        self.user = [[User alloc]init];
-        
-        self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
-        self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
-       [self updateTournaments];
-    }
-//    else if (self.user.name != nil && self.user.apiKey != nil){
-//        [self updateTournaments];
-//    }
- 
 
     
 }
