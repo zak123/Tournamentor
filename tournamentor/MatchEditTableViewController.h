@@ -19,6 +19,7 @@
 @property (nonatomic) User *currentUser;
 @property (nonatomic) Tournament *currentTournament;
 
+@property (nonatomic) NSString *roundText;
 
 @property (strong) UINavigationBar* navigationBar;
 
