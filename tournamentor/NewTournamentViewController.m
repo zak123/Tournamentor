@@ -160,7 +160,7 @@
     }
         
     else {
-        return characters;
+        return NO;
     }
     
     
