@@ -150,9 +150,6 @@
     NSMutableCharacterSet *space = [NSMutableCharacterSet characterSetWithCharactersInString:@" "];
     [space formUnionWithCharacterSet:TournamentNameCharacterSet];
     
-    NSCharacterSet *blockedCharacterName = [TournamentNameCharacterSet invertedSet];
-    
-    
     if (field == self.tournamentURLTextField) {
         
         //NSMutableCharacterSet *_alnum = [NSMutableCharacterSet characterSetWithCharactersInString:@"_"];
@@ -160,11 +157,9 @@
         
         return ([characters rangeOfCharacterFromSet:blockedCharactersURL].location == NSNotFound);
         
-    } else if (field == self.tournamentNameTextField) {
+    }
         
-        return ([characters rangeOfCharacterFromSet:blockedCharacterName].location == NSNotFound);
-        
-    } else {
+    else {
         return characters;
     }
     

@@ -10,6 +10,7 @@
 #import <SSKeychain/SSKeychain.h>
 #import <SSKeychain/SSKeychainQuery.h>
 #import "WebViewController.h"
+#import "AddParticipantsTableViewController.h"
 
 @interface TournamentListTableViewController () <UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -30,7 +31,7 @@
     NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
     
     
-    if ([[self backViewController] isKindOfClass:[WebViewController class]]) {
+    if ([[self backViewController] isKindOfClass:[WebViewController class]] || [[self backViewController] isKindOfClass:[AddParticipantsTableViewController class]]) {
         NSLog(@"FROM WEB");
         self.user = [[User alloc]init];
         
