@@ -11,12 +11,19 @@
 #import "AddParticipantTableViewCell.h"
 
 @interface NewTournamentViewController ()
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
 @property (nonatomic) NSString *tournamentType;
 
 @end
 
 @implementation NewTournamentViewController
+
+-(void)viewDidAppear:(BOOL)animated {
+
+    
+    
+}
 
 - (void)viewDidLoad {
     

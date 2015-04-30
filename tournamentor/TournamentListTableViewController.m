@@ -88,7 +88,6 @@
     
     shouldAnimate = YES;
     didLoad = YES;
-    // show refresh controll (pull2refresh)
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
@@ -98,7 +97,6 @@
                   forControlEvents:UIControlEventValueChanged];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
     
-//    [self showActionSheet];
     UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]
                                       initWithImage:[UIImage imageNamed:@"signout"]
                                    style:UIBarButtonItemStylePlain
@@ -111,7 +109,7 @@
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
     
-    lpgr.minimumPressDuration = 0.6; //seconds
+    lpgr.minimumPressDuration = 0.6;
     lpgr.delegate = self;
     [self.tableView addGestureRecognizer:lpgr];
     

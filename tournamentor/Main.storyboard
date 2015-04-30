@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P96-Eu-4iH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P96-Eu-4iH">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -204,6 +204,7 @@
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="33v-Dk-LRs" secondAttribute="trailing" id="CIL-D4-6Tt"/>
                                                 <constraint firstItem="33v-Dk-LRs" firstAttribute="leading" secondItem="w2V-RB-iPf" secondAttribute="leadingMargin" id="EeP-uE-u8r"/>
@@ -250,6 +251,7 @@
                     </tableView>
                     <connections>
                         <outlet property="descriptionTextView" destination="2Nt-ez-a7v" id="KP7-3K-2OL"/>
+                        <outlet property="segmentControl" destination="33v-Dk-LRs" id="URh-y9-gY2"/>
                         <outlet property="tournamentNameTextField" destination="7aV-Pa-zwG" id="FbY-C4-fId"/>
                         <outlet property="tournamentTypePicker" destination="33v-Dk-LRs" id="A9g-uA-UOL"/>
                         <outlet property="tournamentURLTextField" destination="5eI-dX-Q1W" id="efh-Pe-VMD"/>
