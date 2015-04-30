@@ -42,7 +42,6 @@
             NSLog(@"Error getting tournaments: %@", error);
             
             if (self.user.apiKey.length < 1) {
-                [self performSegueWithIdentifier:@"needsApiKey" sender:self];
             }
             else {
                 [self.refreshControl endRefreshing];
@@ -190,6 +189,7 @@
             
             if (self.user.apiKey.length < 1) {
                 [self performSegueWithIdentifier:@"needsApiKey" sender:self];
+
             }
             else {
                 [self.refreshControl endRefreshing];
@@ -198,8 +198,6 @@
                 [alert addButtonWithTitle:@"OK"];
                 [alert show];
                 
-//                [self performSegueWithIdentifier:@"needsApiKey" sender:self];
-                //            [self.navigationController popViewControllerAnimated:YES];
             }
         }
         
