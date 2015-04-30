@@ -324,14 +324,8 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MatchListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"matchCell" forIndexPath:indexPath];
-//    NSDictionary *aDictionary = [NSDictionary dictionaryWithDictionary:roundDictionary];
-//    NSArray *matchesArray = [aDictionary allValues];
-//    
-//
-//    
-//    Match *cellMatch =
     
-//    Match *cellMatch = roundDictionary[[roundDictionary allKeys][indexPath.section]][indexPath.row];
+    
     
     id cellMatchKey = [newSorted objectAtIndex:indexPath.section];
     

@@ -23,6 +23,7 @@
 @implementation TournamentListTableViewController {
     MBProgressHUD *_hud;
     NSIndexPath *longPressedTournament;
+    BOOL shouldAnimate;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -59,7 +60,6 @@
                 [self.refreshControl endRefreshing];
                 
                 
-                
             });
             
         }
@@ -80,6 +80,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    shouldAnimate = YES;
     // show refresh controll (pull2refresh)
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -196,9 +198,13 @@
             dispatch_async(dispatch_get_main_queue(), ^() {
                 _tournaments = [[tournamentsArray reverseObjectEnumerator] allObjects];
                 
+                
+                shouldAnimate = YES;
                 [self.tableView reloadData];
                 [_hud hide:YES];
                 [self.refreshControl endRefreshing];
+
+                
  
                 
                 
@@ -343,6 +349,11 @@
     return self.tournaments.count;
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    shouldAnimate = NO;
+
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -375,16 +386,13 @@
         cell.backgroundColor = [UIColor colorWithRed:0.231 green:0.231 blue:0.231 alpha:1];
     }
     
-//    [cell setFillWidth:fillWidth];
-    // __block means that blocks can make a variable/value mutable
+    if (shouldAnimate) {
     __block CGRect rect = CGRectMake(0, 70, 0, cell.frame.size.height-80);
     __block UIView * view = [[UIView alloc] initWithFrame:rect];
-    
-//    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fade"]];
-//    [cell.contentView addSubview:backgroundView];
 
     view.backgroundColor = [UIColor colorWithRed:0.373 green:0.706 blue:0.376 alpha:1];
     view.tag = 100;
+    
     
     for (UIView *subview in cell.contentView.subviews) {
         if (subview.tag == 100) {
@@ -401,7 +409,26 @@
         rect.size.width = fillWidth;
         view.frame = rect;
     }];
-    
+    }
+    else {
+        __block CGRect rect = CGRectMake(0, 70, fillWidth, cell.frame.size.height-80);
+        __block UIView * view = [[UIView alloc] initWithFrame:rect];
+        
+        view.backgroundColor = [UIColor colorWithRed:0.373 green:0.706 blue:0.376 alpha:1];
+        view.tag = 100;
+        
+        
+        for (UIView *subview in cell.contentView.subviews) {
+            if (subview.tag == 100) {
+                [subview removeFromSuperview];
+            }
+        }
+        
+        [cell.contentView addSubview:view];
+        [cell.contentView sendSubviewToBack:view];
+        
+
+    }
 //    NSLog(@"Cell at index called: %ld", (long)indexPath.row);
     
     
