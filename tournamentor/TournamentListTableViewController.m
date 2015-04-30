@@ -29,7 +29,6 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"This is a integration test");
     if (!didLoad) {
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     
