@@ -127,7 +127,6 @@
 #pragma mark - Tap gesture recognizer & keyboard dismiss
 
 - (void)handleTap:(UITapGestureRecognizer *)sender {
-    NSLog(@"it works, Mass");
     
     [self.tournamentNameTextField endEditing:YES];
     [self.tournamentURLTextField endEditing:YES];

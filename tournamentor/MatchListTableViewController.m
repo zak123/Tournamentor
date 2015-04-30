@@ -39,7 +39,6 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     [super viewDidLoad];
     
     [self headerViewToggle];
-    NSLog(@"brian is homo");
 
 
     
@@ -47,14 +46,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
 
     
-    // How to load participants from a tournament
-//    ChallongeCommunicator *testComm = [[ChallongeCommunicator alloc]init];
-//    [testComm getParticipants:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *participants, NSError *error) {
-//        if (!error) {
-//            NSLog(@"%@", participants);
-//        }
-//    }];
-    
+
 
 }
 
@@ -89,29 +81,20 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     [communicator getMatchesForTournament:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *matchArray, NSError *error) {
-        NSLog(@"%@", matchArray);
         
         if (!error) {
             dispatch_async(dispatch_get_main_queue(), ^() {
                 
                 for (numMatches = 0; numMatches < matchArray.count; numMatches++) {
-                    //                    NSLog(@"NumMatches = %i", i+1);
                     [numMatchesArray addObject:[NSString stringWithFormat:@"%i", numMatches]];
                 }
                 self.matches = matchArray;
-                //               self.bracketView.matches = self.matches;
-                
-                
-                
                 roundDictionary = [NSMutableDictionary dictionary];
                 
                 for (Match *match in matchArray) {
                     if (!roundDictionary[match.round])
                         roundDictionary[match.round] = [NSMutableArray array];
                     [roundDictionary[match.round] addObject:match];
-                    
-                    
-                    
                 }
                 
                 NSMutableArray *openMatches = [[NSMutableArray alloc]init];
@@ -120,9 +103,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                 
                 
                 for (NSNumber *key in [roundDictionary allKeys]) {
-                    NSLog(@"%@", key);
                     NSArray *objectArray = [roundDictionary objectForKey:key];
-                    NSLog(@"%@", objectArray);
                     
                     //                    openDic = @{ key : @(0) };
                     
@@ -448,7 +429,6 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         bracketCollectionViewCell = [self.bracketView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
         
         Match *selectedMatch = roundDictionary[newSorted[indexPath.section]][indexPath.row];
-        NSLog(@"State: %@", selectedMatch.state);
         if ([selectedMatch.state isEqualToString:@"complete"]) {
             
             UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You can't edit a match that is complete! Either reset the tournament (Long press a tournament on the preview screen) or edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -469,7 +449,6 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     if ([sender isKindOfClass:[MatchListTableViewCell class]]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Match *selectedMatch = roundDictionary[newSorted[indexPath.section]][indexPath.row];
-        NSLog(@"State: %@", selectedMatch.state);
         if ([selectedMatch.state isEqualToString:@"complete"]) {
             
             UIAlertView *confirmation = [[UIAlertView alloc]initWithTitle:@"Illegal Action" message:@"You can't edit a match that is complete! Either reset the tournament (Long press a tournament on the preview screen) or edit \"Open\" matches."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

@@ -74,7 +74,6 @@
 
     
     NSString *plainHTML = [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    NSLog(@"%@", plainHTML);
     NSString *APIKEY = [self getAPIKey:plainHTML];
     NSString *USERNAME = [self getUsername:plainHTML];
     

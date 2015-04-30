@@ -42,8 +42,7 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
         
         
         
-        NSLog(@"%@", tourn.tournamentName);
-        NSLog(@"Tournament State: %@", tourn.state);
+       
         
 
         [tournamentArray addObject:tourn];
@@ -53,7 +52,6 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
 //    NSError *error1 = nil;
     
     completionBlock(tournamentArray, nil);
-    NSLog(@"Success");
 
     
     
@@ -107,7 +105,6 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
             for (id eachParticipant in participants){
                 
                 NSDictionary *aParticipant = eachParticipant[@"participant"];
-                NSLog(@"aParticipant[@id] %@", aParticipant[@"id"]);
                
                 if (match.player1_id == nil || [match.player1_id isKindOfClass:[NSNull class]]) {
                     
@@ -140,12 +137,11 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
         //    NSError *error1 = nil;
         
         completionBlock(matchesArray, nil);
-        NSLog(@"Success");
         
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"HTTP Request Failed");
+        NSLog(@"Getting Matches Failed With Error: %@", error);
         completionBlock(nil, error);
     }];
 
@@ -166,7 +162,6 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
                                                                  
     
     [manager PUT:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"SUCCEEEEEEDEDDDDD");
         
         completionBlock(nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -191,11 +186,13 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Succeed Goddamnit!");
+        
         
         completionBlock(nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completionBlock(error);
+
+        
     }];
     
     
@@ -212,9 +209,8 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     NSDictionary *parameters = @{@"winner_id":winnderID, @"match_id":matchID, @"scores_csv":score};
     
     [manager PUT:@"https://%@:%@@api.challonge.com/v1/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success PUT");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failure POST");
+        NSLog(@"Updating Match Failed With Error: %@", error);
     }];
    
 }
@@ -247,7 +243,6 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
 
     
     [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Succeed Array POST! with %@", responseObject);
         
         if (valid) {
         completionBlock(nil);
@@ -317,7 +312,6 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success");
             
             
             NSMutableArray *participantsArray = [[NSMutableArray alloc]init];

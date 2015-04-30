@@ -20,7 +20,6 @@
 }
 
 - (void)changedName:(UITextField *)textField {
-    NSLog(@"%@", textField.text);
     
     self.participant.name = textField.text;
 }
@@ -36,7 +35,6 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"%@", self.participant.name);
 }
 
 @end

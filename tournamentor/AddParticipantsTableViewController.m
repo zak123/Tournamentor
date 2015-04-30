@@ -49,7 +49,6 @@
                 self.minusButton.alpha = 1;
                 self.plusButton.alpha = 1;
                 
-                NSLog(@"Pending tournamanet participants loaded successfully");
                 
                 if (participants.count > 0){
                     self.hasParticipants = YES;
@@ -117,7 +116,6 @@
     else{
 
         
-        NSLog(@"%@", self.participantsArray);
         
         ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
         

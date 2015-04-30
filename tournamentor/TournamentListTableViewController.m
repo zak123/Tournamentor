@@ -24,18 +24,22 @@
     MBProgressHUD *_hud;
     NSIndexPath *longPressedTournament;
     BOOL shouldAnimate;
+    BOOL didLoad;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    if (!didLoad) {
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     
     [communicator getTournaments:self.user.name withKey:self.user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
         
-        NSLog(@"%@", tournamentsArray);
         
         if (error) {
+            
+            shouldAnimate = NO;
             [self.refreshControl endRefreshing];
-            NSLog(@"Error detected");
+            NSLog(@"Error getting tournaments: %@", error);
             
             if (self.user.apiKey.length < 1) {
                 [self performSegueWithIdentifier:@"needsApiKey" sender:self];
@@ -56,6 +60,9 @@
             dispatch_async(dispatch_get_main_queue(), ^() {
                 _tournaments = [[tournamentsArray reverseObjectEnumerator] allObjects];
                 
+              
+                shouldAnimate = NO;
+                
                 [self.tableView reloadData];
                 [self.refreshControl endRefreshing];
                 
@@ -68,9 +75,8 @@
         
     }];
     
+    }
     
-    
-    NSLog(@"current user: %@ current api key: %@", self.user.name, self.user.apiKey);
     
     
 
@@ -82,6 +88,7 @@
     [super viewDidLoad];
     
     shouldAnimate = YES;
+    didLoad = YES;
     // show refresh controll (pull2refresh)
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -128,6 +135,8 @@
     
     [self updateTournaments];
     
+    
+    
 }
 
 
@@ -172,12 +181,12 @@
     
     [communicator getTournaments:self.user.name withKey:self.user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
         
-        NSLog(@"%@", tournamentsArray);
         
         if (error) {
+            didLoad = NO;
             [_hud hide:YES];
             [self.refreshControl endRefreshing];
-            NSLog(@"Error detected");
+            NSLog(@"Getting tournaments failed with error: %@", error);
             
             if (self.user.apiKey.length < 1) {
                 [self performSegueWithIdentifier:@"needsApiKey" sender:self];
@@ -197,7 +206,7 @@
         if (!error) {
             dispatch_async(dispatch_get_main_queue(), ^() {
                 _tournaments = [[tournamentsArray reverseObjectEnumerator] allObjects];
-                
+                didLoad = NO;
                 
                 shouldAnimate = YES;
                 [self.tableView reloadData];
@@ -228,11 +237,9 @@
         
         longPressedTournament = [self.tableView indexPathForRowAtPoint:p];
         if (longPressedTournament == nil) {
-            NSLog(@"long press on table view but not on a row");
         } else {
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:longPressedTournament];
             if (cell.isHighlighted) {
-                NSLog(@"long press on table view at section %ld row %ld", (long)longPressedTournament.section, (long)longPressedTournament.row);
                 [self showActionSheetForCell];
             }
         }
@@ -258,7 +265,6 @@
 
     
     if (alertView.tag == 100) {
-        NSLog(@"YES");
         
         if (buttonIndex == 1) {
             
@@ -275,7 +281,6 @@
 
     }
     if (alertView.tag == 101) {
-        NSLog(@"RESET");
         
         [communicator resetTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
@@ -325,7 +330,6 @@
         [confirmation show];
 }
     if (buttonIndex == 3) {
-        NSLog(@"end tournament");
         [communicator endTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
                 [self updateTournaments];
@@ -429,7 +433,6 @@
         
 
     }
-//    NSLog(@"Cell at index called: %ld", (long)indexPath.row);
     
     
     
@@ -441,9 +444,7 @@
     Tournament *cellTourn = _tournaments[indexPath.row];
     
     if([cellTourn.state isEqualToString:@"pending"]){
-        
-        ///[self performSegueWithIdentifier:@"showParticipants" sender:cellTourn.tournamentName];
-        //[self.navigationController pushViewController: animated:]
+
         
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         
@@ -452,7 +453,6 @@
 
         addParticipantsTableViewController.tournament = self.tournaments[indexPath.row];
         addParticipantsTableViewController.currentUser = self.user;
-        NSLog(@"Adding new participants");
         
         [self.navigationController pushViewController:addParticipantsTableViewController animated:YES];
         
