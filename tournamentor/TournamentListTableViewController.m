@@ -277,6 +277,7 @@
 
     }
     if (alertView.tag == 101) {
+        if (buttonIndex == 1) {
         
         [communicator resetTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
@@ -286,8 +287,27 @@
             else {
                 NSLog(@"Error resetting tournament: %@", error);
             }
+            
         }];
-
+        }
+    }
+    if (alertView.tag == 102) {
+        
+        if (buttonIndex == 1) {
+            
+            [communicator endTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
+                if (!error) {
+                    [self updateTournaments];
+                }
+                else {
+                    NSLog(@"Error ending tournament: %@", error);
+                }
+            }];
+        }
+        if (buttonIndex == 0) {
+            [self performSegueWithIdentifier:@"showMatches" sender:self];
+        }
+        
     }
  }
 
@@ -458,6 +478,13 @@
         [self performSegueWithIdentifier:@"showMatches" sender:cellTourn];
 
     }
+    else if ([cellTourn.state isEqualToString:@"awaiting_review"]) {
+        UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Finalize Tournament?" message:@"This tournament is complete, would you like to finalize the tournament results?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Finalize", nil];
+        error.tag = 102;
+        [error show];
+    }
+              
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 
