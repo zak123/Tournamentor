@@ -11,5 +11,6 @@
 @interface TournamentListTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *tournamentNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *tournamentImage;
+@property (weak, nonatomic) IBOutlet UILabel *numPeopleLabel;
 
 @end

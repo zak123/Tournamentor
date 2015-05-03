@@ -84,9 +84,17 @@
                                                 <constraint firstAttribute="width" constant="32" id="ArM-K8-hH6"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lZ-Ru-sLs">
+                                            <rect key="frame" x="523" y="24" width="29" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="GYr-CE-Ivi" firstAttribute="leading" secondItem="4lZ-Ru-sLs" secondAttribute="trailing" constant="8" id="B6k-O2-Jll"/>
                                         <constraint firstItem="dws-xg-ngq" firstAttribute="top" secondItem="dbI-pR-XDn" secondAttribute="topMargin" constant="16" id="Co5-qK-Sho"/>
+                                        <constraint firstAttribute="centerY" secondItem="4lZ-Ru-sLs" secondAttribute="centerY" id="HOM-7O-wMi"/>
                                         <constraint firstItem="GYr-CE-Ivi" firstAttribute="trailing" secondItem="dbI-pR-XDn" secondAttribute="trailingMargin" id="JCZ-Eg-Bim"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="dws-xg-ngq" secondAttribute="bottom" constant="16" id="Lis-Lk-X1t"/>
                                         <constraint firstItem="dws-xg-ngq" firstAttribute="leading" secondItem="dbI-pR-XDn" secondAttribute="leadingMargin" id="eBr-jr-SwP"/>
@@ -96,6 +104,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
+                                    <outlet property="numPeopleLabel" destination="4lZ-Ru-sLs" id="csI-oc-wXV"/>
                                     <outlet property="tournamentImage" destination="GYr-CE-Ivi" id="tgW-og-RCH"/>
                                     <outlet property="tournamentNameLabel" destination="dws-xg-ngq" id="JDZ-n3-gyA"/>
                                 </connections>
@@ -159,14 +168,14 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Tournament URL " footerTitle="ie Challonge.com/myURL" id="BRr-ZA-ymE">
+                            <tableViewSection headerTitle="Tournament URL " footerTitle="Only characters and numbers" id="BRr-ZA-ymE">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ioW-89-rbh">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ioW-89-rbh" id="0AC-0e-8aV">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ie Challonge.com/enterURLhere" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-dX-Q1W">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Only characters and numbers" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-dX-Q1W">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="43"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

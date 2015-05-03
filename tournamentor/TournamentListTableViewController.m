@@ -18,6 +18,8 @@
 
 
 
+
+
 @end
 
 @implementation TournamentListTableViewController {
@@ -28,7 +30,8 @@
 }
 
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated {
+
     if (!didLoad) {
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     
@@ -105,7 +108,6 @@
     
     self.navigationItem.leftBarButtonItem = signOutButton;
     
-    
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
     
@@ -115,8 +117,6 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    
     
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.mode = MBProgressHUDModeIndeterminate;
@@ -131,8 +131,6 @@
     [self setTitle:@"Tournaments"];
     
     [self updateTournaments];
-    
-    
     
 }
 
@@ -384,16 +382,16 @@
     
     cell.tournamentNameLabel.text = cellTourn.tournamentName;
     
-    if ([cellTourn.state isEqual:@"pending"]) {
-        cell.tournamentImage.image = [UIImage imageNamed:@"pending"];
-    }
-    if ([cellTourn.state isEqual:@"underway"]) {
-        cell.tournamentImage.image = [UIImage imageNamed:@"underway"];
-    }
+    cell.numPeopleLabel.text = [NSString stringWithFormat:@"%@", cellTourn.numberParticipants];
+    
+  
     if ([cellTourn.state isEqual:@"complete"]) {
         cell.tournamentImage.image = [UIImage imageNamed:@"complete"];
     }
-    
+    else {
+        cell.tournamentImage.image = [UIImage imageNamed:@"people"];
+    }
+        
     float progressFloat = [cellTourn.progress floatValue];
     
     cell.backgroundColor = [UIColor clearColor];
@@ -406,6 +404,8 @@
         cell.backgroundColor = [UIColor colorWithRed:0.231 green:0.231 blue:0.231 alpha:1];
     }
     
+    
+
     if (shouldAnimate) {
     __block CGRect rect = CGRectMake(0, 70, 0, cell.frame.size.height-80);
     __block UIView * view = [[UIView alloc] initWithFrame:rect];
@@ -430,6 +430,8 @@
         view.frame = rect;
     }];
     }
+    
+    
     else {
         __block CGRect rect = CGRectMake(0, 70, fillWidth, cell.frame.size.height-80);
         __block UIView * view = [[UIView alloc] initWithFrame:rect];

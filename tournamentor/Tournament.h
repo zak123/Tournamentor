@@ -12,7 +12,7 @@
 
 @property (nonatomic) NSString *state;
 @property (nonatomic) NSString *tournamentName;
-@property (nonatomic) NSString *numberParticipants;
+@property (nonatomic) NSNumber *numberParticipants;
 @property (nonatomic) NSString *tournamentURL;
 @property (nonatomic) NSString *tournamentDescription;
 @property (nonatomic) NSString *tournamentType;
