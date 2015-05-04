@@ -388,6 +388,9 @@
     if ([cellTourn.state isEqual:@"complete"]) {
         cell.tournamentImage.image = [UIImage imageNamed:@"complete"];
     }
+    else if ([cellTourn.state isEqual:@"pending"]) {
+        cell.tournamentImage.image = [UIImage imageNamed:@"action"];
+    }
     else {
         cell.tournamentImage.image = [UIImage imageNamed:@"people"];
     }
