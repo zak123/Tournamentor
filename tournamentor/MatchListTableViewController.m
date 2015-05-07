@@ -92,20 +92,17 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
                 roundDictionary = [NSMutableDictionary dictionary];
                 
                 for (Match *match in matchArray) {
-                    if (!roundDictionary[match.round])
+                    if (!roundDictionary[match.round]) {
                         roundDictionary[match.round] = [NSMutableArray array];
+                    }
                     [roundDictionary[match.round] addObject:match];
                 }
                 
                 NSMutableArray *openMatches = [[NSMutableArray alloc]init];
                 NSMutableArray *notOpenMatches = [[NSMutableArray alloc]init];
-                //                NSDictionary *openDic = [[NSDictionary alloc]init];
-                
                 
                 for (NSNumber *key in [roundDictionary allKeys]) {
                     NSArray *objectArray = [roundDictionary objectForKey:key];
-                    
-                    //                    openDic = @{ key : @(0) };
                     
                     for (int i = 0; i < objectArray.count; i++) {
                         Match *aMatch = objectArray[i];
@@ -276,6 +273,22 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     NSString *str = [NSString stringWithFormat:@"%@", keys[section]];
     
+    
+    if ([self.selectedTournament.tournamentType isEqual:@"round robin"] || [self.selectedTournament.tournamentType isEqual:@"swiss"]) {
+        str = [NSString stringWithFormat:@"Round %@", keys[section]];
+    }
+    
+    if ([self.selectedTournament.tournamentType isEqual:@"single elimination"]) {
+        if ([str doubleValue] == [max doubleValue]) {
+            str = [NSString stringWithFormat:@"Finals"];
+        }
+        else {
+            str = [NSString stringWithFormat:@"Round %@", keys[section]];
+        }
+    }
+    
+    
+    if ([self.selectedTournament.tournamentType isEqual:@"double elimination"]) {
     if ([str containsString:@"-"]) {
         if ([str doubleValue] == [min doubleValue]) {
             str = [NSString stringWithFormat:@"Loser Finals"];
@@ -291,7 +304,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
             str = [NSString stringWithFormat:@"Winners Round %@", keys[section]];
         }
     }
-    
+    }
     return str;
 
 }
@@ -322,21 +335,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         cell.roundImage.image = [UIImage imageNamed:@"edit"];
     }
     
-    cell.player2Label.alpha = 0;
-    cell.player1Label.alpha = 0;
-    cell.player1Score.alpha = 0;
-    cell.player2Score.alpha = 0;
-    cell.roundLabel.alpha = 0;
-    
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        cell.player2Label.alpha = 1;
-        cell.player1Label.alpha = 1;
-        cell.player1Score.alpha = 1;
-        cell.player2Score.alpha = 1;
-        cell.roundLabel.alpha = 1;
-        
-    }];
+
 
     
     if (indexPath.row & 1) {

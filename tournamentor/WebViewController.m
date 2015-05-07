@@ -32,9 +32,6 @@
     
     [self.navigationItem setHidesBackButton:YES animated:YES];
 
-    
-
-
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.mode = MBProgressHUDModeIndeterminate;
     _hud.labelText = @"Loading";
@@ -77,15 +74,9 @@
     NSString *APIKEY = [self getAPIKey:plainHTML];
     NSString *USERNAME = [self getUsername:plainHTML];
     
-
-    
-    
     if (APIKEY.length > 1) {
 
-        
         [SSKeychain setPassword:APIKEY forService:@"Challonge" account:USERNAME];
-
-
         
         NSString *completedDialog = [NSString stringWithFormat:@"%@, you are now signed into your Challonge account. hit OK to use Tournamentor.", USERNAME];
         
@@ -96,9 +87,7 @@
                                                otherButtonTitles: nil];
         [alert addButtonWithTitle:@"OK"];
         [alert show];
-        
 
-        
     }
     else {
         NSString *error = [self getError:plainHTML];
@@ -116,12 +105,7 @@
         else {
             //maybe programatically click button?
         }
-        
-        
     }
-
-    
-    
     [_hud hide:YES];
 }
 
@@ -160,7 +144,6 @@
     @catch (NSException *exception) {}
     
     username = [username stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-
     
     return username;
 }
@@ -177,24 +160,8 @@
     @catch (NSException *exception) {}
     
     error = [error stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-
-    
-    
-    
+ 
     return error;
 }
-
-
-
-
-
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-}
-
 
 @end

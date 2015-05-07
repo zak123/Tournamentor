@@ -33,56 +33,8 @@
 -(void)viewWillAppear:(BOOL)animated {
 
     if (!didLoad) {
-    ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
-    
-    [communicator getTournaments:self.user.name withKey:self.user.apiKey block:^(NSArray *tournamentsArray, NSError *error) {
-        
-        
-        if (error) {
-            
-            shouldAnimate = NO;
-            [self.refreshControl endRefreshing];
-            NSLog(@"Error getting tournaments: %@", error);
-            
-            if (self.user.apiKey.length < 1) {
-            }
-            else {
-                [self.refreshControl endRefreshing];
-                
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Your sign in information is not valid or network is too slow. You can try to sign out and sign back in again." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
-                [alert addButtonWithTitle:@"OK"];
-                [alert show];
-                
-                //                [self performSegueWithIdentifier:@"needsApiKey" sender:self];
-                //            [self.navigationController popViewControllerAnimated:YES];
-            }
-        }
-        
-        if (!error) {
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                _tournaments = [[tournamentsArray reverseObjectEnumerator] allObjects];
-                
-              
-                shouldAnimate = NO;
-                
-                [self.tableView reloadData];
-                [self.refreshControl endRefreshing];
-                
-                
-            });
-            
-        }
-        
-        
-        
-    }];
-    
+        [self updateTournamentsWithAnimate:NO];
     }
-    
-    
-    
-
-    
 }
 
 
@@ -95,8 +47,9 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
     self.refreshControl.tintColor = [UIColor whiteColor];
+    self.refreshControl.tag = 1;
     [self.refreshControl addTarget:self
-                            action:@selector(updateTournaments)
+                            action:@selector(buttonPressed:)
                   forControlEvents:UIControlEventValueChanged];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
     
@@ -130,7 +83,7 @@
     
     [self setTitle:@"Tournaments"];
     
-    [self updateTournaments];
+    [self updateTournamentsWithAnimate:YES];
     
 }
 
@@ -169,7 +122,15 @@
 
 }
 
--(void) updateTournaments {
+-(void) buttonPressed:(id) sender{
+    UIButton *clicked = (UIButton *)sender;
+    if (clicked.tag == 1) {
+        [self updateTournamentsWithAnimate:NO];
+    }
+    
+}
+
+-(void) updateTournamentsWithAnimate:(BOOL)animate {
     [_hud show:YES];
     
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
@@ -202,7 +163,7 @@
                 _tournaments = [[tournamentsArray reverseObjectEnumerator] allObjects];
                 didLoad = NO;
                 
-                shouldAnimate = YES;
+                shouldAnimate = animate;
                 [self.tableView reloadData];
                 [_hud hide:YES];
                 [self.refreshControl endRefreshing];
@@ -264,7 +225,7 @@
             
             [communicator deleteTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
                 if (!error) {
-                    [self updateTournaments];
+                    [self updateTournamentsWithAnimate:NO];
                 }
                 else {
                     NSLog(@"%@", error);
@@ -279,7 +240,8 @@
         
         [communicator resetTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
-                [self updateTournaments];
+                
+                [self updateTournamentsWithAnimate:NO];
                 
             }
             else {
@@ -295,7 +257,7 @@
             
             [communicator endTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
                 if (!error) {
-                    [self updateTournaments];
+                    [self updateTournamentsWithAnimate:NO];
                 }
                 else {
                     NSLog(@"Error ending tournament: %@", error);
@@ -328,7 +290,8 @@
     if (buttonIndex == 1) {
         [communicator startTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
-                [self updateTournaments];
+                
+                [self updateTournamentsWithAnimate:NO];
 
             }
             else {
@@ -346,7 +309,7 @@
     if (buttonIndex == 3) {
         [communicator endTournament:selectedTournament.tournamentURL withUsername:self.user.name andAPIKey:self.user.apiKey block:^(NSError *error) {
             if (!error) {
-                [self updateTournaments];
+                [self updateTournamentsWithAnimate:NO];
 
             }
             else {
@@ -388,11 +351,11 @@
     if ([cellTourn.state isEqual:@"complete"]) {
         cell.tournamentImage.image = [UIImage imageNamed:@"complete"];
     }
-    else if ([cellTourn.state isEqual:@"pending"]) {
+    if ([cellTourn.state isEqual:@"pending"] || [cellTourn.state isEqual:@"awaiting_review"]) {
         cell.tournamentImage.image = [UIImage imageNamed:@"action"];
     }
-    else {
-        cell.tournamentImage.image = [UIImage imageNamed:@"people"];
+    if ([cellTourn.state isEqual:@"underway"]){
+        cell.tournamentImage.image = [UIImage imageNamed:@"in_progress"];    
     }
         
     float progressFloat = [cellTourn.progress floatValue];
@@ -478,7 +441,7 @@
         [self.navigationController pushViewController:addParticipantsTableViewController animated:YES];
         
     }
-    else if ([cellTourn.state isEqualToString:@"underway"] || [cellTourn.state isEqualToString:@"complete"]){
+    else if ([cellTourn.state isEqualToString:@"underway"]){
 
         [self performSegueWithIdentifier:@"showMatches" sender:cellTourn];
 
@@ -487,6 +450,9 @@
         UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Finalize Tournament?" message:@"This tournament is complete, would you like to finalize the tournament results?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Finalize", nil];
         error.tag = 102;
         [error show];
+    }
+    else if ([cellTourn.state isEqualToString:@"complete"]) {
+        [self performSegueWithIdentifier:@"showResults" sender:cellTourn];
     }
               
     
@@ -497,10 +463,9 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+
     if ([segue.identifier isEqualToString:@"showMatches"]) {
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         MatchListTableViewController *dVC = (MatchListTableViewController *)segue.destinationViewController;
         
@@ -510,10 +475,18 @@
     
     if ([segue.identifier isEqualToString:@"addTournament"]) {
         
-        
         NewTournamentViewController *dVC = (NewTournamentViewController *)segue.destinationViewController;
         
         dVC.currentUser = self.user;
+        
+    }
+    if ([segue.identifier isEqualToString:@"showResults"]) {
+        
+        ResultsTableViewController *dVC = (ResultsTableViewController *)segue.destinationViewController;
+        
+        dVC.currentTournament = self.tournaments[indexPath.row];
+        dVC.currentUser = self.user;
+        
         
     }
     

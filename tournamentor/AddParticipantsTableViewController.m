@@ -8,6 +8,8 @@
 
 #import "AddParticipantsTableViewController.h"
 #import "TournamentListTableViewController.h"
+#import <MBProgressHUD.h>
+
 
 @interface AddParticipantsTableViewController () <UITextFieldDelegate>
 
@@ -26,6 +28,7 @@
 
 @implementation AddParticipantsTableViewController {
     int num;
+    MBProgressHUD *hud;
 }
 -(void)viewDidLoad {
     
@@ -34,20 +37,27 @@
     self.existingParticipantsArray = [[NSMutableArray alloc] init];
     self.extraParticipantsArray = [[NSMutableArray alloc] init];
     
-    self.minusButton.alpha = 0;
-    self.plusButton.alpha = 0;
+    self.minusButton.hidden = YES;
+    self.plusButton.hidden = YES;
     
     
     UIBarButtonItem *done = [[UIBarButtonItem alloc]initWithTitle:@"Add Users" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"Loading";
+    
+    [hud show:YES];
     
         ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc] init];
         
         [communicator getParticipants:self.tournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *participants, NSError *error) {
             if (!error){
                 
-                self.minusButton.alpha = 1;
-                self.plusButton.alpha = 1;
+                self.minusButton.hidden = NO;
+                self.plusButton.hidden = NO;
+                
                 
                 
                 if (participants.count > 0){
@@ -82,9 +92,12 @@
                // __extraParticipantsArray[0] = self.existingParticipantsArray[self.existingParticipantsArray.count];
                 
                 [self.tableView reloadData];
+                
+                [hud hide:YES];
             }
             else {
                 NSLog(@"Add participants error:%@", error);
+                [hud hide:YES];
             }
         }];
 }

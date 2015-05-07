@@ -38,6 +38,7 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
         tourn.tournamentURL = aTournament[@"url"];
         tourn.progress = aTournament[@"progress_meter"];
         tourn.state = aTournament[@"state"];
+        tourn.tournamentType = aTournament[@"tournament_type"];
         
         
         
@@ -323,7 +324,7 @@ operation.responseSerializer = [AFJSONResponseSerializer serializer];
                 Participant *participant = [[Participant alloc]init];
                 NSDictionary *aParticipant = eachParticipant[@"participant"];
                 
-                participant.name = aParticipant[@"name"];
+                participant.name = aParticipant[@"display_name"];
                 participant.finalRank = aParticipant[@"final_rank"];
                 participant.participantID = aParticipant[@"id"];
                 

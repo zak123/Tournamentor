@@ -11,6 +11,7 @@
 #import "ChallongeCommunicator.h"
 #import "TournamentListTableViewCell.h"
 #import "DataHolder.h"
+#import "ResultsTableViewController.h"
 #import "MatchListTableViewController.h"
 #import "NewTournamentViewController.h"
 #import <MBProgressHUD.h>
