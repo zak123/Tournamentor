@@ -10,14 +10,15 @@
 #import "ChallongeCommunicator.h"
 #import "AddParticipantTableViewCell.h"
 
-@interface NewTournamentViewController ()
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+@interface NewTournamentViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic) NSString *tournamentType;
 
 @end
 
-@implementation NewTournamentViewController
+@implementation NewTournamentViewController {
+    NSArray *tournamentTypes;
+}
 
 -(void)viewDidAppear:(BOOL)animated {
 
@@ -32,6 +33,9 @@
     
     [self layoutNavigationBar];
     
+    tournamentTypes = @[@"single elimination", @"double elimination", @"round robin", @"swiss"];
+    
+    
     
     self.tournamentType = @"single elimination";
     
@@ -45,6 +49,9 @@
     self.descriptionTextView.delegate = self;
     self.gameTextField.delegate = self;
     
+    self.tournamentTypePicker.delegate = self;
+    self.tournamentTypePicker.dataSource = self;
+    
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapGR.delegate = self;
     tapGR.numberOfTapsRequired = 1;
@@ -54,20 +61,32 @@
     
 }
 
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return tournamentTypes.count;
+}
 
-- (IBAction)tournamentTypeChanged:(id)sender {
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return tournamentTypes[row];
     
-    switch (self.tournamentTypePicker.selectedSegmentIndex)
-    {
-        case 0:
-            self.tournamentType = @"single elimination";
-            break;
-        case 1:
-            self.tournamentType = @"double elimination";
-            break;
-        default:
-            break;
-    }
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.tournamentType = tournamentTypes[row];
+    NSLog(@"%@", tournamentTypes[row]);
+    
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title = [NSString stringWithFormat:@"%@", tournamentTypes[row]];
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+
+return attString;
+
 }
 
 

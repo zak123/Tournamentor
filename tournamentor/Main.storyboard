@@ -197,29 +197,21 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Format" id="Ok9-rQ-3Ly">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1Gq-tk-maY">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="162" id="1Gq-tk-maY">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Gq-tk-maY" id="w2V-RB-iPf">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="33v-Dk-LRs">
-                                                    <rect key="frame" x="8" y="8" width="584" height="29"/>
-                                                    <segments>
-                                                        <segment title="Single Elimination"/>
-                                                        <segment title="Double Elimination"/>
-                                                    </segments>
-                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="tournamentTypeChanged:" destination="9NT-rL-BaJ" eventType="valueChanged" id="pKZ-ng-xeG"/>
-                                                    </connections>
-                                                </segmentedControl>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGX-RH-i5I">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="162"/>
+                                                </pickerView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="33v-Dk-LRs" secondAttribute="trailing" id="CIL-D4-6Tt"/>
-                                                <constraint firstItem="33v-Dk-LRs" firstAttribute="leading" secondItem="w2V-RB-iPf" secondAttribute="leadingMargin" id="EeP-uE-u8r"/>
-                                                <constraint firstItem="33v-Dk-LRs" firstAttribute="top" secondItem="w2V-RB-iPf" secondAttribute="topMargin" id="hin-ER-ock"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="33v-Dk-LRs" secondAttribute="bottom" constant="-1" id="yfI-Tf-8q5"/>
+                                                <constraint firstItem="vGX-RH-i5I" firstAttribute="top" secondItem="w2V-RB-iPf" secondAttribute="topMargin" constant="-8" id="BHq-HP-zxP"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vGX-RH-i5I" secondAttribute="trailing" constant="-8" id="i6s-07-Iyr"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vGX-RH-i5I" secondAttribute="bottom" constant="-9" id="sa5-fX-XPe"/>
+                                                <constraint firstItem="vGX-RH-i5I" firstAttribute="leading" secondItem="w2V-RB-iPf" secondAttribute="leadingMargin" constant="-8" id="wM3-EQ-gEi"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -261,9 +253,8 @@
                     </tableView>
                     <connections>
                         <outlet property="descriptionTextView" destination="2Nt-ez-a7v" id="KP7-3K-2OL"/>
-                        <outlet property="segmentControl" destination="33v-Dk-LRs" id="URh-y9-gY2"/>
                         <outlet property="tournamentNameTextField" destination="7aV-Pa-zwG" id="FbY-C4-fId"/>
-                        <outlet property="tournamentTypePicker" destination="33v-Dk-LRs" id="A9g-uA-UOL"/>
+                        <outlet property="tournamentTypePicker" destination="vGX-RH-i5I" id="VvR-hW-Pvz"/>
                         <outlet property="tournamentURLTextField" destination="5eI-dX-Q1W" id="efh-Pe-VMD"/>
                         <segue destination="D7z-8p-Akt" kind="show" identifier="addParticipants" id="NEr-mg-AmI"/>
                     </connections>

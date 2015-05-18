@@ -17,7 +17,8 @@
 @property (nonatomic) Tournament *tournament;
 @property (nonatomic) User *currentUser;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *tournamentTypePicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *tournamentTypePicker;
+
 @property (weak, nonatomic) IBOutlet UITextField *tournamentNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *tournamentURLTextField;
 @property (weak, nonatomic) IBOutlet UITextField *gameTextField;
