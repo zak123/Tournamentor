@@ -530,6 +530,7 @@
                     </tableView>
                     <connections>
                         <outlet property="bracketView" destination="htc-NY-70x" id="jle-P0-kUI"/>
+                        <segue destination="KAX-8i-fb9" kind="show" identifier="showStandings" id="SGf-eB-BRr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aob-58-RCo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -566,6 +567,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8eg-wn-OtD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="716" y="-43"/>
+        </scene>
+        <!--Standings Web View Controller-->
+        <scene sceneID="B9j-Yx-u5Q">
+            <objects>
+                <viewController id="KAX-8i-fb9" customClass="StandingsWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a9p-fb-iiB"/>
+                        <viewControllerLayoutGuide type="bottom" id="OVP-gC-MOs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dKL-uJ-jhg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5y-Rp-Vy6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="o5y-Rp-Vy6" firstAttribute="top" secondItem="dKL-uJ-jhg" secondAttribute="topMargin" id="15S-vH-sJC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="o5y-Rp-Vy6" secondAttribute="trailing" constant="-16" id="6y5-A0-M2O"/>
+                            <constraint firstItem="OVP-gC-MOs" firstAttribute="top" secondItem="o5y-Rp-Vy6" secondAttribute="bottom" id="vC3-cQ-wXu"/>
+                            <constraint firstItem="o5y-Rp-Vy6" firstAttribute="leading" secondItem="dKL-uJ-jhg" secondAttribute="leadingMargin" constant="-16" id="whm-rW-Fug"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="o5y-Rp-Vy6" id="K6O-bN-GG4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9tT-Kw-6lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1404" y="-43"/>
         </scene>
         <!--Match Edit Table View Controller-->
         <scene sceneID="SH5-fr-obc">

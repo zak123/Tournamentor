@@ -10,6 +10,7 @@
 #import <UAProgressView.h>
 #import "BracketCollectionView.h"
 #import "BracketCollectionViewCell.h"
+#import "StandingsWebViewController.h"
 
 
 @interface MatchListTableViewController () < UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
@@ -39,7 +40,15 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     [super viewDidLoad];
     
     [self headerViewToggle];
-
+    
+    
+    UIBarButtonItem *viewResultsButton = [[UIBarButtonItem alloc]
+                                      initWithImage:[UIImage imageNamed:@"bracket"]
+                                      style:UIBarButtonItemStylePlain
+                                      target:self
+                                      action:@selector(viewResults)];
+    
+    self.navigationItem.rightBarButtonItem = viewResultsButton;
 
     
     newSorted = [[NSArray alloc]init];
@@ -61,6 +70,13 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     [self updateTournamentsAndDictionary];
     
+    
+}
+
+-(void)viewResults {
+    
+    
+    [self performSegueWithIdentifier:@"showStandings" sender:self];
     
 }
 
@@ -480,6 +496,12 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     id cellMatchKey = [newSorted objectAtIndex:indexPath.section];
+    
+    if ([segue.identifier isEqualToString:@"showStandings"]) {
+        StandingsWebViewController *dVC = (StandingsWebViewController *)segue.destinationViewController;
+        
+        dVC.selectedTournament = self.selectedTournament;
+    }
 
     if ([segue.identifier isEqualToString:@"showPickedMatch"]) {
         
