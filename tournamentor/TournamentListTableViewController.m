@@ -145,6 +145,11 @@
             NSLog(@"Getting tournaments failed with error: %@", error);
             
             if (self.user.apiKey.length < 1) {
+                
+                UIAlertView *noAcct = [[UIAlertView alloc]initWithTitle:@"Sign-in" message:@"Welcome to Tournamentor, if you have a Challonge account, please sign in on the next screen, and then hit \"Generate API Key\". If you do not have a challonge account, please open safari and create one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                
+                [noAcct show];
+                
                 [self performSegueWithIdentifier:@"needsApiKey" sender:self];
 
             }

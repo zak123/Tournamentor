@@ -12,10 +12,17 @@
 
 @implementation ResultsTableViewController {
     NSMutableArray *results;
-    
+    MBProgressHUD *_hud;
 }
 
 -(void)viewDidLoad {
+    
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.mode = MBProgressHUDModeIndeterminate;
+    _hud.labelText = @"Loading";
+    [_hud show:YES];
+    
+    
     self.view.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
     
     UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
@@ -27,6 +34,8 @@
     [communicator getParticipants:self.currentTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *participants, NSError *error) {
         
         if (!error) {
+            
+            [_hud hide:YES];
             NSLog(@"Participants Loaded");
             results = [[NSMutableArray alloc]initWithArray:participants];
             
@@ -37,6 +46,8 @@
             [self.tableView reloadData];
   
         } else {
+            
+            [_hud hide:YES];
             NSLog(@"Error loading participants: %@", error);
         }
         

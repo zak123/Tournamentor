@@ -8,16 +8,38 @@
 
 #import "StandingsWebViewController.h"
 
+
 @interface StandingsWebViewController () <UIWebViewDelegate, UIAlertViewDelegate>
 
 @end
 
-@implementation StandingsWebViewController
+@implementation StandingsWebViewController {
+        MBProgressHUD *_hud;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.webView.scalesPageToFit = YES;
+
     [self setTitle:@"Standings"];
+   }
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+  [[NSURLCache sharedURLCache] removeAllCachedResponses];
+
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+    }
+
+    
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.mode = MBProgressHUDModeIndeterminate;
+    _hud.labelText = @"Loading";
+    [_hud show:YES];
     
     NSString* url = [NSString stringWithFormat:@"http://images.challonge.com/%@.png", self.selectedTournament.tournamentURL];
     
@@ -25,6 +47,13 @@
     self.webView.delegate = self;
     NSURLRequest* request = [NSURLRequest requestWithURL:nsUrl cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
     [self.webView loadRequest:request];
+
+}
+
+
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    [_hud hide:YES];
 }
 
 - (void)didReceiveMemoryWarning {

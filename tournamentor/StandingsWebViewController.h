@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Tournament.h"
 #import "User.h"
+#import <MBProgressHUD.h>
 
 
 @interface StandingsWebViewController : UIViewController

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "Tournament.h"
+#import <MBProgressHUD.h>
 
 
 @interface ResultsTableViewController : UITableViewController
