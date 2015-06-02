@@ -35,6 +35,14 @@
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.mode = MBProgressHUDModeIndeterminate;
     _hud.labelText = @"Loading";
+    
+    UIBarButtonItem *signInButton = [[UIBarButtonItem alloc]
+                                      initWithImage:[UIImage imageNamed:@"settings"]
+                                      style:UIBarButtonItemStylePlain
+                                      target:self
+                                      action:@selector(manualSignin)];
+    
+    self.navigationItem.leftBarButtonItem = signInButton;
 
 
     NSString* url = @"https://challonge.com/settings/developer";
@@ -49,6 +57,10 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)manualSignin {
+    [self performSegueWithIdentifier:@"manualSignin" sender:self];
 }
 
 # pragma - Web View

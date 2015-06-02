@@ -30,6 +30,7 @@
 		B6818A431AE8A80800A9D3A7 /* AddParticipantsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6818A421AE8A80800A9D3A7 /* AddParticipantsTableViewController.m */; };
 		B6A1FBD01AFAE8BE00032521 /* ResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1FBCF1AFAE8BE00032521 /* ResultsTableViewController.m */; };
 		B6A1FBD61B099B7000032521 /* StandingsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1FBD51B099B7000032521 /* StandingsWebViewController.m */; };
+		B6A552F31B1E59650088F00D /* ManualSignIn.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A552F21B1E59650088F00D /* ManualSignIn.m */; };
 		B6AB1BC61AEB083300E2D844 /* Participant.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AB1BC51AEB083300E2D844 /* Participant.m */; };
 		B6D8C4FE1AE6F3BE00A8B568 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D8C4FD1AE6F3BE00A8B568 /* Match.m */; };
 		B6D8C5011AE6F8C200A8B568 /* MatchListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D8C5001AE6F8C200A8B568 /* MatchListTableViewController.m */; };
@@ -95,6 +96,8 @@
 		B6A1FBCF1AFAE8BE00032521 /* ResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsTableViewController.m; sourceTree = "<group>"; };
 		B6A1FBD41B099B7000032521 /* StandingsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandingsWebViewController.h; sourceTree = "<group>"; };
 		B6A1FBD51B099B7000032521 /* StandingsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandingsWebViewController.m; sourceTree = "<group>"; };
+		B6A552F11B1E59650088F00D /* ManualSignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualSignIn.h; sourceTree = "<group>"; };
+		B6A552F21B1E59650088F00D /* ManualSignIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualSignIn.m; sourceTree = "<group>"; };
 		B6AB1BC41AEB083300E2D844 /* Participant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Participant.h; sourceTree = "<group>"; };
 		B6AB1BC51AEB083300E2D844 /* Participant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Participant.m; sourceTree = "<group>"; };
 		B6D8C4FC1AE6F3BE00A8B568 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				B6A1FBCF1AFAE8BE00032521 /* ResultsTableViewController.m */,
 				B6A1FBD41B099B7000032521 /* StandingsWebViewController.h */,
 				B6A1FBD51B099B7000032521 /* StandingsWebViewController.m */,
+				B6A552F11B1E59650088F00D /* ManualSignIn.h */,
+				B6A552F21B1E59650088F00D /* ManualSignIn.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				B61F536A1AF00316005831BF /* BracketCollectionViewHeader.m in Sources */,
 				B6A1FBD01AFAE8BE00032521 /* ResultsTableViewController.m in Sources */,
 				B6818A431AE8A80800A9D3A7 /* AddParticipantsTableViewController.m in Sources */,
+				B6A552F31B1E59650088F00D /* ManualSignIn.m in Sources */,
 				B6633AA31AE8C7DE007B33C2 /* AddParticipantTableViewCell.m in Sources */,
 				B6D8C5041AE6F8E600A8B568 /* MatchListTableViewCell.m in Sources */,
 				B63356531AE1792500D3170B /* DetailViewController.m in Sources */,

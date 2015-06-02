@@ -51,11 +51,34 @@
                     <connections>
                         <outlet property="webView" destination="PAp-ms-RLp" id="jdc-kw-AgT"/>
                         <segue destination="slJ-fr-j1M" kind="show" identifier="didGetApiKey" id="RYI-ms-nzm"/>
+                        <segue destination="PeR-js-zco" kind="show" identifier="manualSignin" id="7wF-5X-rWV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ni-QM-o6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-464" y="-1559"/>
+        </scene>
+        <!--Manual Sign In-->
+        <scene sceneID="EP7-6g-zps">
+            <objects>
+                <tableViewController id="PeR-js-zco" customClass="ManualSignIn" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="lw6-hn-qPD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="PeR-js-zco" id="hNE-ew-gkY"/>
+                            <outlet property="delegate" destination="PeR-js-zco" id="Ttq-eK-FpG"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="slJ-fr-j1M" kind="show" identifier="showTournaments" id="ywC-Cw-c6b"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IHV-mW-nMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="-1551"/>
         </scene>
         <!--Tournament List Table View Controller-->
         <scene sceneID="Jpd-A9-jvw">
@@ -730,7 +753,7 @@
         <image name="plus-96-white" width="96" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nKX-Xz-Jmp"/>
+        <segue reference="ywC-Cw-c6b"/>
         <segue reference="tzG-Lv-dUu"/>
     </inferredMetricsTieBreakers>
 </document>
