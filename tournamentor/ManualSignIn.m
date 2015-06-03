@@ -15,6 +15,7 @@
 @interface ManualSignIn ()
 
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (strong, readwrite, nonatomic) RETextItem *usernameField;
 @property (strong, readwrite, nonatomic) RETextItem *apiKeyField;
@@ -27,6 +28,10 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    NSString *urlStr = @"http://challonge.com/settings/developer";
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
+    [self.webView loadRequest:request];
     
     self.manager = [[RETableViewManager alloc]initWithTableView:self.tableView];
     

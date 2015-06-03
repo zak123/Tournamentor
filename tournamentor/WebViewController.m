@@ -80,13 +80,14 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     
-
+    NSLog(@"Current URL %@", [webView stringByEvaluatingJavaScriptFromString:@"window.location"]);
+    
     
     NSString *plainHTML = [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
     NSString *APIKEY = [self getAPIKey:plainHTML];
     NSString *USERNAME = [self getUsername:plainHTML];
     
-    if (APIKEY.length > 1) {
+    if (APIKEY.length == 40) {
 
         [SSKeychain setPassword:APIKEY forService:@"Challonge" account:USERNAME];
         
@@ -115,7 +116,17 @@
         [alert show];
         }
         else {
-            //maybe programatically click button?
+            NSString *currentURL = [webView stringByEvaluatingJavaScriptFromString:@"window.location"];
+            
+            if ([currentURL isEqualToString:@"http://challonge.com/settings/developers"]) {
+
+            
+            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error processing API Key" message:@"There was an error automatically processing your API key. Please enter your username and API key manually by clicking the gear icon on the sign in screen." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            error.tag = 101;
+            
+            
+            [error show];
+            }
         }
     }
     [_hud hide:YES];
@@ -123,7 +134,12 @@
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
+    if (alertView.tag == 101) {
+        //Do Nothing
+    } else {
+    
     [self performSegueWithIdentifier:@"didGetApiKey" sender:self];
+    }
 }
 
 # pragma helper methods

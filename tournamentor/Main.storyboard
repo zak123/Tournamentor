@@ -66,13 +66,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="PHh-JS-YTD">
+                            <rect key="frame" x="0.0" y="177" width="600" height="400"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVh-C1-xJF">
+                                    <rect key="frame" x="0.0" y="30" width="600" height="370"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </webView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grab your API key from the browser below" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbJ-ON-D3Z">
+                                    <rect key="frame" x="137" y="1" width="326" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="wVh-C1-xJF" secondAttribute="bottom" id="0h2-OB-Z1q"/>
+                                <constraint firstAttribute="trailing" secondItem="wVh-C1-xJF" secondAttribute="trailing" id="1Mj-0B-rAe"/>
+                                <constraint firstAttribute="centerX" secondItem="wVh-C1-xJF" secondAttribute="centerX" id="BvI-8g-4y3"/>
+                                <constraint firstItem="wVh-C1-xJF" firstAttribute="leading" secondItem="PHh-JS-YTD" secondAttribute="leading" id="EVp-EL-ZDD"/>
+                                <constraint firstAttribute="centerX" secondItem="sbJ-ON-D3Z" secondAttribute="centerX" id="esd-iT-LkB"/>
+                                <constraint firstItem="wVh-C1-xJF" firstAttribute="top" secondItem="sbJ-ON-D3Z" secondAttribute="bottom" constant="8" id="nyg-sm-8M3"/>
+                                <constraint firstItem="sbJ-ON-D3Z" firstAttribute="top" secondItem="PHh-JS-YTD" secondAttribute="top" constant="1" id="pCr-j3-c4U"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection id="VLN-TB-3sI">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ipm-Hd-u1V">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ipm-Hd-u1V">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xue-M3-3Ni">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xue-M3-3Ni">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8Ep-UH-ed2">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Ep-UH-ed2">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="PeR-js-zco" id="hNE-ew-gkY"/>
                             <outlet property="delegate" destination="PeR-js-zco" id="Ttq-eK-FpG"/>
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="webView" destination="wVh-C1-xJF" id="xQd-rb-Frv"/>
                         <segue destination="slJ-fr-j1M" kind="show" identifier="showTournaments" id="ywC-Cw-c6b"/>
                     </connections>
                 </tableViewController>
