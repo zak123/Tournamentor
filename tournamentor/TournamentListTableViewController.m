@@ -33,7 +33,7 @@
 -(void)viewWillAppear:(BOOL)animated {
 
     if (!didLoad) {
-        [self updateTournamentsWithAnimate:NO];
+        [self updateTournamentsWithAnimate:YES];
     }
 }
 
@@ -78,8 +78,12 @@
     
     self.user = [[User alloc]init];
     
-    self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
-    self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
+//    self.user.name = [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
+//    self.user.apiKey = [SSKeychain passwordForService:@"Challonge" account:self.user.name];
+ 
+    
+    self.user.name = [[NSUserDefaults standardUserDefaults] objectForKey:@"ChallongeUsername"];
+    self.user.apiKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"ChallongeAPIKey"];
     
     [self setTitle:@"Tournaments"];
     
@@ -100,21 +104,12 @@
 
 -(void) signOut {
     // sign user out (delete keychain) so that they can then reset the keychain to their desired challonge username
-    SSKeychainQuery *query = [[SSKeychainQuery alloc] init];
-    
-    NSArray *accounts = [query fetchAll:nil];
-    
-    for (id account in accounts) {
-        
-        SSKeychainQuery *query = [[SSKeychainQuery alloc] init];
-        
-        query.service = @"Challonge";
-        query.account = [account valueForKey:@"acct"];
-        
-        [query deleteItem:nil];
-        
-    }
 
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userDefaults setObject:nil forKey:@"ChallongeUsername"];
+    [userDefaults setObject:nil forKey:@"ChallongeAPIKey"];
     
 //    [[SSKeychain accountsForService:@"Challonge"][0] valueForKey:@"acct"];
     

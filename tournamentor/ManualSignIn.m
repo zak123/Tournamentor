@@ -48,7 +48,16 @@
     [self.manager addSection:button];
     
     RETableViewItem *buttonItem = [RETableViewItem itemWithTitle:@"Done" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
-        [SSKeychain setPassword:self.apiKeyField.value forService:@"Challonge" account:self.usernameField.value];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        [userDefaults setObject:nil forKey:@"ChallongeUsername"];
+        [userDefaults setObject:nil forKey:@"ChallongeAPIKey"];
+        
+        
+        
+        [userDefaults setObject:self.usernameField.value forKey:@"ChallongeUsername"];
+        [userDefaults setObject:self.apiKeyField.value forKey:@"ChallongeAPIKey"];
         
         [self performSegueWithIdentifier:@"showTournaments" sender:self];
     }];

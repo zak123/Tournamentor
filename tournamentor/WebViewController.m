@@ -22,6 +22,7 @@
 
 -(void)viewDidLoad {
 
+    
     [super viewDidLoad];
     
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -88,8 +89,17 @@
     NSString *USERNAME = [self getUsername:plainHTML];
     
     if (APIKEY.length == 40) {
-
-        [SSKeychain setPassword:APIKEY forService:@"Challonge" account:USERNAME];
+        
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        [userDefaults setObject:nil forKey:@"ChallongeUsername"];
+        [userDefaults setObject:nil forKey:@"ChallongeAPIKey"];
+        
+        
+        
+        [userDefaults setObject:USERNAME forKey:@"ChallongeUsername"];
+        [userDefaults setObject:APIKEY forKey:@"ChallongeAPIKey"];
         
         NSString *completedDialog = [NSString stringWithFormat:@"%@, you are now signed into your Challonge account. hit OK to use Tournamentor.", USERNAME];
         
@@ -121,7 +131,7 @@
             if ([currentURL isEqualToString:@"http://challonge.com/settings/developers"]) {
 
             
-            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error processing API Key" message:@"There was an error automatically processing your API key. Please enter your username and API key manually by clicking the gear icon on the sign in screen." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *error = [[UIAlertView alloc]initWithTitle:@"Error processing API Key" message:@"There was an error automatically processing your API key. Please enter your username and API key on the next screen. Grab your API Key by using the in app browser." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             error.tag = 101;
             
             
@@ -135,7 +145,7 @@
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
     if (alertView.tag == 101) {
-        //Do Nothing
+        [self manualSignin];
     } else {
     
     [self performSegueWithIdentifier:@"didGetApiKey" sender:self];

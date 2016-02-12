@@ -306,6 +306,7 @@
 				B633563E1AE1792500D3170B /* Frameworks */,
 				B633563F1AE1792500D3170B /* Resources */,
 				B8ECDF58BDF91A76A0A69717 /* Copy Pods Resources */,
+				06DF6A3531AED8DDFD2A401B /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -393,6 +394,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		06DF6A3531AED8DDFD2A401B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tournamentor/Pods-tournamentor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B8ECDF58BDF91A76A0A69717 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
