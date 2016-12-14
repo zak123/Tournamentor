@@ -29,7 +29,7 @@
     NSArray *roundsArray;
     NSArray *newSorted;
     NSString *titleForHeader;
-
+    
     
 }
 
@@ -43,20 +43,20 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     
     UIBarButtonItem *viewResultsButton = [[UIBarButtonItem alloc]
-                                      initWithImage:[UIImage imageNamed:@"bracket"]
-                                      style:UIBarButtonItemStylePlain
-                                      target:self
-                                      action:@selector(viewResults)];
+                                          initWithImage:[UIImage imageNamed:@"bracket"]
+                                          style:UIBarButtonItemStylePlain
+                                          target:self
+                                          action:@selector(viewResults)];
     
     self.navigationItem.rightBarButtonItem = viewResultsButton;
-
+    
     
     newSorted = [[NSArray alloc]init];
-
-
     
-
-
+    
+    
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -87,14 +87,14 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     self.tableView.tableHeaderView.frame = frame;
     
     self.tableView.tableHeaderView.hidden = YES;
-
-
+    
+    
 }
 
 
 -(void)updateTournamentsAndDictionary {
     numMatchesArray = [[NSMutableArray alloc]init];
-
+    
     ChallongeCommunicator *communicator = [[ChallongeCommunicator alloc]init];
     [communicator getMatchesForTournament:self.selectedTournament.tournamentURL withUsername:self.currentUser.name andAPIKey:self.currentUser.apiKey block:^(NSArray *matchArray, NSError *error) {
         
@@ -215,26 +215,26 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
             [_hud hide:YES];
         }
     }];
-
+    
 }
 
 //-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-//    
-//    
-//    
+//
+//
+//
 //    UICollectionReusableView *reusableview;
-//    
-//    
+//
+//
 //    BracketCollectionViewHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"cellHeader" forIndexPath:indexPath];
-//    
+//
 //    headerView.viewHeader.text = @"TEST";
-//    
+//
 //    if (reusableview == nil) {
 //        reusableview = [[UICollectionReusableView alloc] init];
 //    }
-//    
+//
 //    return reusableview;
-//    
+//
 //}
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -242,7 +242,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     NSString *str = [self getSectionHeaderForKeys:newSorted andSection:section];
     
-
+    
     
     
     if (kind == UICollectionElementKindSectionHeader) {
@@ -305,24 +305,24 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     
     
     if ([self.selectedTournament.tournamentType isEqual:@"double elimination"]) {
-    if ([str containsString:@"-"]) {
-        if ([str doubleValue] == [min doubleValue]) {
-            str = [NSString stringWithFormat:@"Loser Finals"];
-        }else {
-            str = [NSString stringWithFormat:@"Losers Round %@", keys[section]];
-            str = [str stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        if ([str containsString:@"-"]) {
+            if ([str doubleValue] == [min doubleValue]) {
+                str = [NSString stringWithFormat:@"Loser Finals"];
+            }else {
+                str = [NSString stringWithFormat:@"Losers Round %@", keys[section]];
+                str = [str stringByReplacingOccurrencesOfString:@"-" withString:@""];
+            }
         }
-    }
-    else {
-        if ([str doubleValue] == [max doubleValue]) {
-            str = [NSString stringWithFormat:@"Finals"];
-        } else {
-            str = [NSString stringWithFormat:@"Winners Round %@", keys[section]];
+        else {
+            if ([str doubleValue] == [max doubleValue]) {
+                str = [NSString stringWithFormat:@"Finals"];
+            } else {
+                str = [NSString stringWithFormat:@"Winners Round %@", keys[section]];
+            }
         }
-    }
     }
     return str;
-
+    
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -351,8 +351,8 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         cell.roundImage.image = [UIImage imageNamed:@"edit"];
     }
     
-
-
+    
+    
     
     if (indexPath.row & 1) {
         cell.backgroundColor = [UIColor colorWithRed:0.267 green:0.267 blue:0.267 alpha:1];
@@ -360,8 +360,8 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     else {
         cell.backgroundColor = [UIColor colorWithRed:0.231 green:0.231 blue:0.231 alpha:1];
     }
- 
-
+    
+    
     if (cellMatch.score.length > 1) {
         cell.player1Label.text = cellMatch.player1_name;
         cell.player2Label.text = cellMatch.player2_name;
@@ -375,15 +375,15 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         
         
         if ([cell.player1Score.text intValue] > [cell.player2Score.text intValue]) {
-           
+            
         }
         
         if ([cell.player2Score.text intValue] > [cell.player1Score.text intValue]) {
             
         }
- 
         
-    
+        
+        
         
     } else {
         cell.player1Label.text = cellMatch.player1_name;
@@ -488,7 +488,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-
+    
 }
 
 #pragma mark - Navigation
@@ -502,7 +502,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         
         dVC.selectedTournament = self.selectedTournament;
     }
-
+    
     if ([segue.identifier isEqualToString:@"showPickedMatch"]) {
         
         MatchEditTableViewController *dVC = (MatchEditTableViewController *)segue.destinationViewController;
@@ -513,7 +513,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         
         
         dVC.roundText = titleForHeader;
-
+        
         
     }
     else if ([segue.identifier isEqualToString:@"showPickedMatchHeader"]) {
@@ -526,7 +526,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
         dVC.currentUser = self.currentUser;
         dVC.currentTournament = self.selectedTournament;
         
-
+        
         dVC.roundText = titleForHeader;
         
         
@@ -543,7 +543,7 @@ static NSString * const reuseIdentifier = @"bracketCollectionViewCell";
     }
 }
 
-    
+
 
 
 

@@ -331,7 +331,7 @@
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    shouldAnimate = NO;
+    shouldAnimate = YES;
 
 }
 
