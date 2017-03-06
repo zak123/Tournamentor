@@ -25,6 +25,8 @@
     
     [super viewDidLoad];
     
+    [self manualSignin];
+    
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
@@ -55,6 +57,10 @@
 
 
 
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self performSegueWithIdentifier:@"manualSignin" sender:self];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
